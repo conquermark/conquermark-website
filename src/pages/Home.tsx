@@ -10,12 +10,17 @@ import {
 import { toast } from "sonner";
 import { useState } from "react";
 import ClientLogos from "@/components/ClientLogos";
+import GlobalOffices from "@/components/GlobalOffices";
 import VideoLightbox from "@/components/VideoLightbox";
 import TestimonialSubmissionModal from "@/components/TestimonialSubmissionModal";
 import ContactModal from "@/components/ContactModal";
 import GetStartedPopup from "@/components/popups/GetStartedPopup";
+import SEO from "@/components/SEO";
+import { getSEOData } from "@/config/seoData";
 
 export default function Home() {
+  const seoData = getSEOData('/');
+
   const [email, setEmail] = useState("");
   const [videoLightboxOpen, setVideoLightboxOpen] = useState(false);
   const [currentVideo, setCurrentVideo] = useState("");
@@ -172,7 +177,15 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen">
+    <>
+      <SEO 
+        title={seoData.title}
+        description={seoData.description}
+        keywords={seoData.keywords}
+        canonical="https://conquermark.com/"
+        schema={seoData.schema}
+      />
+      <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-primary via-primary to-primary/80 text-primary-foreground py-20 md:py-32 overflow-hidden">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDE2YzAtMy4zMTQgMi42ODYtNiA2LTZzNiAyLjY4NiA2IDYtMi42ODYgNi02IDYtNi0yLjY4Ni02LTZ6TTEyIDM2YzAtMy4zMTQgMi42ODYtNiA2LTZzNiAyLjY4NiA2IDYtMi42ODYgNi02IDYtNi0yLjY4Ni02LTZ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-20"></div>
@@ -394,6 +407,9 @@ export default function Home() {
       {/* Client Logos */}
       <ClientLogos />
 
+      {/* Global Offices Section */}
+      <GlobalOffices />
+
       {/* Case Study Teaser */}
       <section className="py-20 md:py-28 bg-muted/30">
         <div className="container">
@@ -548,5 +564,6 @@ export default function Home() {
       
       <GetStartedPopup />
     </div>
+    </>
   );
 }

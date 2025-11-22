@@ -193,7 +193,7 @@ export default function DigitalMarketing() {
               <div className="flex flex-wrap gap-6 text-sm">
                 <a href="tel:+919876543210" className="flex items-center gap-2 hover:text-accent transition-colors">
                   <Phone className="h-5 w-5" />
-                  <span className="font-semibold text-lg">(123) 456-7890</span>
+                  <span className="font-semibold text-lg">+1 (209) 813-4001</span>
                 </a>
                 <button
                   onClick={() => setIsContactModalOpen(true)}
@@ -354,7 +354,7 @@ export default function DigitalMarketing() {
             >
               <a href="tel:+919876543210">
                 <Phone className="mr-2 h-5 w-5" />
-                Call (123) 456-7890
+                Call +1 (209) 813-4001
               </a>
             </Button>
           </div>

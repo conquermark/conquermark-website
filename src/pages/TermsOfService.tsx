@@ -146,7 +146,7 @@ export default function TermsOfService() {
             </p>
             <ul className="list-none space-y-2 text-foreground/80">
               <li><strong>Email:</strong> hello@conquermark.com</li>
-              <li><strong>Phone:</strong> +91 98765 43210</li>
+              <li><strong>Phone:</strong> +1 (209) 813-4001</li>
               <li><strong>Address:</strong> 123 Business Street, Mumbai, Maharashtra 400001, India</li>
             </ul>
           </section>

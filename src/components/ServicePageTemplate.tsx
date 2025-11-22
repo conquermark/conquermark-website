@@ -169,7 +169,7 @@ export default function ServicePageTemplate({
               <div className="flex flex-wrap gap-6 text-sm">
                 <a href="tel:+919876543210" className="flex items-center gap-2 hover:text-accent transition-colors">
                   <Phone className="h-4 w-4" />
-                  <span className="font-semibold">(123) 456-7890</span>
+                  <span className="font-semibold">+1 (209) 813-4001</span>
                 </a>
                 <button
                   onClick={() => setIsContactModalOpen(true)}

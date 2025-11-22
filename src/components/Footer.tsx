@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Linkedin, Twitter, Facebook, Instagram, Mail } from "lucide-react";
+import { Linkedin, Twitter, Facebook, Instagram, Mail, Phone, MapPin } from "lucide-react";
 import { toast } from "sonner";
 
 export default function Footer() {
@@ -28,6 +28,25 @@ export default function Footer() {
     { name: "Contact", href: "/contact" },
   ];
 
+  const offices = [
+    {
+      country: "🇮🇳 India HQ",
+      address: "Ahmedabad, GJ 380026"
+    },
+    {
+      country: "🇺🇸 USA Office",
+      address: "Fort Lauderdale, FL"
+    },
+    {
+      country: "🇭🇰 Hong Kong Office",
+      address: "Ngau Tau Kok"
+    },
+    {
+      country: "🇦🇺 Australia Office",
+      address: "Sydney NSW 2000"
+    }
+  ];
+
 
 
   const legal = [
@@ -39,7 +58,7 @@ export default function Footer() {
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="container py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
           {/* Company Info */}
           <div className="lg:col-span-2">
             <h3 className="text-2xl font-bold mb-4">CONQUERMARK</h3>
@@ -129,6 +148,47 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
+          </div>
+
+          {/* Contact Us */}
+          <div>
+            <h4 className="font-semibold mb-4">Contact Us</h4>
+            
+            {/* Phone */}
+            <div className="mb-4">
+              <a 
+                href="tel:+12098134001" 
+                className="flex items-center gap-2 text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors group"
+              >
+                <Phone className="h-4 w-4 group-hover:animate-pulse" />
+                <span className="font-semibold">+1 (209) 813-4001</span>
+              </a>
+            </div>
+
+            {/* Email */}
+            <div className="mb-4">
+              <a 
+                href="mailto:hello@conquermark.com" 
+                className="flex items-center gap-2 text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+              >
+                <Mail className="h-4 w-4" />
+                <span>hello@conquermark.com</span>
+              </a>
+            </div>
+
+            {/* Offices */}
+            <div className="space-y-3 mt-4">
+              {offices.map((office, index) => (
+                <div key={index} className="text-sm">
+                  <div className="font-semibold text-primary-foreground/90 mb-1">
+                    {office.country}
+                  </div>
+                  <div className="text-primary-foreground/70 text-xs">
+                    {office.address}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
