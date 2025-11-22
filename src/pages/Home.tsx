@@ -208,63 +208,91 @@ export default function Home() {
       <section className="py-20 md:py-28 bg-background">
         <div className="container max-w-4xl">
           <div className="prose prose-lg max-w-none">
-            <p className="text-sm font-semibold text-accent mb-4 uppercase tracking-wide">Dear Business Builder,</p>
+            <p className="text-sm font-semibold text-accent mb-6 uppercase tracking-wide">Dear business builder,</p>
             
-            <p className="text-xl md:text-2xl font-bold mb-6 leading-relaxed">
-              We get it. Growing a business is hard. Really hard.
-            </p>
+            <p className="text-lg mb-4">We get it.</p>
 
-            <p className="text-lg text-foreground/80 mb-4">
-              You're probably worried about where your next customer will come from. Stressed about making the right technology decisions. 
-              Wondering if you should invest in that new app, automate your operations, or completely rebuild your website.
-            </p>
+            <p className="text-lg mb-6">Growing a business is hard. Really f*cking hard.</p>
 
-            <p className="text-lg text-foreground/80 mb-4">
-              And to top it all off, you're being pulled in a million different directions:
-            </p>
+            <p className="text-lg mb-4">You're probably worried about where your next customer will come from.</p>
 
-            <ul className="text-lg text-foreground/70 space-y-2 mb-6">
-              <li>Should I build a mobile app or stick with a website?</li>
-              <li>Do I need marketing automation or a better sales process?</li>
-              <li>Is AI going to replace my entire workflow?</li>
-              <li>How do I scale without hiring an entire tech team?</li>
-            </ul>
+            <p className="text-lg mb-4">Stressed and sleeping like a teething two-year-old.</p>
 
-            <p className="text-lg text-foreground/80 mb-4">
-              Look, most business owners have a bad case of "shiny object syndrome." They try a little bit of this, a little bit of that. 
-              Soon they're drowning in half-finished projects, wasted budgets, and technology that doesn't talk to each other.
-            </p>
+            <p className="text-lg mb-4">As your hair goes fifty shades of grey from all the uncertainty.</p>
 
-            <p className="text-xl font-bold mb-4">
-              We call this mess a "tech rats nest." And we'd rather not operate that way.
-            </p>
+            <p className="text-lg mb-6">And to top it all off.</p>
 
-            <p className="text-lg text-foreground/80 mb-4">
-              You're reading this right now because, in some way, your business isn't where you want it to be. 
-              Maybe you're stuck. Maybe you're growing but can't keep up. Or maybe you're flying and you simply want more.
-            </p>
+            <p className="text-lg mb-4">You're being pulled in a bazillion different directions.</p>
 
-            <p className="text-xl font-bold mb-4">
-              More customers. More revenue. More freedom.
-            </p>
+            <p className="text-lg mb-6 font-bold">Ohmygawd!</p>
 
-            <p className="text-lg text-foreground/80 mb-4">
-              That's why we built Conquermark differently. We don't just build apps and websites. We don't just run ads or set up automation. 
-              We become your complete technology and growth partner.
-            </p>
+            <p className="text-lg mb-4">Should I blog? Start a podcast? Build a personal brand?</p>
 
-            <p className="text-xl font-bold mb-6">
-              One partner. End-to-end. From idea to revenue to scale.
-            </p>
+            <p className="text-lg mb-4">Document my whole flippin' life on Instagram?</p>
 
-            <p className="text-lg text-foreground/80 mb-4">
-              Whether you're a startup founder validating an idea, an e-commerce brand scaling to 7 figures, 
-              a SaaS company automating operations, or an enterprise modernizing legacy systems...
-            </p>
+            <p className="text-lg mb-4">What about chatbots?</p>
 
-            <p className="text-xl font-bold">
-              We've got the playbook to get you there faster.
-            </p>
+            <p className="text-lg mb-4">Errrrrbody's talkin' bout chatbots.</p>
+
+            <p className="text-lg mb-4">Should I run some ads?</p>
+
+            <p className="text-lg mb-4">Drop $3k on a logo?</p>
+
+            <p className="text-lg mb-4">Post on LinkedIn five times per day?</p>
+
+            <p className="text-lg mb-6 italic">*somebody please pull out my eyelashes*</p>
+
+            <p className="text-lg mb-6">Look, most entrepreneurs have a bad case of 'shiny object syndrome'...</p>
+
+            <p className="text-lg mb-4">Mixed with a scoop of ADD...</p>
+
+            <p className="text-lg mb-6">and a sprinkle of "I can do everything".</p>
+
+            <p className="text-lg mb-4">And they end up doing a little bit of this... a little bit of that.</p>
+
+            <p className="text-lg mb-6">Soon, they're screaming at their Macbook with all the things they "have to" do.</p>
+
+            <p className="text-lg mb-4">We call this shit show a <strong>rats nest.</strong></p>
+
+            <p className="text-lg mb-6">Also known as hell.</p>
+
+            <p className="text-lg mb-4">It's hot and muggy there.</p>
+
+            <p className="text-lg mb-6">And we'd rather rub scorpion chillies in our eyes than operate a business that way.</p>
+
+            <p className="text-lg mb-6">But this isn't about us...</p>
+
+            <p className="text-lg mb-6 font-bold">It's about you.</p>
+
+            <p className="text-lg mb-4">You're reading this right now because, in some way shape or form, your business isn't where you want it to be.</p>
+
+            <p className="text-lg mb-6">Or maybe you're flying... and you simply want <strong>more.</strong></p>
+
+            <p className="text-lg mb-4">More customers.</p>
+
+            <p className="text-lg mb-4">More revenue.</p>
+
+            <p className="text-lg mb-6">More freedom.</p>
+
+            <p className="text-lg mb-6">That's why we built <strong>Conquermark</strong> differently.</p>
+
+            <p className="text-lg mb-4">We don't just build websites and apps.</p>
+
+            <p className="text-lg mb-4">We don't just run ads or set up automation.</p>
+
+            <p className="text-lg mb-6">We become your <strong>complete technology and growth partner.</strong></p>
+
+            <p className="text-xl font-bold mb-6">One partner. End-to-end. From idea to revenue to scale.</p>
+
+            <p className="text-lg mb-4">Whether you're a startup founder validating an idea...</p>
+
+            <p className="text-lg mb-4">An e-commerce brand scaling to 7 figures...</p>
+
+            <p className="text-lg mb-4">A SaaS company automating operations...</p>
+
+            <p className="text-lg mb-6">Or an enterprise modernizing legacy systems...</p>
+
+            <p className="text-xl font-bold">We've got the playbook to get you there faster.</p>
           </div>
         </div>
       </section>
