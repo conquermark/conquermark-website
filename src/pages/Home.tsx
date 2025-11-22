@@ -185,7 +185,7 @@ export default function Home() {
               We take your idea to market.
             </p>
             <p className="text-lg mb-12 text-primary-foreground/80 max-w-3xl mx-auto">
-              Product strategy, app & web development, no-code builds and growth marketing — 
+              Product strategy, app & web development, no-code builds and growth marketing - 
               one partner from prototype to customers.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -240,7 +240,7 @@ export default function Home() {
             </p>
 
             <p className="text-lg text-foreground/80 mb-6">
-              That's why we built Conquermark differently. We don't just build apps and websites — we help you validate 
+              That's why we built Conquermark differently. We don't just build apps and websites - we help you validate 
               demand, build the right MVP, launch strategically, and acquire your first customers.
             </p>
 

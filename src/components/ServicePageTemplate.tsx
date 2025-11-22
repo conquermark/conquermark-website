@@ -167,7 +167,7 @@ export default function ServicePageTemplate({
 
               {/* Contact Options */}
               <div className="flex flex-wrap gap-6 text-sm">
-                <a href="tel:+1234567890" className="flex items-center gap-2 hover:text-accent transition-colors">
+                <a href="tel:+919876543210" className="flex items-center gap-2 hover:text-accent transition-colors">
                   <Phone className="h-4 w-4" />
                   <span className="font-semibold">(123) 456-7890</span>
                 </a>

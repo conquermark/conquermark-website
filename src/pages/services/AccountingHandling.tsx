@@ -143,7 +143,7 @@ export default function AccountingHandling() {
                   "Conquermark's accounting team took over our books and freed up our time to focus on product development. 
                   Their monthly reports give us clear visibility into our burn rate and runway."
                 </p>
-                <p className="font-semibold">— SaaS Startup Founder</p>
+                <p className="font-semibold">- SaaS Startup Founder</p>
               </div>
             </CardContent>
           </Card>

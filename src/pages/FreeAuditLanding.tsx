@@ -550,7 +550,7 @@ export default function FreeAuditLanding() {
                   <p className="text-gray-700 mb-4">
                     "Working with Conquermark delivered amazing results: <strong>$57,000+ organic revenue in 90 days</strong>. Their expertise transformed our business."
                   </p>
-                  <p className="text-sm text-gray-500">— Client, Contact Lenses</p>
+                  <p className="text-sm text-gray-500">- Client, Contact Lenses</p>
                 </div>
               </div>
 
@@ -579,7 +579,7 @@ export default function FreeAuditLanding() {
                   <p className="text-gray-700 mb-4">
                     "Conquermark helped us achieve <strong>$50,000+ organic revenue per month</strong>. Their dedication and expertise are unmatched."
                   </p>
-                  <p className="text-sm text-gray-500">— Client, Sports Equipment</p>
+                  <p className="text-sm text-gray-500">- Client, Sports Equipment</p>
                 </div>
               </div>
 
@@ -608,7 +608,7 @@ export default function FreeAuditLanding() {
                   <p className="text-gray-700 mb-4">
                     "Professional, responsive, and results-driven. Conquermark feels like an extension of our team, not just a vendor."
                   </p>
-                  <p className="text-sm text-gray-500">— Emily Rodriguez, VP of Operations</p>
+                  <p className="text-sm text-gray-500">- Emily Rodriguez, VP of Operations</p>
                 </div>
               </div>
             </div>
@@ -691,7 +691,7 @@ export default function FreeAuditLanding() {
                   What happens after I receive my audit?
                 </h3>
                 <p className="text-gray-700">
-                  After reviewing your audit, you can implement the recommendations yourself, or we can discuss how our team can help you execute the strategy. There's no pressure—the choice is entirely yours.
+                  After reviewing your audit, you can implement the recommendations yourself, or we can discuss how our team can help you execute the strategy. There's no pressure-the choice is entirely yours.
                 </p>
               </div>
             </div>

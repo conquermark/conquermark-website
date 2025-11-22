@@ -11,29 +11,29 @@ export default function Footer() {
   };
 
   const services = [
+    { name: "Automation Services", href: "/automation-services" },
+    { name: "Marketing Automation", href: "/automation/marketing" },
+    { name: "Sales & CRM Automation", href: "/automation/sales-crm" },
+    { name: "Customer Support Automation", href: "/automation/customer-support" },
+    { name: "n8n Automation", href: "/automation/n8n" },
+    { name: "Zapier Automation", href: "/automation/zapier" },
+    { name: "Make.com Automation", href: "/automation/make" },
+    { name: "E-commerce Automation", href: "/automation/ecommerce" },
     { name: "Product Validation", href: "/services/product-validation" },
-    { name: "Wireframing & UX", href: "/services/wireframing-ux" },
-    { name: "MVP Development", href: "/services/mvp-development" },
-    { name: "No-Code Development", href: "/services/no-code" },
-    { name: "Web App Development", href: "/services/web-development" },
-    { name: "Mobile App Development", href: "/services/mobile-app" },
-    { name: "Digital Marketing (29 Services)", href: "/digital-marketing" },
-    { name: "Funding & Pitch", href: "/services/funding-pitch" },
-    { name: "Accounting Handling", href: "/services/accounting-handling" },
   ];
 
   const company = [
     { name: "About", href: "/about" },
     { name: "Case Studies", href: "/case-studies" },
     { name: "Contact", href: "/contact" },
-    { name: "FAQ", href: "/faq" },
   ];
 
 
 
   const legal = [
-    { name: "Privacy Policy", href: "/legal#privacy" },
-    { name: "Terms of Service", href: "/legal#terms" },
+    { name: "Privacy Policy", href: "/privacy-policy" },
+    { name: "Terms of Service", href: "/terms-of-service" },
+    { name: "Cookie Policy", href: "/cookie-policy" },
   ];
 
   return (

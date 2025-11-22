@@ -191,7 +191,7 @@ export default function DigitalMarketing() {
 
               {/* Contact Options */}
               <div className="flex flex-wrap gap-6 text-sm">
-                <a href="tel:+1234567890" className="flex items-center gap-2 hover:text-accent transition-colors">
+                <a href="tel:+919876543210" className="flex items-center gap-2 hover:text-accent transition-colors">
                   <Phone className="h-5 w-5" />
                   <span className="font-semibold text-lg">(123) 456-7890</span>
                 </a>
@@ -352,7 +352,7 @@ export default function DigitalMarketing() {
               className="bg-white text-primary hover:bg-white/90 text-lg font-semibold h-16 px-12 border-2"
               asChild
             >
-              <a href="tel:+1234567890">
+              <a href="tel:+919876543210">
                 <Phone className="mr-2 h-5 w-5" />
                 Call (123) 456-7890
               </a>

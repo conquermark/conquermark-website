@@ -345,7 +345,7 @@ export default function AutomationServices() {
               Start Saving Time Today
             </h2>
             <p className="text-xl text-blue-100 mb-8">
-              Get a custom automation strategy in 24-48 hours — absolutely free
+              Get a custom automation strategy in 24-48 hours - absolutely free
             </p>
             <Link href="/automation-audit">
               <Button size="lg" className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold text-lg px-8">

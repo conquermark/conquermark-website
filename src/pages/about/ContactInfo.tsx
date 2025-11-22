@@ -22,7 +22,7 @@ export default function ContactInfo() {
             </nav>
             <h1 className="text-5xl md:text-6xl font-bold mb-6">Contact Info</h1>
             <p className="text-xl text-primary-foreground/90 mb-8 max-w-3xl">
-              Get in touch with us — we're here to help bring your product to life.
+              Get in touch with us - we're here to help bring your product to life.
             </p>
           </div>
         </div>
@@ -43,8 +43,8 @@ export default function ContactInfo() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-2">Phone</h3>
-                  <a href="tel:+1234567890" className="text-accent hover:underline">
-                    +1 (234) 567-890
+                  <a href="tel:+919876543210" className="text-accent hover:underline">
+                    +91 98765 43210
                   </a>
                 </div>
                 <div>

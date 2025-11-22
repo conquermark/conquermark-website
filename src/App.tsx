@@ -100,6 +100,9 @@ import Careers from "./pages/Careers";
 import Partners from "./pages/Partners";
 import Events from "./pages/Events";
 import Legal from "./pages/Legal";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
+import CookiePolicy from "./pages/CookiePolicy";
 
 function Router() {
   return (
@@ -180,6 +183,9 @@ function Router() {
           <Route path="/partners" component={Partners} />
           <Route path="/events" component={Events} />
           <Route path="/legal" component={Legal} />
+          <Route path="/privacy-policy" component={PrivacyPolicy} />
+          <Route path="/terms-of-service" component={TermsOfService} />
+          <Route path="/cookie-policy" component={CookiePolicy} />
           <Route path={"/404"} component={NotFound} />
           {/* Final fallback route */}
 
