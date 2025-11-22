@@ -212,87 +212,137 @@ export default function Home() {
             
             <p className="text-lg mb-4">We get it.</p>
 
-            <p className="text-lg mb-6">Growing a business is hard. Really f*cking hard.</p>
+            <p className="text-lg mb-6">Running a business in 2025 feels like you're drowning in technology choices.</p>
 
-            <p className="text-lg mb-4">You're probably worried about where your next customer will come from.</p>
+            <p className="text-lg mb-4">Everyone's screaming at you to "automate everything" or "go AI-first" or "build an app."</p>
 
-            <p className="text-lg mb-4">Stressed and sleeping like a teething two-year-old.</p>
+            <p className="text-lg mb-6">But nobody's telling you WHERE to start.</p>
 
-            <p className="text-lg mb-4">As your hair goes fifty shades of grey from all the uncertainty.</p>
+            <p className="text-lg mb-4">Or what actually moves the needle for YOUR business.</p>
 
-            <p className="text-lg mb-6">And to top it all off.</p>
+            <p className="text-lg mb-6">So you're stuck.</p>
 
-            <p className="text-lg mb-4">You're being pulled in a bazillion different directions.</p>
+            <p className="text-lg mb-4">Watching competitors launch faster.</p>
 
-            <p className="text-lg mb-6 font-bold">Ohmygawd!</p>
+            <p className="text-lg mb-4">Seeing them scale with half your team size.</p>
 
-            <p className="text-lg mb-4">Should I blog? Start a podcast? Build a personal brand?</p>
+            <p className="text-lg mb-6">While you're manually doing tasks that should take 2 minutes, not 2 hours.</p>
 
-            <p className="text-lg mb-4">Document my whole flippin' life on Instagram?</p>
+            <p className="text-lg mb-6">And here's the worst part.</p>
 
-            <p className="text-lg mb-4">What about chatbots?</p>
+            <p className="text-lg mb-4">You KNOW technology could solve this.</p>
 
-            <p className="text-lg mb-4">Errrrrbody's talkin' bout chatbots.</p>
+            <p className="text-lg mb-4">You know automation could save you 20 hours a week.</p>
 
-            <p className="text-lg mb-4">Should I run some ads?</p>
+            <p className="text-lg mb-4">You know a proper app could 10x your customer experience.</p>
 
-            <p className="text-lg mb-4">Drop $3k on a logo?</p>
+            <p className="text-lg mb-6">You know AI could handle your customer support while you sleep.</p>
 
-            <p className="text-lg mb-4">Post on LinkedIn five times per day?</p>
+            <p className="text-lg mb-6">But every time you try to fix it?</p>
 
-            <p className="text-lg mb-6 italic">*somebody please pull out my eyelashes*</p>
+            <p className="text-lg mb-4">You get a developer who ghosts you after the first payment.</p>
 
-            <p className="text-lg mb-6">Look, most entrepreneurs have a bad case of 'shiny object syndrome'...</p>
+            <p className="text-lg mb-4">Or an agency that builds something that breaks in 3 months.</p>
 
-            <p className="text-lg mb-4">Mixed with a scoop of ADD...</p>
+            <p className="text-lg mb-6">Or a "marketing expert" who burns through your ad budget with zero results.</p>
 
-            <p className="text-lg mb-6">and a sprinkle of "I can do everything".</p>
+            <p className="text-lg mb-6">So now you're sitting on:</p>
 
-            <p className="text-lg mb-4">And they end up doing a little bit of this... a little bit of that.</p>
+            <p className="text-lg mb-2">→ A half-built website that looks like it's from 2015</p>
+            <p className="text-lg mb-2">→ Manual processes eating 30+ hours a week</p>
+            <p className="text-lg mb-2">→ Customer support tickets piling up</p>
+            <p className="text-lg mb-2">→ Marketing campaigns that convert at 0.3%</p>
+            <p className="text-lg mb-6">→ A Frankenstein tech stack held together with duct tape</p>
 
-            <p className="text-lg mb-6">Soon, they're screaming at their Macbook with all the things they "have to" do.</p>
+            <p className="text-lg mb-6">Sound familiar?</p>
 
-            <p className="text-lg mb-4">We call this shit show a <strong>rats nest.</strong></p>
+            <p className="text-lg mb-6">Look, we've seen this exact scenario 500+ times.</p>
 
-            <p className="text-lg mb-6">Also known as hell.</p>
+            <p className="text-lg mb-6">And here's what we learned:</p>
 
-            <p className="text-lg mb-4">It's hot and muggy there.</p>
+            <p className="text-lg mb-6 font-bold">The problem isn't you.</p>
 
-            <p className="text-lg mb-6">And we'd rather rub scorpion chillies in our eyes than operate a business that way.</p>
+            <p className="text-lg mb-4">The problem is that most agencies are specialists.</p>
 
-            <p className="text-lg mb-6">But this isn't about us...</p>
+            <p className="text-lg mb-4">They ONLY do web development.</p>
 
-            <p className="text-lg mb-6 font-bold">It's about you.</p>
+            <p className="text-lg mb-4">Or ONLY do marketing.</p>
 
-            <p className="text-lg mb-4">You're reading this right now because, in some way shape or form, your business isn't where you want it to be.</p>
+            <p className="text-lg mb-6">Or ONLY do automation.</p>
 
-            <p className="text-lg mb-6">Or maybe you're flying... and you simply want <strong>more.</strong></p>
+            <p className="text-lg mb-4">So you end up hiring 5 different companies...</p>
 
-            <p className="text-lg mb-4">More customers.</p>
+            <p className="text-lg mb-4">Who don't talk to each other...</p>
 
-            <p className="text-lg mb-4">More revenue.</p>
+            <p className="text-lg mb-6">Building systems that don't integrate...</p>
 
-            <p className="text-lg mb-6">More freedom.</p>
+            <p className="text-lg mb-6">And you become the project manager trying to hold it all together.</p>
 
-            <p className="text-lg mb-6">That's why we built <strong>Conquermark</strong> differently.</p>
+            <p className="text-lg mb-4">We call this the <strong>"tech Frankenstein problem."</strong></p>
 
-            <p className="text-lg mb-4">We don't just build websites and apps.</p>
+            <p className="text-lg mb-6">And it's expensive as hell.</p>
 
-            <p className="text-lg mb-4">We don't just run ads or set up automation.</p>
+            <p className="text-lg mb-6">But here's the thing.</p>
 
-            <p className="text-lg mb-6">We become your <strong>complete technology and growth partner.</strong></p>
+            <p className="text-lg mb-6 font-bold">It doesn't have to be this way.</p>
 
-            <p className="text-xl font-bold mb-6">One partner. End-to-end. From idea to revenue to scale.</p>
+            <p className="text-lg mb-6">What if you had ONE partner who could:</p>
 
-            <p className="text-lg mb-4">Whether you're a startup founder validating an idea...</p>
+            <p className="text-lg mb-2">✓ Build your website AND your mobile app</p>
+            <p className="text-lg mb-2">✓ Set up automation AND integrate it with your systems</p>
+            <p className="text-lg mb-2">✓ Run your marketing AND optimize your conversions</p>
+            <p className="text-lg mb-2">✓ Implement AI AND train it on your specific business</p>
+            <p className="text-lg mb-6">✓ Handle everything end-to-end without you managing 5 vendors</p>
 
-            <p className="text-lg mb-4">An e-commerce brand scaling to 7 figures...</p>
+            <p className="text-lg mb-6">That's <strong>Conquermark.</strong></p>
 
-            <p className="text-lg mb-4">A SaaS company automating operations...</p>
+            <p className="text-lg mb-4">We're not just developers.</p>
 
-            <p className="text-lg mb-6">Or an enterprise modernizing legacy systems...</p>
+            <p className="text-lg mb-4">We're not just marketers.</p>
 
-            <p className="text-xl font-bold">We've got the playbook to get you there faster.</p>
+            <p className="text-lg mb-6">We're not just automation experts.</p>
+
+            <p className="text-lg mb-6 font-bold">We're your complete technology and growth partner.</p>
+
+            <p className="text-lg mb-6">One team. One point of contact. Zero vendor management headaches.</p>
+
+            <p className="text-lg mb-6">Here's how we're different:</p>
+
+            <p className="text-lg mb-2 font-semibold">For Startups & Founders:</p>
+            <p className="text-lg mb-6">We don't just build your MVP. We validate your idea first, build the right product, launch it strategically, and help you get your first 100 customers.</p>
+
+            <p className="text-lg mb-2 font-semibold">For E-commerce & Online Businesses:</p>
+            <p className="text-lg mb-6">We don't just set up your store. We automate your entire operation, optimize your funnel, scale your ads, and integrate AI to handle customer support 24/7.</p>
+
+            <p className="text-lg mb-2 font-semibold">For SaaS & Tech Companies:</p>
+            <p className="text-lg mb-6">We don't just write code. We architect scalable systems, automate your workflows, build your growth engine, and help you scale from 100 to 10,000 users.</p>
+
+            <p className="text-lg mb-2 font-semibold">For Enterprises & Established Businesses:</p>
+            <p className="text-lg mb-6">We don't just "digitize" your processes. We modernize your entire tech stack, eliminate manual work, integrate AI across departments, and save you 1000+ hours per month.</p>
+
+            <p className="text-lg mb-6">Whether you need:</p>
+
+            <p className="text-lg mb-2">→ A website that actually converts</p>
+            <p className="text-lg mb-2">→ A mobile app your customers will love</p>
+            <p className="text-lg mb-2">→ Marketing automation that runs while you sleep</p>
+            <p className="text-lg mb-2">→ AI that handles repetitive work</p>
+            <p className="text-lg mb-6">→ A complete digital transformation</p>
+
+            <p className="text-lg mb-6">We've got you covered.</p>
+
+            <p className="text-xl font-bold mb-6">One partner. End-to-end. From idea to execution to growth.</p>
+
+            <p className="text-lg mb-6">And here's our promise:</p>
+
+            <p className="text-lg mb-4">We don't consider the project done until you're seeing real results.</p>
+
+            <p className="text-lg mb-4">Not just "it looks nice."</p>
+
+            <p className="text-lg mb-6">Not just "it works technically."</p>
+
+            <p className="text-lg mb-6">Real results. More customers. More revenue. Less manual work.</p>
+
+            <p className="text-xl font-bold">That's the Conquermark difference.</p>
           </div>
         </div>
       </section>
