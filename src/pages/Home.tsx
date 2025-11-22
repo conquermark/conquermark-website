@@ -208,43 +208,62 @@ export default function Home() {
       <section className="py-20 md:py-28 bg-background">
         <div className="container max-w-4xl">
           <div className="prose prose-lg max-w-none">
-            <p className="text-sm font-semibold text-accent mb-4 uppercase tracking-wide">Dear Founder,</p>
+            <p className="text-sm font-semibold text-accent mb-4 uppercase tracking-wide">Dear Business Builder,</p>
             
             <p className="text-xl md:text-2xl font-bold mb-6 leading-relaxed">
-              Building a product is hard. Really hard.
+              We get it. Growing a business is hard. Really hard.
             </p>
 
             <p className="text-lg text-foreground/80 mb-4">
-              You've got an idea that keeps you up at night. You know it could work. But you're stuck wondering:
+              You're probably worried about where your next customer will come from. Stressed about making the right technology decisions. 
+              Wondering if you should invest in that new app, automate your operations, or completely rebuild your website.
+            </p>
+
+            <p className="text-lg text-foreground/80 mb-4">
+              And to top it all off, you're being pulled in a million different directions:
             </p>
 
             <ul className="text-lg text-foreground/70 space-y-2 mb-6">
-              <li>Will anyone actually pay for this?</li>
-              <li>Should I build an app or start with a website?</li>
-              <li>Do I need to raise funding first?</li>
-              <li>How do I find my first 100 customers?</li>
+              <li>Should I build a mobile app or stick with a website?</li>
+              <li>Do I need marketing automation or a better sales process?</li>
+              <li>Is AI going to replace my entire workflow?</li>
+              <li>How do I scale without hiring an entire tech team?</li>
             </ul>
 
             <p className="text-lg text-foreground/80 mb-4">
-              Most founders waste months (or years) building the wrong thing. They skip validation, over-engineer the MVP, 
-              and launch to crickets.
+              Look, most business owners have a bad case of "shiny object syndrome." They try a little bit of this, a little bit of that. 
+              Soon they're drowning in half-finished projects, wasted budgets, and technology that doesn't talk to each other.
             </p>
 
             <p className="text-xl font-bold mb-4">
-              We've seen it a hundred times.
+              We call this mess a "tech rats nest." And we'd rather not operate that way.
             </p>
 
             <p className="text-lg text-foreground/80 mb-4">
-              That's why we built Conquermark differently. We don't just build apps and websites - we help you validate demand, 
-              build the right MVP, launch strategically, and acquire your first customers.
+              You're reading this right now because, in some way, your business isn't where you want it to be. 
+              Maybe you're stuck. Maybe you're growing but can't keep up. Or maybe you're flying and you simply want more.
+            </p>
+
+            <p className="text-xl font-bold mb-4">
+              More customers. More revenue. More freedom.
+            </p>
+
+            <p className="text-lg text-foreground/80 mb-4">
+              That's why we built Conquermark differently. We don't just build apps and websites. We don't just run ads or set up automation. 
+              We become your complete technology and growth partner.
             </p>
 
             <p className="text-xl font-bold mb-6">
-              One partner. End-to-end. From idea to revenue.
+              One partner. End-to-end. From idea to revenue to scale.
             </p>
 
-            <p className="text-lg text-foreground/80">
-              Whether you're validating an idea or scaling to 10,000 users, we've got the playbook to get you there faster.
+            <p className="text-lg text-foreground/80 mb-4">
+              Whether you're a startup founder validating an idea, an e-commerce brand scaling to 7 figures, 
+              a SaaS company automating operations, or an enterprise modernizing legacy systems...
+            </p>
+
+            <p className="text-xl font-bold">
+              We've got the playbook to get you there faster.
             </p>
           </div>
         </div>
