@@ -358,8 +358,8 @@ export default function Home() {
                       style={{ objectPosition: 'center 20%' }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
-                      <div className="bg-white/20 backdrop-blur-sm rounded-full p-6">
+                    <div className="absolute inset-0 flex items-center justify-center opacity-90 group-hover:opacity-100 transition-all duration-300">
+                      <div className="bg-white/30 backdrop-blur-sm rounded-full p-6 group-hover:bg-white/40 transition-all">
                         <Play className="h-12 w-12 text-white fill-white" />
                       </div>
                     </div>
