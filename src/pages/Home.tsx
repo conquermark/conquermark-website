@@ -5,16 +5,14 @@ import { Link } from "wouter";
 import { 
   Smartphone, Globe, Zap, TrendingUp, CheckCircle2, 
   ArrowRight, Lightbulb, Pencil, Rocket, BarChart3,
-  Play, Quote, Mail
+  Play, Quote, Mail, Shield, Clock, Users, Star, Award, Target
 } from "lucide-react";
 import { toast } from "sonner";
 import { useState } from "react";
 import ClientLogos from "@/components/ClientLogos";
-import GlobalOffices from "@/components/GlobalOffices";
 import VideoLightbox from "@/components/VideoLightbox";
 import TestimonialSubmissionModal from "@/components/TestimonialSubmissionModal";
 import ContactModal from "@/components/ContactModal";
-import GetStartedPopup from "@/components/popups/GetStartedPopup";
 import SEO from "@/components/SEO";
 import { getSEOData } from "@/config/seoData";
 
@@ -34,14 +32,6 @@ export default function Home() {
     setCurrentVideoTitle(`${testimonial.name}, ${testimonial.role} at ${testimonial.company}`);
     setCurrentVideoCaption(testimonial.caseNote);
     setVideoLightboxOpen(true);
-  };
-
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) {
-      toast.success("Thanks! Check your inbox for the MVP Launch Checklist.");
-      setEmail("");
-    }
   };
 
   const services = [
@@ -101,51 +91,6 @@ export default function Home() {
     }
   ];
 
-  const process = [
-    {
-      number: "01",
-      title: "Validate Idea",
-      description: "Customer interviews, market research, and landing page tests to validate demand before you build."
-    },
-    {
-      number: "02",
-      title: "Wireframe & MVP",
-      description: "Rapid prototyping and minimum viable product development to get to market fast."
-    },
-    {
-      number: "03",
-      title: "Launch",
-      description: "Strategic launch with paid channels, organic strategy, and conversion optimization."
-    },
-    {
-      number: "04",
-      title: "Grow",
-      description: "Data-driven optimization, A/B testing, and scalable acquisition channels."
-    }
-  ];
-
-  const pricingTiers = [
-    {
-      name: "Starter",
-      tagline: "Perfect for validating an idea or building a simple MVP",
-      features: ["Landing page + validation", "Basic MVP (4-6 weeks)", "1 platform (web or mobile)"],
-      cta: "View Details"
-    },
-    {
-      name: "Growth",
-      tagline: "For established products ready to scale and acquire customers",
-      features: ["Full product development", "Multi-platform launch", "Marketing & growth support"],
-      cta: "Most Popular",
-      highlighted: true
-    },
-    {
-      name: "Scale",
-      tagline: "Enterprise-grade solutions with dedicated team and custom roadmap",
-      features: ["Dedicated product team", "Custom tech stack", "Ongoing support & iteration"],
-      cta: "View Details"
-    }
-  ];
-
   const videoTestimonials = [
     {
       name: "Terrence",
@@ -186,7 +131,8 @@ export default function Home() {
         schema={seoData.schema}
       />
       <div className="min-h-screen">
-      {/* Hero Section */}
+      
+      {/* 1. HERO SECTION */}
       <section className="relative bg-gradient-to-br from-primary via-primary to-primary/80 text-primary-foreground py-20 md:py-32 overflow-hidden">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDE2YzAtMy4zMTQgMi42ODYtNiA2LTZzNiAyLjY4NiA2IDYtMi42ODYgNi02IDYtNi0yLjY4Ni02LTZ6TTEyIDM2YzAtMy4zMTQgMi42ODYtNiA2LTZzNiAyLjY4NiA2IDYtMi42ODYgNi02IDYtNi0yLjY4Ni02LTZ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-20"></div>
         <div className="container relative z-10">
@@ -222,7 +168,43 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CEO Vision Section - Inspired by King Kong */}
+      {/* 2. SOCIAL PROOF BAR */}
+      <section className="py-12 bg-accent/5 border-y border-accent/20">
+        <div className="container">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 text-center">
+            <div>
+              <div className="text-4xl font-bold text-accent mb-1">500+</div>
+              <div className="text-sm text-foreground/70">Projects Delivered</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-accent mb-1">98%</div>
+              <div className="text-sm text-foreground/70">Client Satisfaction</div>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-accent mb-1">$50M+</div>
+              <div className="text-sm text-foreground/70">Revenue Generated</div>
+            </div>
+            <div>
+              <div className="flex items-center justify-center gap-1 mb-1">
+                {[1,2,3,4,5].map(i => <Star key={i} className="h-6 w-6 fill-accent text-accent" />)}
+              </div>
+              <div className="text-sm text-foreground/70">5.0 Rating</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Client Logos */}
+      <section className="py-16 bg-background">
+        <div className="container">
+          <h3 className="text-center text-lg font-semibold text-foreground/70 mb-8">
+            Trusted by Innovative Companies
+          </h3>
+          <ClientLogos />
+        </div>
+      </section>
+
+      {/* 3. FOUNDER LETTER */}
       <section className="py-20 md:py-28 bg-background">
         <div className="container max-w-4xl">
           <div className="prose prose-lg max-w-none">
@@ -248,27 +230,27 @@ export default function Home() {
               and launch to crickets.
             </p>
 
+            <p className="text-xl font-bold mb-4">
+              We've seen it a hundred times.
+            </p>
+
             <p className="text-lg text-foreground/80 mb-4">
-              <strong className="text-foreground">We've seen it a hundred times.</strong>
+              That's why we built Conquermark differently. We don't just build apps and websites - we help you validate demand, 
+              build the right MVP, launch strategically, and acquire your first customers.
             </p>
 
-            <p className="text-lg text-foreground/80 mb-6">
-              That's why we built Conquermark differently. We don't just build apps and websites - we help you validate 
-              demand, build the right MVP, launch strategically, and acquire your first customers.
-            </p>
-
-            <p className="text-xl font-bold text-foreground mb-4">
+            <p className="text-xl font-bold mb-6">
               One partner. End-to-end. From idea to revenue.
             </p>
 
-            <p className="text-lg text-foreground/70">
+            <p className="text-lg text-foreground/80">
               Whether you're validating an idea or scaling to 10,000 users, we've got the playbook to get you there faster.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
+      {/* 4. SERVICES GRID */}
       <section className="py-20 md:py-28 bg-muted/30">
         <div className="container">
           <div className="text-center mb-16">
@@ -278,62 +260,176 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-            {services.map((service, idx) => {
-              const Icon = service.icon;
-              return (
-                <Link key={idx} href={service.link}>
-                  <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer group">
-                    <CardContent className="p-6">
-                      <div className="h-12 w-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
-                        <Icon className="h-6 w-6 text-accent" />
-                      </div>
-                      <h3 className="text-lg font-bold mb-2">{service.title}</h3>
-                      <p className="text-foreground/70 text-sm mb-4">{service.description}</p>
-                      <div className="text-accent text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
-                        Learn more <ArrowRight className="h-4 w-4" />
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              );
-            })}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {services.map((service, idx) => (
+              <Link key={idx} href={service.link}>
+                <Card className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer group">
+                  <CardContent className="p-6">
+                    <service.icon className="h-12 w-12 text-accent mb-4 group-hover:scale-110 transition-transform" />
+                    <h3 className="text-xl font-semibold mb-2 group-hover:text-accent transition-colors">{service.title}</h3>
+                    <p className="text-foreground/70">{service.description}</p>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Process Section */}
-      <section className="py-20 md:py-28 bg-primary text-primary-foreground">
-        <div className="container">
+      {/* 5. HOW IT WORKS TIMELINE */}
+      <section className="py-20 md:py-28 bg-background">
+        <div className="container max-w-5xl">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Our Proven Process</h2>
-            <p className="text-xl text-primary-foreground/80 max-w-3xl mx-auto">
-              A repeatable blueprint to turn your idea into a successful product.
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">How It Works</h2>
+            <p className="text-xl text-foreground/70 max-w-3xl mx-auto">
+              Our proven 4-step process to take you from idea to launch
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            {process.map((step, idx) => (
-              <div key={idx} className="text-center">
-                <div className="text-6xl font-bold text-accent mb-4 opacity-80">{step.number}</div>
-                <h3 className="text-2xl font-bold mb-3">{step.title}</h3>
-                <p className="text-primary-foreground/70">{step.description}</p>
+          <div className="space-y-12">
+            {/* Step 1 */}
+            <div className="flex flex-col md:flex-row gap-6 items-start">
+              <div className="flex-shrink-0">
+                <div className="w-16 h-16 rounded-full bg-accent text-accent-foreground flex items-center justify-center text-2xl font-bold">
+                  1
+                </div>
               </div>
-            ))}
+              <div className="flex-1">
+                <div className="flex items-center gap-3 mb-2">
+                  <h3 className="text-2xl font-bold">Validate Idea</h3>
+                  <span className="text-sm bg-accent/10 text-accent px-3 py-1 rounded-full font-semibold">Week 1-2</span>
+                </div>
+                <p className="text-lg text-foreground/70 mb-4">
+                  Customer interviews, market research, and landing page tests to validate demand before you build.
+                </p>
+                <ul className="space-y-2 text-foreground/70">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                    <span>20+ customer discovery interviews</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                    <span>Landing page with waitlist validation</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                    <span>Competitive analysis & market sizing</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Step 2 */}
+            <div className="flex flex-col md:flex-row gap-6 items-start">
+              <div className="flex-shrink-0">
+                <div className="w-16 h-16 rounded-full bg-accent text-accent-foreground flex items-center justify-center text-2xl font-bold">
+                  2
+                </div>
+              </div>
+              <div className="flex-1">
+                <div className="flex items-center gap-3 mb-2">
+                  <h3 className="text-2xl font-bold">Wireframe & MVP</h3>
+                  <span className="text-sm bg-accent/10 text-accent px-3 py-1 rounded-full font-semibold">Week 3-8</span>
+                </div>
+                <p className="text-lg text-foreground/70 mb-4">
+                  Rapid prototyping and minimum viable product development to get to market fast.
+                </p>
+                <ul className="space-y-2 text-foreground/70">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                    <span>User flows & wireframes</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                    <span>MVP development (web or mobile)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                    <span>Beta testing with early users</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Step 3 */}
+            <div className="flex flex-col md:flex-row gap-6 items-start">
+              <div className="flex-shrink-0">
+                <div className="w-16 h-16 rounded-full bg-accent text-accent-foreground flex items-center justify-center text-2xl font-bold">
+                  3
+                </div>
+              </div>
+              <div className="flex-1">
+                <div className="flex items-center gap-3 mb-2">
+                  <h3 className="text-2xl font-bold">Launch</h3>
+                  <span className="text-sm bg-accent/10 text-accent px-3 py-1 rounded-full font-semibold">Week 9-10</span>
+                </div>
+                <p className="text-lg text-foreground/70 mb-4">
+                  Strategic launch with paid channels, organic strategy, and conversion optimization.
+                </p>
+                <ul className="space-y-2 text-foreground/70">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                    <span>Product Hunt & launch strategy</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                    <span>Paid ads setup (Google, Meta)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                    <span>Analytics & tracking implementation</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Step 4 */}
+            <div className="flex flex-col md:flex-row gap-6 items-start">
+              <div className="flex-shrink-0">
+                <div className="w-16 h-16 rounded-full bg-accent text-accent-foreground flex items-center justify-center text-2xl font-bold">
+                  4
+                </div>
+              </div>
+              <div className="flex-1">
+                <div className="flex items-center gap-3 mb-2">
+                  <h3 className="text-2xl font-bold">Grow</h3>
+                  <span className="text-sm bg-accent/10 text-accent px-3 py-1 rounded-full font-semibold">Ongoing</span>
+                </div>
+                <p className="text-lg text-foreground/70 mb-4">
+                  Data-driven optimization, A/B testing, and scalable acquisition channels.
+                </p>
+                <ul className="space-y-2 text-foreground/70">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                    <span>Conversion rate optimization</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                    <span>A/B testing & experimentation</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
+                    <span>Scaling paid acquisition</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
 
           <div className="text-center mt-12">
-            <Link href="/services">
-              <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground">
-                See How It Works <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
+            <Button 
+              size="lg" 
+              className="bg-accent hover:bg-accent/90 text-accent-foreground"
+              onClick={() => setContactModalOpen(true)}
+            >
+              Schedule Strategy Call <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
           </div>
         </div>
       </section>
 
-      {/* Video Testimonials Section */}
-      <section className="py-20 md:py-28 bg-background">
+      {/* 6. VIDEO TESTIMONIALS */}
+      <section className="py-20 md:py-28 bg-muted/30">
         <div className="container">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">What Our Clients Say</h2>
@@ -377,7 +473,6 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Share Your Story CTA */}
           <div className="text-center mt-12">
             <Button
               size="lg"
@@ -391,6 +486,198 @@ export default function Home() {
         </div>
       </section>
 
+      {/* 7. CASE STUDY HIGHLIGHT */}
+      <section className="py-20 md:py-28 bg-background">
+        <div className="container">
+          <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-2xl p-8 md:p-12 max-w-5xl mx-auto border border-primary/10">
+            <div className="text-sm font-semibold text-accent mb-4 uppercase tracking-wide">CASE STUDY</div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Mobile App Launch Success</h2>
+            <p className="text-lg text-foreground/70 mb-8">
+              How we helped a fintech startup then built an MVP in 6 weeks and scaled to 10,000 users in 3 months with paid acquisition.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+              <div className="text-center">
+                <div className="text-5xl font-bold text-accent mb-2">3x</div>
+                <div className="text-foreground/70">Revenue Growth</div>
+              </div>
+              <div className="text-center">
+                <div className="text-5xl font-bold text-accent mb-2">10k</div>
+                <div className="text-foreground/70">Users in 3 months</div>
+              </div>
+              <div className="text-center">
+                <div className="text-5xl font-bold text-accent mb-2">6</div>
+                <div className="text-foreground/70 flex items-center justify-center gap-1">
+                  <span>weeks</span>
+                  <span className="text-sm">(MVP launch)</span>
+                </div>
+              </div>
+            </div>
+
+            <ul className="space-y-3 mb-8">
+              <li className="flex items-start gap-3">
+                <CheckCircle2 className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
+                <span className="text-foreground/80">Validated product-market fit through customer interviews</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <CheckCircle2 className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
+                <span className="text-foreground/80">Launched MVP in 6 weeks</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <CheckCircle2 className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
+                <span className="text-foreground/80">Scaled to 10k users with paid acquisition</span>
+              </li>
+            </ul>
+
+            <Button 
+              variant="outline" 
+              className="border-2 border-accent text-accent hover:bg-accent hover:text-accent-foreground"
+              asChild
+            >
+              <Link href="/case-studies">
+                Read Case Study <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* 8. RISK REVERSAL / GUARANTEE */}
+      <section className="py-20 md:py-28 bg-muted/30">
+        <div className="container max-w-5xl">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Zero-Risk Guarantee</h2>
+            <p className="text-xl text-foreground/70 max-w-3xl mx-auto">
+              We're so confident in our process, we back it with a guarantee
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Card className="text-center p-8">
+              <CardContent className="p-0">
+                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
+                  <Shield className="h-8 w-8 text-accent" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">14-Day Guarantee</h3>
+                <p className="text-foreground/70">
+                  If you're not satisfied with our validation process in the first 14 days, we'll refund 100% of your deposit.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="text-center p-8">
+              <CardContent className="p-0">
+                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
+                  <Clock className="h-8 w-8 text-accent" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">On-Time Delivery</h3>
+                <p className="text-foreground/70">
+                  We commit to timeline milestones. If we miss a major deadline, you get a 10% credit on your next project.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="text-center p-8">
+              <CardContent className="p-0">
+                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
+                  <Award className="h-8 w-8 text-accent" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">Quality Promise</h3>
+                <p className="text-foreground/70">
+                  Every deliverable goes through our 3-stage QA process. We don't consider it done until you're thrilled.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* 9. URGENCY SECTION */}
+      <section className="py-20 md:py-28 bg-gradient-to-br from-accent/10 to-primary/10 border-y border-accent/20">
+        <div className="container max-w-4xl text-center">
+          <div className="inline-flex items-center gap-2 bg-accent/20 text-accent px-4 py-2 rounded-full font-semibold mb-6">
+            <Target className="h-5 w-5" />
+            <span>Limited Availability</span>
+          </div>
+          
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            We Only Take 8 New Clients Per Quarter
+          </h2>
+          
+          <p className="text-lg text-foreground/70 mb-8">
+            To ensure quality and dedicated attention, we limit our client intake. 
+            <strong className="text-foreground"> 3 spots remaining for Q1 2025.</strong>
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            <div className="flex items-start gap-3 text-left">
+              <CheckCircle2 className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
+              <div>
+                <div className="font-semibold mb-1">Dedicated Team</div>
+                <div className="text-sm text-foreground/70">Your project gets a dedicated product manager and dev team</div>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 text-left">
+              <CheckCircle2 className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
+              <div>
+                <div className="font-semibold mb-1">Weekly Check-ins</div>
+                <div className="text-sm text-foreground/70">Direct access to founders, not just account managers</div>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 text-left">
+              <CheckCircle2 className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
+              <div>
+                <div className="font-semibold mb-1">Fast Turnaround</div>
+                <div className="text-sm text-foreground/70">Start within 2 weeks of signing, not months</div>
+              </div>
+            </div>
+          </div>
+
+          <Button 
+            size="lg" 
+            className="bg-accent hover:bg-accent/90 text-accent-foreground text-lg px-8 py-6"
+            onClick={() => setContactModalOpen(true)}
+          >
+            Claim Your Spot <ArrowRight className="ml-2 h-5 w-5" />
+          </Button>
+        </div>
+      </section>
+
+      {/* 10. FINAL CTA */}
+      <section className="py-20 md:py-28 bg-background">
+        <div className="container max-w-4xl text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Ready to Build Your Product?
+          </h2>
+          <p className="text-xl text-foreground/70 mb-10">
+            Schedule a free 30-minute strategy call to discuss your idea and see if we're a good fit.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <Button 
+              size="lg" 
+              className="bg-accent hover:bg-accent/90 text-accent-foreground text-lg px-8 py-6"
+              onClick={() => setContactModalOpen(true)}
+            >
+              Schedule Strategy Call <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground text-lg px-8 py-6"
+              onClick={() => setContactModalOpen(true)}
+            >
+              Get Custom Quote
+            </Button>
+          </div>
+
+          <p className="text-sm text-foreground/60">
+            No sales pitch. No pressure. Just an honest conversation about your product.
+          </p>
+        </div>
+      </section>
+
+      {/* Modals */}
       <VideoLightbox
         open={videoLightboxOpen}
         onOpenChange={setVideoLightboxOpen}
@@ -404,166 +691,11 @@ export default function Home() {
         onOpenChange={setTestimonialModalOpen}
       />
 
-      {/* Client Logos */}
-      <ClientLogos />
-
-      {/* Global Offices Section */}
-      <GlobalOffices />
-
-      {/* Case Study Teaser */}
-      <section className="py-20 md:py-28 bg-muted/30">
-        <div className="container">
-          <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <div className="text-sm font-semibold text-accent mb-2 uppercase tracking-wide">CASE STUDY</div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                  Mobile App Launch Success
-                </h2>
-                <p className="text-lg text-foreground/70 mb-6">
-                  How we helped a fintech startup then built an MVP in 6 weeks and scaled to 10,000 users 
-                  in 3 months with paid acquisition.
-                </p>
-                <ul className="space-y-3 mb-8">
-                  <li className="flex items-start gap-3">
-                    <CheckCircle2 className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-                    <span>Validated product-market fit through customer interviews</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle2 className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-                    <span>Launched MVP in 6 weeks</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <CheckCircle2 className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-                    <span>Scaled to 10k users with paid acquisition</span>
-                  </li>
-                </ul>
-                <Link href="/case-studies/app-launch">
-                  <Button variant="outline" size="lg">
-                    Read Case Study <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
-              </div>
-
-              <div className="bg-gradient-to-br from-primary to-primary/60 rounded-2xl p-12 text-primary-foreground">
-                <div className="text-center">
-                  <div className="text-6xl font-bold text-accent mb-2">3x</div>
-                  <p className="text-xl mb-8">Revenue Growth</p>
-                  
-                  <div className="grid grid-cols-2 gap-6 mt-8">
-                    <div>
-                      <div className="text-3xl font-bold mb-1">10k</div>
-                      <p className="text-sm text-primary-foreground/70">Users in 3 months</p>
-                    </div>
-                    <div>
-                      <div className="text-3xl font-bold mb-1">6 weeks</div>
-                      <p className="text-sm text-primary-foreground/70">MVP launch time</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Teaser */}
-      <section className="py-20 md:py-28 bg-background">
-        <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Flexible Packages for Every Stage</h2>
-            <p className="text-xl text-foreground/70 max-w-3xl mx-auto">
-              Whether you're validating an idea or scaling a product, we have a package that fits your goals.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {pricingTiers.map((tier, idx) => (
-              <Card key={idx} className={tier.highlighted ? "border-2 border-accent shadow-xl scale-105" : ""}>
-                <CardContent className="p-8">
-                  {tier.highlighted && (
-                    <div className="bg-accent text-accent-foreground text-sm font-bold px-3 py-1 rounded-full inline-block mb-4">
-                      MOST POPULAR
-                    </div>
-                  )}
-                  <h3 className="text-2xl font-bold mb-2">{tier.name}</h3>
-                  <p className="text-foreground/70 mb-6 min-h-[3rem]">{tier.tagline}</p>
-                  <ul className="space-y-3 mb-8">
-                    {tier.features.map((feature, fidx) => (
-                      <li key={fidx} className="flex items-start gap-2">
-                        <CheckCircle2 className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
-                        <span className="text-sm">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <Link href="/pricing">
-                    <Button 
-                      className={tier.highlighted ? "w-full bg-accent hover:bg-accent/90 text-accent-foreground" : "w-full"} 
-                      variant={tier.highlighted ? "default" : "outline"}
-                    >
-                      {tier.cta}
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Button 
-              size="lg" 
-              variant="outline"
-              onClick={() => setContactModalOpen(true)}
-            >
-              Get Custom Quote <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Lead Magnet Section */}
-      <section className="py-20 md:py-28 bg-gradient-to-br from-primary via-primary/95 to-primary/80 text-primary-foreground relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDE2YzAtMy4zMTQgMi42ODYtNiA2LTZzNiAyLjY4NiA2IDYtMi42ODYgNi02IDYtNi0yLjY4Ni02LTZ6TTEyIDM2YzAtMy4zMTQgMi42ODYtNiA2LTZzNiAyLjY4NiA2IDYtMi42ODYgNi02IDYtNi0yLjY4Ni02LTZ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-10"></div>
-        <div className="container relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Free MVP Launch Checklist
-            </h2>
-            <p className="text-xl text-primary-foreground/80 mb-8">
-              Get our comprehensive checklist covering everything from idea validation to 
-              post-launch growth. Used by 1,000+ founders.
-            </p>
-            <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 bg-primary-foreground text-primary px-6 py-6 text-lg"
-                required
-              />
-              <Button 
-                type="submit"
-                size="lg" 
-                className="bg-accent hover:bg-accent/90 text-accent-foreground px-8 py-6 text-lg"
-              >
-                Get Checklist
-              </Button>
-            </form>
-            <p className="text-sm text-primary-foreground/60 mt-4">
-              No spam. Unsubscribe anytime.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <ContactModal 
-        open={contactModalOpen} 
+      <ContactModal
+        open={contactModalOpen}
         onOpenChange={setContactModalOpen}
       />
-      
-      <GetStartedPopup />
-    </div>
+      </div>
     </>
   );
 }
