@@ -240,6 +240,8 @@ export default function Home() {
                 <div className="space-y-4 mb-6 text-base leading-relaxed">
                   <p>You know it could work.</p>
                   
+                  <p>You can see it clearly in your head.</p>
+                  
                   <p>But you're stuck wondering...</p>
                   
                   <p><strong>Will anyone actually pay for this?</strong></p>
@@ -250,13 +252,31 @@ export default function Home() {
                   
                   <p>How do you find your first 100 customers?</p>
                   
+                  <p>Where do you even start?</p>
+                  
                   <p className="italic">And to top it all off...</p>
                   
-                  <p>You're terrified of spending 6 months building something nobody wants.</p>
+                  <p><strong>You're terrified of spending 6 months building something nobody wants.</strong></p>
+                  
+                  <p>You've heard the horror stories.</p>
+                  
+                  <p>Founders who spent $50K on development only to realize they built the wrong features.</p>
+                  
+                  <p>Startups that launched with zero customers because they never validated demand.</p>
+                  
+                  <p>Ideas that died because the founder tried to do everything themselves.</p>
                   
                   <p className="font-semibold mt-4">Look, most founders waste months (or years) building the wrong thing.</p>
                   
-                  <p>They skip validation. Over-engineer the MVP. Launch to crickets.</p>
+                  <p>They skip validation because "they just know" it'll work.</p>
+                  
+                  <p>They over-engineer the MVP with features nobody asked for.</p>
+                  
+                  <p>They launch to crickets because they forgot to build an audience first.</p>
+                  
+                  <p>Then they run out of money.</p>
+                  
+                  <p>Or worse - they give up on a great idea because they executed it wrong.</p>
                   
                   <p className="font-semibold">We've seen it a hundred times.</p>
                 </div>
@@ -264,7 +284,10 @@ export default function Home() {
                 {/* Solution */}
                 <div className="bg-accent/5 border-l-4 border-accent p-6 rounded-r-lg mb-6">
                   <p className="font-bold text-lg mb-3">Here's the thing: It doesn't have to be this way.</p>
-                  <p className="text-base">What if you had <strong>ONE partner</strong> who could validate your idea, build the right MVP, launch strategically, and get you your first paying customers?</p>
+                  <p className="text-base">What if you had <strong>ONE partner</strong> who could validate your idea with real customers, build the right MVP (not the bloated one), launch strategically with an audience ready to buy, and get you your first paying customers?</p>
+                  <p className="mt-3">Not a developer who just codes what you tell them.</p>
+                  <p>Not an agency that disappears after launch.</p>
+                  <p className="mt-3"><strong>A true partner who's invested in your success from day one.</strong></p>
                   <p className="mt-3"><strong>No guessing. No wasted time. No launching to crickets.</strong></p>
                 </div>
 
