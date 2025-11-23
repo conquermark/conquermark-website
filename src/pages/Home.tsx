@@ -8,7 +8,7 @@ import {
   Play, Quote, Mail, Shield, Clock, Users, Star, Award, Target
 } from "lucide-react";
 import { toast } from "sonner";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ClientLogos from "@/components/ClientLogos";
 import VideoLightbox from "@/components/VideoLightbox";
 import TestimonialSubmissionModal from "@/components/TestimonialSubmissionModal";
@@ -26,6 +26,17 @@ export default function Home() {
   const [currentVideoCaption, setCurrentVideoCaption] = useState("");
   const [testimonialModalOpen, setTestimonialModalOpen] = useState(false);
   const [contactModalOpen, setContactModalOpen] = useState(false);
+  
+  // Rotating text for hero section
+  const rotatingWords = ["Win", "Grow", "Scale", "Succeed", "Dominate"];
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentWordIndex((prev) => (prev + 1) % rotatingWords.length);
+    }, 2000); // Change word every 2 seconds
+    return () => clearInterval(interval);
+  }, []);
 
   const openVideoLightbox = (testimonial: typeof videoTestimonials[0]) => {
     setCurrentVideo(testimonial.video);
@@ -132,33 +143,60 @@ export default function Home() {
       />
       <div className="min-h-screen">
       
-      {/* 1. HERO SECTION */}
-      <section className="relative bg-gradient-to-br from-primary via-primary to-primary/80 text-primary-foreground py-20 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDE2YzAtMy4zMTQgMi42ODYtNiA2LTZzNiAyLjY4NiA2IDYtMi42ODYgNi02IDYtNi0yLjY4Ni02LTZ6TTEyIDM2YzAtMy4zMTQgMi42ODYtNiA2LTZzNiAyLjY4NiA2IDYtMi42ODYgNi02IDYtNi0yLjY4Ni02LTZ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-20"></div>
+      {/* 1. UNIVERSAL HERO SECTION WITH ROTATING TEXT */}
+      <section className="relative bg-gradient-to-br from-[#0f1729] via-[#1a1f3a] to-[#2d1b4e] text-white py-24 md:py-40 overflow-hidden">
+        {/* Animated gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-accent/10 via-purple-500/10 to-accent/10 opacity-50 animate-pulse" style={{ animationDuration: '8s' }}></div>
+        
+        {/* Grid pattern overlay */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMiI+PHBhdGggZD0iTTM2IDE2YzAtMy4zMTQgMi42ODYtNiA2LTZzNiAyLjY4NiA2IDYtMi42ODYgNi02IDYtNi0yLjY4Ni02LTZ6TTEyIDM2YzAtMy4zMTQgMi42ODYtNiA2LTZzNiAyLjY4NiA2IDYtMi42ODYgNi02IDYtNi0yLjY4Ni02LTZ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-30"></div>
+        
+        {/* Radial gradient accents - larger and more dramatic */}
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-accent/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '6s' }}></div>
+        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-purple-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '8s', animationDelay: '2s' }}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '10s', animationDelay: '4s' }}></div>
+        
         <div className="container relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              Build. Validate. <span className="text-accent">Launch.</span>
+          <div className="max-w-6xl mx-auto text-center">
+            {/* Main Headline with Rotating Text */}
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-[1.1] tracking-tight">
+              Everything Your Business{" "}
+              <br className="hidden md:block" />
+              Needs To{" "}
+              <span 
+                className="inline-block bg-gradient-to-r from-accent via-orange-400 to-accent bg-clip-text text-transparent"
+                style={{ 
+                  backgroundSize: '200% auto',
+                  animation: 'gradient 3s linear infinite, fadeIn 0.5s ease-in-out'
+                }}
+                key={currentWordIndex}
+              >
+                {rotatingWords[currentWordIndex]}
+              </span>
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-primary-foreground/90">
-              We take your idea to market.
+            
+            {/* Supporting Subheadline - Universal */}
+            <p className="text-lg md:text-xl lg:text-2xl mb-12 text-gray-300 max-w-4xl mx-auto leading-relaxed px-4">
+              Idea validation, design, development, marketing, funding, and accounting - 
+              <span className="text-white font-semibold">one partner for your entire business journey.</span>
             </p>
-            <p className="text-lg mb-12 text-primary-foreground/80 max-w-3xl mx-auto">
-              Product strategy, app & web development, no-code builds and growth marketing - 
-              one partner from prototype to customers.
-            </p>
+            
+            {/* CTA Buttons - DAMN BUTTONS! */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg" 
-                className="bg-accent hover:bg-accent/90 text-accent-foreground text-lg px-8 py-6"
+                className="relative bg-gradient-to-r from-accent to-orange-500 hover:from-accent/90 hover:to-orange-600 text-white text-xl font-bold px-12 py-8 shadow-2xl shadow-accent/50 transition-all duration-300 hover:scale-110 hover:shadow-accent/70 group overflow-hidden"
                 onClick={() => setContactModalOpen(true)}
               >
-                Talk to an Expert <ArrowRight className="ml-2 h-5 w-5" />
+                <span className="relative z-10 flex items-center">
+                  Start Your Transformation <ArrowRight className="ml-2 h-6 w-6 group-hover:translate-x-1 transition-transform" />
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </Button>
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="bg-transparent border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary text-lg px-8 py-6"
+                className="bg-white/5 backdrop-blur-sm border-2 border-white/30 text-white hover:bg-white/10 hover:border-accent text-xl font-semibold px-12 py-8 transition-all duration-300 hover:scale-105"
                 onClick={() => setContactModalOpen(true)}
               >
                 Get Custom Quote
@@ -166,6 +204,18 @@ export default function Home() {
             </div>
           </div>
         </div>
+        
+        <style dangerouslySetInnerHTML={{ __html: `
+          @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+          }
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+        ` }} />
       </section>
 
       {/* 2. SOCIAL PROOF BAR */}
