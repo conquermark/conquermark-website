@@ -195,14 +195,7 @@ export default function Home() {
       </section>
 
       {/* Client Logos */}
-      <section className="py-16 bg-background">
-        <div className="container">
-          <h3 className="text-center text-lg font-semibold text-foreground/70 mb-8">
-            Trusted by Innovative Companies
-          </h3>
-          <ClientLogos />
-        </div>
-      </section>
+      <ClientLogos />
 
       {/* 3. DUAL-AUDIENCE FOUNDER SECTION */}
       <section className="py-20 md:py-32 bg-gradient-to-br from-primary/5 via-background to-accent/5 relative overflow-hidden">

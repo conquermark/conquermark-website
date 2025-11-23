@@ -27,7 +27,15 @@ export default function ClientLogos({
     { name: "Invest in Turkey", image: "/clients/invest-turkey.png" },
     { name: "Propectin", image: "/clients/propectin.png" },
     { name: "Diamond Jewelry Wholesalers", image: "/clients/diamond-jewelry.png" },
-    { name: "Divorce Your Ring", image: "/clients/divorce-ring.png" }
+    { name: "Divorce Your Ring", image: "/clients/divorce-ring.png" },
+    { name: "USA MedPremium", image: "/clients/usa-medpremium.png" },
+    { name: "Tight Bunz", image: "/clients/tight-bunz.png" },
+    { name: "GreenSpot", image: "/clients/greenspot.png" },
+    { name: "Celerity Telecom", image: "/clients/celerity-telecom.png" },
+    { name: "Zivar Diamond Jewellery", image: "/clients/zivar.png" },
+    { name: "Embtel", image: "/clients/embtel-blue.png" },
+    { name: "Raisin", image: "/clients/raisin.png" },
+    { name: "Embtel", image: "/clients/embtel-black.png" }
   ];
 
   const clientLogos = logos || defaultLogos;
