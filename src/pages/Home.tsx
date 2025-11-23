@@ -336,8 +336,6 @@ export default function Home() {
                   
                   <p>Maybe your tech stack is held together with duct tape and prayers.</p>
                   
-                  <p>Maybe you're running an e-commerce store that's plateaued.</p>
-                  
                   <p className="italic">Whatever it is...</p>
                   
                   <p><strong>You're working 60-hour weeks and still falling behind.</strong></p>
@@ -350,17 +348,11 @@ export default function Home() {
                   
                   <p>Your ads are burning money.</p>
                   
-                  <p>You're manually doing tasks that should be automated.</p>
-                  
-                  <p>Your competitors are moving faster than you.</p>
-                  
                   <p className="font-semibold mt-4">You KNOW technology could fix this.</p>
                   
                   <p>You know automation could save you 30 hours a week.</p>
                   
                   <p>You know a better website could double your revenue.</p>
-                  
-                  <p>You know AI could handle your customer support.</p>
                   
                   <p>But every time you try to fix it?</p>
                   
@@ -370,25 +362,19 @@ export default function Home() {
                   
                   <p>Or a "marketing expert" who burns your entire budget in 3 weeks.</p>
                   
-                  <p>You've heard the horror stories from other business owners.</p>
+                  <p className="font-semibold mt-4">You've heard the horror stories.</p>
                   
-                  <p>The $30K website redesign that took 9 months and converted worse than the old one.</p>
+                  <p>The $30K website redesign that took 9 months and converted worse.</p>
                   
-                  <p>The automation project that broke everything and cost more to fix than to build.</p>
+                  <p>The automation project that broke everything and cost more to fix.</p>
                   
-                  <p>The "all-in-one" platform that required 5 different integrations and still didn't work.</p>
+                  <p>The "all-in-one" platform that still didn't work.</p>
                   
                   <p className="font-semibold mt-4">And the worst part?</p>
                   
                   <p>You're managing 5 different vendors who don't talk to each other.</p>
                   
-                  <p>Your developer doesn't understand marketing.</p>
-                  
-                  <p>Your marketer doesn't understand technology.</p>
-                  
-                  <p>Your designer works in isolation.</p>
-                  
-                  <p>Nothing integrates. Everything breaks. You're the glue holding it all together.</p>
+                  <p>Your developer doesn't understand marketing. Your marketer doesn't understand technology.</p>
                   
                   <p className="font-semibold">We call this the "tech Frankenstein problem."</p>
                 </div>
@@ -397,9 +383,8 @@ export default function Home() {
                 <div className="bg-primary/5 border-l-4 border-primary p-6 rounded-r-lg mb-6">
                   <p className="font-bold text-lg mb-3">Here's the truth: You don't need more vendors.</p>
                   <p className="text-base">You need <strong>ONE partner</strong> who can handle your <strong>website</strong>, <strong>mobile app</strong>, <strong>automation</strong>, <strong>AI</strong>, and <strong>marketing</strong> - without you managing 5 different people who don't talk to each other.</p>
-                  <p className="mt-3">Not a freelancer who disappears when things get complex.</p>
-                  <p>Not an agency that hands you off to junior staff after the sale.</p>
-                  <p className="mt-3"><strong>A true partner who understands your business and is invested in your growth.</strong></p>
+                  <p className="mt-3">Not a freelancer who disappears. Not an agency that hands you off to junior staff.</p>
+                  <p className="mt-3"><strong>A true partner who's invested in your success from day one.</strong></p>
                   <p className="mt-3"><strong>One team. One vision. Real results.</strong></p>
                 </div>
 
