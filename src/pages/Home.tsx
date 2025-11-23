@@ -228,48 +228,58 @@ export default function Home() {
               <CardContent className="p-8 md:p-10">
                 {/* Badge */}
                 <div className="inline-block bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                  For Startups & New Founders
+                  Got an Idea?
                 </div>
 
                 {/* Hook */}
                 <h3 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-accent transition-colors">
-                  Got an idea that keeps you up at night?
+                  You've got an idea that keeps you up at night.
                 </h3>
 
-                {/* Pain Points */}
-                <div className="space-y-3 mb-6 text-base">
-                  <p>You know it could work. But you're stuck wondering:</p>
+                {/* Storytelling Pain Points */}
+                <div className="space-y-4 mb-6 text-base leading-relaxed">
+                  <p>You know it could work.</p>
                   
-                  <p className="pl-4 text-muted-foreground">→ Will anyone actually pay for this?</p>
-                  <p className="pl-4 text-muted-foreground">→ Should I build an app or start with a website?</p>
-                  <p className="pl-4 text-muted-foreground">→ Do I need to raise funding first?</p>
-                  <p className="pl-4 text-muted-foreground">→ How do I find my first 100 customers?</p>
+                  <p>But you're stuck wondering...</p>
                   
-                  <p className="font-semibold mt-4">Most founders waste months (or years) building the wrong thing.</p>
+                  <p><strong>Will anyone actually pay for this?</strong></p>
                   
-                  <p>They skip validation, over-engineer the MVP, and launch to crickets.</p>
+                  <p>Should you build an app? Or start with a website?</p>
+                  
+                  <p>Do you need funding first? Or can you bootstrap?</p>
+                  
+                  <p>How do you find your first 100 customers?</p>
+                  
+                  <p className="italic">And to top it all off...</p>
+                  
+                  <p>You're terrified of spending 6 months building something nobody wants.</p>
+                  
+                  <p className="font-semibold mt-4">Look, most founders waste months (or years) building the wrong thing.</p>
+                  
+                  <p>They skip validation. Over-engineer the MVP. Launch to crickets.</p>
                   
                   <p className="font-semibold">We've seen it a hundred times.</p>
                 </div>
 
                 {/* Solution */}
                 <div className="bg-accent/5 border-l-4 border-accent p-6 rounded-r-lg mb-6">
-                  <p className="font-bold text-lg mb-3">That's why we built Conquermark differently.</p>
-                  <p className="text-base">We don't just build apps and websites - we help you <strong>validate demand</strong>, build the <strong>right MVP</strong>, launch <strong>strategically</strong>, and acquire your <strong>first customers</strong>.</p>
+                  <p className="font-bold text-lg mb-3">Here's the thing: It doesn't have to be this way.</p>
+                  <p className="text-base">What if you had <strong>ONE partner</strong> who could validate your idea, build the right MVP, launch strategically, and get you your first paying customers?</p>
+                  <p className="mt-3"><strong>No guessing. No wasted time. No launching to crickets.</strong></p>
                 </div>
 
                 {/* Promise */}
                 <div className="space-y-2 mb-6">
-                  <p className="text-lg font-bold">One partner. End-to-end.</p>
-                  <p className="text-lg"><strong className="text-accent">From idea to revenue.</strong></p>
+                  <p className="text-xl font-bold">One partner. End-to-end.</p>
+                  <p className="text-xl"><strong className="text-accent">From idea to revenue.</strong></p>
                 </div>
 
                 {/* What We Do */}
                 <div className="space-y-2 text-sm text-muted-foreground mb-6">
-                  <p>✓ Validate your idea with real customers</p>
-                  <p>✓ Build MVP in 6-8 weeks</p>
-                  <p>✓ Launch strategically</p>
-                  <p>✓ Get your first 100 paying customers</p>
+                  <p>✓ Validate demand before you build anything</p>
+                  <p>✓ Build the right MVP (not the bloated one)</p>
+                  <p>✓ Launch with a strategy that gets attention</p>
+                  <p>✓ Acquire your first 100 paying customers</p>
                 </div>
 
                 {/* CTA */}
@@ -287,48 +297,70 @@ export default function Home() {
               <CardContent className="p-8 md:p-10">
                 {/* Badge */}
                 <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                  For Established Businesses
+                  Already in Business?
                 </div>
 
                 {/* Hook */}
                 <h3 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-primary transition-colors">
-                  Drowning in manual work and tech chaos?
+                  Your business is stuck. And you know it.
                 </h3>
 
-                {/* Pain Points */}
-                <div className="space-y-3 mb-6 text-base">
-                  <p>Running a business in 2025 feels like you're drowning in technology choices.</p>
+                {/* Storytelling Pain Points */}
+                <div className="space-y-4 mb-6 text-base leading-relaxed">
+                  <p>Maybe you're doing $50K/month but can't break $100K.</p>
                   
-                  <p className="pl-4 text-muted-foreground">→ Manual processes eating 30+ hours a week</p>
-                  <p className="pl-4 text-muted-foreground">→ Customer support tickets piling up</p>
-                  <p className="pl-4 text-muted-foreground">→ Marketing campaigns converting at 0.3%</p>
-                  <p className="pl-4 text-muted-foreground">→ A Frankenstein tech stack held together with duct tape</p>
+                  <p>Maybe you're growing but drowning in manual work.</p>
                   
-                  <p className="font-semibold mt-4">You KNOW technology could solve this.</p>
+                  <p>Maybe your tech stack is held together with duct tape and prayers.</p>
                   
-                  <p>But every time you try? You get a developer who ghosts you, an agency that builds something that breaks, or a "marketing expert" who burns your budget.</p>
+                  <p className="italic">Whatever it is...</p>
+                  
+                  <p><strong>You're working 60-hour weeks and still falling behind.</strong></p>
+                  
+                  <p>Customer support tickets are piling up.</p>
+                  
+                  <p>Your team is overwhelmed.</p>
+                  
+                  <p>Your website converts at 1%.</p>
+                  
+                  <p>Your ads are burning money.</p>
+                  
+                  <p className="font-semibold mt-4">You KNOW technology could fix this.</p>
+                  
+                  <p>You know automation could save you 30 hours a week.</p>
+                  
+                  <p>You know a better website could double your revenue.</p>
+                  
+                  <p>But every time you try to fix it?</p>
+                  
+                  <p>You get a developer who ghosts you after the first payment.</p>
+                  
+                  <p>Or an agency that builds something pretty but useless.</p>
+                  
+                  <p>Or a "marketing expert" who burns your entire budget in 3 weeks.</p>
                   
                   <p className="font-semibold">We call this the "tech Frankenstein problem."</p>
                 </div>
 
                 {/* Solution */}
                 <div className="bg-primary/5 border-l-4 border-primary p-6 rounded-r-lg mb-6">
-                  <p className="font-bold text-lg mb-3">Here's the thing: It doesn't have to be this way.</p>
-                  <p className="text-base">What if you had <strong>ONE partner</strong> who could handle your <strong>website</strong>, <strong>mobile app</strong>, <strong>automation</strong>, <strong>AI</strong>, and <strong>marketing</strong> - without you managing 5 different vendors?</p>
+                  <p className="font-bold text-lg mb-3">Here's the truth: You don't need more vendors.</p>
+                  <p className="text-base">You need <strong>ONE partner</strong> who can handle your <strong>website</strong>, <strong>mobile app</strong>, <strong>automation</strong>, <strong>AI</strong>, and <strong>marketing</strong> - without you managing 5 different people who don't talk to each other.</p>
+                  <p className="mt-3"><strong>One team. One vision. Real results.</strong></p>
                 </div>
 
                 {/* Promise */}
                 <div className="space-y-2 mb-6">
-                  <p className="text-lg font-bold">One partner. End-to-end.</p>
-                  <p className="text-lg"><strong className="text-primary">From chaos to growth.</strong></p>
+                  <p className="text-xl font-bold">One partner. End-to-end.</p>
+                  <p className="text-xl"><strong className="text-primary">From stuck to scaling.</strong></p>
                 </div>
 
                 {/* What We Do */}
                 <div className="space-y-2 text-sm text-muted-foreground mb-6">
-                  <p>✓ Automate your entire operation</p>
-                  <p>✓ Modernize your tech stack</p>
-                  <p>✓ Integrate AI across departments</p>
-                  <p>✓ Save 1000+ hours per month</p>
+                  <p>✓ Automate the manual work eating your time</p>
+                  <p>✓ Rebuild your tech stack (properly this time)</p>
+                  <p>✓ Integrate AI that actually works</p>
+                  <p>✓ Scale your revenue without scaling your headcount</p>
                 </div>
 
                 {/* CTA */}
