@@ -21,6 +21,19 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ open, onOpenChange,
   const [name, setName] = useState('');
   const [company, setCompany] = useState('');
   const [loading, setLoading] = useState(false);
+  const [variant, setVariant] = useState<'A' | 'B'>('A');
+
+  // Initialize A/B Test Variant
+  React.useEffect(() => {
+    const storedVariant = localStorage.getItem('roi_lead_capture_variant');
+    if (storedVariant === 'A' || storedVariant === 'B') {
+      setVariant(storedVariant);
+    } else {
+      const newVariant = Math.random() < 0.5 ? 'A' : 'B';
+      localStorage.setItem('roi_lead_capture_variant', newVariant);
+      setVariant(newVariant);
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,12 +43,43 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ open, onOpenChange,
     await new Promise(resolve => setTimeout(resolve, 1000));
     
     // In a real app, you would send this data to your backend/CRM
-    console.log('Lead Captured:', { email, name, company, ...data });
+    console.log('Lead Captured:', { 
+      email, 
+      name, 
+      company, 
+      ...data,
+      ab_variant: variant, // Track which variant converted
+      ab_variant_name: variant === 'A' ? 'Authority Focus' : 'Benefit Focus'
+    });
     
     setLoading(false);
     onSuccess();
     onOpenChange(false);
   };
+
+  // Variant Content Definitions
+  const content = {
+    A: {
+      title: "Unlock Your Full Diagnostic Report",
+      cta: "Unlock My Report Now",
+      description: (
+        <>
+          Enter your details to see the complete breakdown of your <strong>{data.savings}</strong> potential savings and how to fix <strong>{data.problem}</strong>.
+        </>
+      )
+    },
+    B: {
+      title: "See Exactly How Much You Can Save",
+      cta: "Reveal My Savings",
+      description: (
+        <>
+          Stop wasting <strong>{data.savings}</strong> annually. Get your personalized roadmap to eliminate <strong>{data.problem}</strong> today.
+        </>
+      )
+    }
+  };
+
+  const currentContent = content[variant];
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -45,10 +89,10 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ open, onOpenChange,
             <Lock className="w-6 h-6 text-blue-600 dark:text-blue-400" />
           </div>
           <DialogTitle className="text-center text-xl font-bold text-slate-900 dark:text-white">
-            Unlock Your Full Diagnostic Report
+            {currentContent.title}
           </DialogTitle>
           <DialogDescription className="text-center text-slate-600 dark:text-slate-400">
-            Enter your details to see the complete breakdown of your <strong>{data.savings}</strong> potential savings and how to fix <strong>{data.problem}</strong>.
+            {currentContent.description}
           </DialogDescription>
         </DialogHeader>
         
@@ -96,7 +140,7 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ open, onOpenChange,
               className="w-full bg-blue-600 hover:bg-blue-700 text-white h-11 font-semibold shadow-lg"
               disabled={loading}
             >
-              {loading ? 'Generating Report...' : 'Unlock My Report Now'}
+              {loading ? 'Generating Report...' : currentContent.cta}
               {!loading && <ArrowRight className="ml-2 w-4 h-4" />}
             </Button>
             <p className="text-xs text-center text-slate-400 mt-3 flex items-center justify-center gap-1">
