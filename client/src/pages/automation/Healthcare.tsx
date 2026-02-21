@@ -9,8 +9,8 @@ export default function Healthcare() {
       title="Healthcare Workflow Automation"
       subtitle="Automate patient intake, appointment scheduling, and follow-ups. HIPAA compliant."
       description="We build secure automation workflows for clinics and hospitals. Reduce administrative burden and improve patient outcomes with automated communication."
-      heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/uUgXTNtIduBODUgU.jpg" // Relevant Unsplash image for healthcare tech
-      workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/JlmDvCzKxUkKTKzQ.png"
+      heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/NcZgNuTHmtUCHiae.png" // Relevant Unsplash image for healthcare tech
+      workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/bTyoTAhPnouQNZnN.png"
       benefits={[
         {
           icon: <Heart className="h-12 w-12" />,

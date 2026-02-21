@@ -9,8 +9,8 @@ export default function InternalWorkflows() {
       title="Internal Workflow Optimization"
       subtitle="Streamline operations and employee onboarding. Remove internal friction."
       description="We automate HR requests, expense approvals, and project setup. Give your team more time to focus on high-value work."
-      heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/mQDzsnUJCOnRKvXv.jpg"
-      workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/hmbJIIqSfzAHEqIq.png"
+      heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/NcZgNuTHmtUCHiae.png"
+      workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/wWYUXpnrLfuUmhtw.jpg"
       benefits={[
         {
           icon: <Workflow className="h-12 w-12" />,

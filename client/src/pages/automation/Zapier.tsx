@@ -9,8 +9,8 @@ export default function Zapier() {
       title="Zapier Automation Consultants"
       subtitle="Connect your favorite apps in minutes. We build robust Zaps that scale."
       description="Stop relying on brittle Zaps. We build enterprise-grade Zapier workflows with error handling, paths, and custom code steps."
-      heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/kfhpENBZVJKrAMzv.jpg"
-      workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/KPJxTfsnpRxEliql.png"
+      heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/wWYUXpnrLfuUmhtw.jpg"
+      workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/wWYUXpnrLfuUmhtw.jpg"
       
       benefits={[
         {

@@ -9,8 +9,8 @@ export default function Pabbly() {
       title="Pabbly Connect Automation"
       subtitle="Affordable automation without task limits. Switch to Pabbly with confidence."
       description="We help you migrate to Pabbly Connect or build new workflows. Enjoy one-time payment options and unrestricted automation capabilities."
-      heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/vnujsFaraOcZtBij.jpg"
-      workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/WgCqRJRlMycHIXIn.png"
+      heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/wWYUXpnrLfuUmhtw.jpg"
+      workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/ynacgMMTqflMcfad.jpeg"
       benefits={[
         {
           icon: <Infinity className="h-12 w-12" />,

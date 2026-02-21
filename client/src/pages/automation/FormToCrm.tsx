@@ -9,8 +9,8 @@ export default function FormToCrm() {
       title="Form to CRM Automation"
       subtitle="Instant data entry from any form to any CRM. Zero lag, zero errors."
       description="We connect Typeform, JotForm, or custom forms to Salesforce, HubSpot, or Pipedrive. Ensure data integrity and instant follow-up."
-      heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/vEmIfGwPYkuDczdB.jpg"
-      workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/KFRcsgcqmpOwUxIw.png"
+      heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/ynEXztHdrweDuGCB.jpeg"
+      workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/wWYUXpnrLfuUmhtw.jpg"
       benefits={[
         {
           icon: <FileText className="h-12 w-12" />,

@@ -9,8 +9,8 @@ export default function Saas() {
       title="SaaS Operations Automation"
       subtitle="Scale your SaaS without scaling headcount. Automate onboarding and churn reduction."
       description="We build workflows for user onboarding, subscription management, and churn prediction. Integrate Stripe, your app, and your CRM."
-      heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/miULatxQANKFSLCf.jpg"
-      workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/fYwJkrbNeChGMZVw.png"
+      heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/NcZgNuTHmtUCHiae.png"
+      workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/NcZgNuTHmtUCHiae.png"
       
       benefits={[
         {

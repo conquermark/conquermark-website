@@ -9,8 +9,8 @@ export default function CustomApi() {
       title="Custom API Integration Services"
       subtitle="Connect the unconnected. We build custom bridges for any software."
       description="When off-the-shelf tools fail, we write custom code. We build secure, scalable API integrations to connect your proprietary systems."
-      heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/pgfRelRhwDrwzMZY.jpg"
-      workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/lfAvsMZPAdIAlDoP.png"
+      heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/ynacgMMTqflMcfad.jpeg"
+      workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/bTyoTAhPnouQNZnN.png"
       
       benefits={[
         {

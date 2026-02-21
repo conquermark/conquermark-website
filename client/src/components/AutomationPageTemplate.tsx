@@ -135,25 +135,10 @@ const AutomationPageTemplate: React.FC<AutomationPageProps> = ({
                   className="w-full h-auto object-cover"
                 />
                 
-                {/* Floating Trust Badge */}
-                <div className="absolute bottom-6 right-6 bg-white dark:bg-slate-800 p-4 rounded-lg shadow-xl border border-slate-100 dark:border-slate-700 flex items-center gap-3 animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-500 fill-mode-forwards opacity-0">
-                  <div className="bg-green-100 dark:bg-green-900/30 p-2 rounded-full">
-                    <TrendingUp className="w-6 h-6 text-green-600 dark:text-green-400" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-slate-500 font-semibold uppercase">Avg. ROI</p>
-                    <p className="text-lg font-bold text-slate-900 dark:text-white">300%</p>
-                  </div>
-                </div>
-
-                {/* Live Workflow Tag */}
-                <div className="absolute top-4 left-4 bg-slate-900/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs font-medium flex items-center gap-2 border border-slate-700">
-                  <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                  Live Workflow Example
-                </div>
+                {/* Clean Screenshot Container */}
               </div>
-              {/* Background Glow */}
-              <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-500/10 blur-3xl rounded-full" />
+              {/* Subtle Shadow for Depth */}
+              <div className="absolute -z-10 top-4 left-4 w-full h-full bg-slate-200 dark:bg-slate-800 rounded-2xl" />
             </motion.div>
           </div>
         </div>
@@ -267,15 +252,11 @@ const AutomationPageTemplate: React.FC<AutomationPageProps> = ({
             </div>
             <div className="relative">
               <div className="relative rounded-xl overflow-hidden shadow-2xl border border-slate-700 bg-slate-800 group">
-                {/* Browser Frame */}
-                <div className="h-10 bg-slate-900 border-b border-slate-700 flex items-center px-4 gap-2">
-                  <div className="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/50" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/20 border border-yellow-500/50" />
-                  <div className="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50" />
-                  <div className="ml-4 px-3 py-1 bg-slate-800 rounded-md text-[10px] text-slate-400 border border-slate-700 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                    Live Workflow Example
-                  </div>
+                {/* Minimal Browser Header */}
+                <div className="h-8 bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 flex items-center px-4 gap-2">
+                  <div className="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-600" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-600" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-600" />
                 </div>
                 
                 {/* Workflow Image */}
@@ -287,15 +268,10 @@ const AutomationPageTemplate: React.FC<AutomationPageProps> = ({
                     className="w-full h-auto object-cover opacity-95 hover:opacity-100 transition-opacity duration-300"
                   />
                   
-                  {/* Zoom/Focus Effect Overlay */}
-                  <div className="absolute bottom-4 right-4 bg-slate-900/90 backdrop-blur-sm border border-slate-700 px-3 py-1.5 rounded-full text-xs font-medium text-slate-300 shadow-lg flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-blue-500" />
-                    Client Automation Flow
-                  </div>
+                  
                 </div>
               </div>
-              {/* Decorative dots */}
-              <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-500/20 rounded-full blur-3xl -z-10" />
+              
             </div>
           </div>
         </div>
