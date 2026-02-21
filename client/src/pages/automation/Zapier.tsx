@@ -175,7 +175,8 @@ export default function Zapier() {
       
       seoTitle="Zapier Automation Consultants | Conquermark"
       seoDescription="Expert Zapier consultants. We build scalable, reliable Zaps to automate your business processes across 5000+ apps."
-      seoKeywords="zapier consultants, zapier experts, zapier automation services, custom zapier integration, zapier workflow design"
+      roiRate={50}
+        seoKeywords="zapier consultants, zapier experts, zapier automation services, custom zapier integration, zapier workflow design"
     />
   );
 }

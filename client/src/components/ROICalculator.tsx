@@ -5,9 +5,13 @@ import { Button } from '@/components/ui/button';
 import { Calculator, DollarSign, Clock, TrendingUp, ArrowRight } from 'lucide-react';
 import ContactModal from '@/components/ContactModal';
 
-const ROICalculator: React.FC = () => {
+interface ROICalculatorProps {
+  defaultHourlyRate?: number;
+}
+
+const ROICalculator: React.FC<ROICalculatorProps> = ({ defaultHourlyRate = 50 }) => {
   const [hoursPerWeek, setHoursPerWeek] = useState([10]);
-  const [hourlyRate, setHourlyRate] = useState([50]);
+  const [hourlyRate, setHourlyRate] = useState([defaultHourlyRate]);
   const [monthlySavings, setMonthlySavings] = useState(0);
   const [yearlySavings, setYearlySavings] = useState(0);
   const [contactModalOpen, setContactModalOpen] = useState(false);

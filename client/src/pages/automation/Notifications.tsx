@@ -52,7 +52,8 @@ export default function Notifications() {
 
       seoTitle="Smart Notification Systems | Conquermark"
       seoDescription="Implement smart notification workflows. Get critical alerts in Slack, Microsoft Teams, or via SMS for important business events."
-      seoKeywords="notification automation, slack alerts, teams integration, sms notifications, business alert systems"
+      roiRate={35}
+        seoKeywords="notification automation, slack alerts, teams integration, sms notifications, business alert systems"
 
       process={[
         {

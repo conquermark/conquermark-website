@@ -147,7 +147,8 @@ export default function InternalWorkflows() {
       ctaSubtitle="Internal Workflow Optimization"
       seoTitle="Internal Workflow Optimization | Conquermark"
       seoDescription="Optimize internal business processes with automation. We streamline HR, finance, and operations workflows for maximum efficiency."
-      seoKeywords="internal workflow automation, business process optimization, hr automation, operations efficiency, employee onboarding automation"
+      roiRate={45}
+        seoKeywords="internal workflow automation, business process optimization, hr automation, operations efficiency, employee onboarding automation"
     />
   );
 }

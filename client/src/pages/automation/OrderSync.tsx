@@ -146,7 +146,8 @@ export default function OrderSync() {
       ctaSubtitle="Multi-Channel Order Sync"
       seoTitle="Multi-Channel Order Sync Automation | Conquermark"
       seoDescription="Automate order synchronization across channels. We connect Shopify, Amazon, and ERPs to streamline fulfillment and inventory."
-      seoKeywords="order sync automation, inventory management automation, multi-channel ecommerce, erp integration, fulfillment automation"
+      roiRate={40}
+        seoKeywords="order sync automation, inventory management automation, multi-channel ecommerce, erp integration, fulfillment automation"
     />
   );
 }

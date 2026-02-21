@@ -177,7 +177,8 @@ export default function FormToCrm() {
       ctaSubtitle="Form to CRM Automation"
       seoTitle="Form to CRM Automation | Conquermark"
       seoDescription="Automate form data entry to your CRM. We connect Typeform, JotForm, and Gravity Forms to Salesforce, HubSpot, and more."
-      seoKeywords="form automation, typeform integration, jotform to crm, data entry automation, lead form integration"
+      roiRate={40}
+        seoKeywords="form automation, typeform integration, jotform to crm, data entry automation, lead form integration"
     />
   );
 }

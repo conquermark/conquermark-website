@@ -170,7 +170,8 @@ export default function Finance() {
       ctaSubtitle="AI Finance & Accounting Automation"
       seoTitle="AI Finance & Accounting Automation | Conquermark"
       seoDescription="Automate your financial operations. We integrate QuickBooks, Xero, and Stripe to streamline invoicing and reconciliation."
-      seoKeywords="finance automation services, quickbooks automation, xero integration, automated bookkeeping, invoice automation"
+      roiRate={75}
+        seoKeywords="finance automation services, quickbooks automation, xero integration, automated bookkeeping, invoice automation"
     />
   );
 }

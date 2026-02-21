@@ -135,7 +135,8 @@ export default function Pabbly() {
       ctaSubtitle="Pabbly Connect Automation"
       seoTitle="Pabbly Connect Automation | Conquermark"
       seoDescription="Expert Pabbly Connect automation services. We build cost-effective workflows and help you migrate from Zapier to Pabbly."
-      seoKeywords="pabbly connect experts, pabbly automation, migrate to pabbly, pabbly connect consultant, affordable automation"
+      roiRate={40}
+        seoKeywords="pabbly connect experts, pabbly automation, migrate to pabbly, pabbly connect consultant, affordable automation"
     />
   );
 }
