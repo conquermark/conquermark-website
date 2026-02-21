@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import SEO from '@/components/SEO';
 import ContactModal from '@/components/ContactModal';
+import ROICalculator from '@/components/ROICalculator';
 
 interface AutomationPageProps {
   title: string;
@@ -176,6 +177,9 @@ const AutomationPageTemplate: React.FC<AutomationPageProps> = ({
           </div>
         </div>
       </section>
+
+      {/* ROI Calculator Section */}
+      <ROICalculator />
 
       {/* Trust Bar - Tools */}
       <section className="py-12 border-y border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50">
