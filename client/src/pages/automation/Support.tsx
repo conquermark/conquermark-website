@@ -9,8 +9,8 @@ export default function Support() {
       title="AI Customer Support Automation"
       subtitle="Deliver instant, 24/7 support without hiring more agents. Automate tickets, chats, and FAQs."
       description="We implement AI chatbots and automated ticketing workflows that resolve 60% of queries instantly, leaving your team to handle complex issues."
-      heroImage="/support-dashboard.jpg"
-      workflowImage="/support-workflow.png"
+      heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/xrhoFGLLJsCGQQDS.jpg"
+      workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/sWmFENJkSTqGyCjx.png"
       benefits={[
         {
           icon: <MessageSquare className="h-12 w-12" />,

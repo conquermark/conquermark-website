@@ -9,8 +9,8 @@ export default function N8n() {
       title="n8n Workflow Automation Experts"
       subtitle="Build complex, self-hosted automation workflows without breaking the bank."
       description="We are certified n8n experts. We design, build, and host powerful node-based workflows that connect any API to any app."
-      heroImage="/n8n-dashboard.jpg"
-      workflowImage="/n8n-workflow.png"
+      heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/YjbQcTyzcFAZlaWd.jpg"
+      workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/VVJwhxnthHnTDiOc.png"
       benefits={[
         {
           icon: <Workflow className="h-12 w-12" />,

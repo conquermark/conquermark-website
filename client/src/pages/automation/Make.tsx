@@ -9,8 +9,8 @@ export default function Make() {
       title="Make.com (Integromat) Experts"
       subtitle="Visually design complex automation scenarios. Limitless possibilities."
       description="We leverage the power of Make to build sophisticated automation scenarios. Handle data transformation, arrays, and complex logic with ease."
-      heroImage="/make-dashboard.jpg"
-      workflowImage="/make-workflow.png"
+      heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/yfmLFavoQPWLLAQh.jpg"
+      workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/oCUuYYVwDYLMYLIG.png"
       
       benefits={[
         {

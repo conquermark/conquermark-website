@@ -9,8 +9,8 @@ export default function Reporting() {
       title="Automated Reporting & Dashboards"
       subtitle="Real-time insights without the manual data crunching. Make data-driven decisions."
       description="We build automated reporting pipelines that pull data from all your tools into a central dashboard (Looker, PowerBI, or Sheets)."
-      heroImage="/reporting-dashboard.jpg"
-      workflowImage="/reporting-workflow.png"
+      heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/SxYdaplQCdLGOFqR.jpg"
+      workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/trrVpkmduhCtxbCo.png"
       features={[
         "Spending 10+ hours weekly manually compiling reports",
         "Data scattered across 10+ different tools and platforms",
