@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="google-site-verification" content="rxkGj48pbK9hpPDCG8SUZXCFgo1t7o7Et7rXlZZg7D8" />
+    <meta name="google-site-verification" content="cB18KiJQcBlG2zI1kCV4988DccdmrmjlJt5aDhXobF4" />
+    
+<meta name="robots" content="noindex"/>
+
+
+    <script id="webapp-url" type="text/javascript">
+  const webapp = "https://app.drchrono.com" || "https://app.drchrono.com";
+</script>
+     
+    
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/47666083.js"></script>
+    
+    
+    <!-- ========== HubSpot -> Segment consent bridge (C0001..C0005) ========== -->
+<script type="text/javascript">
+  // Configure how to derive "Social Media" consent:
+  //   true  = tie Social Media to HubSpot's Advertisement/Targeting category
+  //   false = tie Social Media to HubSpot's Functionality category
+  var SOCIAL_MEDIA_FROM_ADS = true;
+
+  // HubSpot listener queue
+  window._hsp = window._hsp || [];
+
+  // Read HubSpot consent cookie for initial state (covers first page load)
+  function readHubSpotConsentFromCookie() {
+    // HubSpot cookie stores category prefs, e.g. "__hs_cookie_cat_pref=1:true_2:false_3:true"
+    var m = document.cookie.match(/(?:^|;)\s*__hs_cookie_cat_pref=([^;]+)/);
+    if (!m) return null;
+    var bits = decodeURIComponent(m[1]).split('_');
+    var flags = {};
+    bits.forEach(function (p) {
+      var kv = p.split(':');
+      if (kv.length === 2) flags[kv[0]] = (kv[1] === 'true');
+    });
+    // HubSpot category indices: 1=analytics, 2=advertisement/targeting, 3=functionality
+    return {
+      categories: {
+        analytics: !!flags['1'],
+        advertisement: !!flags['2'],
+        functionality: !!flags['3']
+      }
+    };
+  }
+
+  // Map HubSpot consent -> Segment consent object with your category IDs
+  function hubspotToSegmentConsent(consent) {
+    var c = (consent && consent.categories) || {};
+    var socialMedia = SOCIAL_MEDIA_FROM_ADS ? !!c.advertisement : !!c.functionality;
+
+    return {
+      // Your Segment categories
+      categoryPreferences: {
+        C0001: true,               // Strictly Necessary (always on; not user-toggleable)
+        C0002: !!c.analytics,      // Performance
+        C0003: !!c.functionality,  // Functional
+        C0004: !!c.advertisement,  // Targeting
+        C0005: socialMedia         // Social Media (derived as configured above)
+      },
+      provider: "hubspot",
+      consentMethod: "banner",
+      gpc: !!(navigator && navigator.globalPrivacyControl)
+    };
+  }
+
+  // Store latest Segment-style consent globally for middleware to read
+  function updateSegmentConsent(consent) {
+    window.__segmentConsent = hubspotToSegmentConsent(consent);
+    window.__segmentConsentUpdatedAt = new Date().toISOString();
+  }
+
+  // Bootstrap from cookie (so first events have a value)
+  var initial = readHubSpotConsentFromCookie();
+  if (initial) updateSegmentConsent(initial);
+
+  // Listen for HubSpot banner changes (fires on initial set and updates)
+  window._hsp.push(['addPrivacyConsentListener', function (consent) {
+    updateSegmentConsent(consent);
+  }]);
+</script>
+
+
+<!-- ========== Segment Analytics.js (loader) ========== -->
+<script type="text/javascript">
+  !function () {
+    var analytics = window.analytics = window.analytics || []; if (!analytics.initialize)
+      if (analytics.invoked) window.console && console.error && console.error("Segment snippet included twice."); else {
+        analytics.invoked = !0; analytics.methods = ["trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "identify",
+          "reset", "group", "track", "ready", "alias", "debug", "page", "once", "off", "on", "addSourceMiddleware",
+          "addIntegrationMiddleware", "setAnonymousId", "addDestinationMiddleware"];
+        analytics.factory = function (t) { return function () { var e = Array.prototype.slice.call(arguments); e.unshift(t); analytics.push(e); return analytics } };
+        for (var t = 0; t < analytics.methods.length; t++) { var e = analytics.methods[t]; analytics[e] = analytics.factory(e) }
+        analytics.load = function (key, options) {
+          var n = document.createElement("script"); n.async = !0;
+          n.src = "https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";
+          var a = document.getElementsByTagName("script")[0]; a.parentNode.insertBefore(n, a); analytics._loadOptions = options
+        };
+        analytics._writeKey = "Aap2161ZVNxQsUJcAo4slb0BdL18MCqk";
+        analytics.load("Aap2161ZVNxQsUJcAo4slb0BdL18MCqk");
+        analytics.page();
+      }
+  }();
+</script>
+
+<!-- ========== Stamp context.consent on every Segment event ========== -->
+<script type="text/javascript">
+  // Register source middleware immediately (the stub will queue this until analytics.js loads)
+  if (window.analytics && typeof window.analytics.addSourceMiddleware === 'function') {
+    window.analytics.addSourceMiddleware(function ({ payload, next }) {
+      var obj = payload.obj || {};
+      var ctx = obj.context = obj.context || {};
+
+      if (window.__segmentConsent) {
+        ctx.consent = Object.assign({}, window.__segmentConsent, {
+          consentTimestamp: window.__segmentConsentUpdatedAt || new Date().toISOString()
+        });
+      } else {
+        // If no banner decision yet, you can choose to send only "Strictly Necessary" explicitly:
+        ctx.consent = {
+          categoryPreferences: { C0001: true, C0002: false, C0003: false, C0004: false, C0005: false },
+          provider: "hubspot",
+          consentMethod: "banner:unknown",
+          gpc: !!(navigator && navigator.globalPrivacyControl),
+          consentTimestamp: new Date().toISOString()
+        };
+      }
+
+      payload.obj = obj;
+      next(payload);
+    });
+  }
+
+  // Example calls (leave commented out if you already call these elsewhere)
+  // analytics.page();
+  // analytics.track('Button Clicked', { id: 'subscribe' });
+</script>
+    
+
+    
+
+    <title>Page Not Found | DrChrono</title>
+
+    <script type="text/javascript" src="/site_media/jquery-2844a982cab638408fb8.236a64ca5fdc.js" ></script>
+    <script type="text/javascript" src="/site_media/bootstrap-2844a982cab638408fb8.69c54d607cb6.js" ></script>
+    <link type="text/css" href="/site_media/vendor_style-9ed9fdee174c2c5ffb3c.82d698928335.css" rel="stylesheet" />
+<script type="text/javascript" src="/site_media/vendor_style-2844a982cab638408fb8.722d65ee441e.js" ></script>
+    <link type="text/css" href="/site_media/style-150285c73069ca0e4c0b.37fa318d520b.css" rel="stylesheet" />
+<script type="text/javascript" src="/site_media/style-2844a982cab638408fb8.ed28844ece0b.js" ></script>
+    <script type="text/javascript" src="/site_media/main-2844a982cab638408fb8.547467c210b8.js" ></script>
+
+    
+    
+    <link rel="icon" href="/site_media/images/logos/drchrono_grayicon_rounded_16x16.88a8474a9149.png" type="image/png"/>
+    <link rel="apple-touch-icon" href="/site_media/images/icon_drchrono_web_app.e56334c294a5.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/site_media/images/apple-touch-icon-76x76-precomposed.cfd007449e4b.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/site_media/images/apple-touch-icon-114x114-precomposed.04c83bcdb931.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/site_media/images/apple-touch-icon-120x120-precomposed.696de8cb68d0.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/site_media/images/apple-touch-icon-144x144-precomposed.b0a67f3c9a23.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/site_media/images/apple-touch-icon-152x152-precomposed.363cf333806c.png"/>
+
+    <link rel="stylesheet" type="text/css" href="/site_media/css/drchrono-stylesheet-2018.50db1f0f3c88.css"/>
+
+    <script src="/site_media/js/jquery.query-object.55c8b66459be.js"></script>
+    <script src="/site_media/js/navgoco.65de3aa00f05.js"></script>
+    <script src="/site_media/js/custom.e0a3cb9c4a01.js"></script>
+    <script type='text/javascript' src='//www.lightboxcdn.com/vendor/6b8e1518-c41d-4765-b985-c843a5c02e12/lightbox_inline.js'></script>
+    
+<style>
+  .wrapper-for-footer, .hero {
+    background-color: #fff;
+  }
+</style>
+
+    
+
+    
+    
+    <script>
+      window.free_account_type = "";
+      window.is_hermes = "" === "True" ? true : false;
+      window.is_freemium = "" === "True" ? true : false;
+      window.is_developer = "" === "True" ? true : false;
+    </script>
+  </head>
+
+  <body id="" ng-app="drchrono">
+
+  
+
+  
+   
+<!--     <div class="hidden-xs visible-md visible-lg" style="background-color: #3c86fd;">
+      <div class="row text-center padding20">
+        <div class="col-md-10 col-md-offset-1">
+        <small class="light bottom0"><b>We're headed to MGMA Leaders Conference 2024</b><br>Be sure to stop by Booth #506 to see how our cutting-edge tools are designed to make your job easier and more efficient! <i>Denver, CO | October 6th - 9th</i></small>
+        </div>
+      </div>
+    </div> -->
+    
+    <header>
+      <div class="container-fluid affix dark-nav" style="z-index:999">
+    <div id="navigation-bar" class="container text-right">
+      
+      <div class="row">
+      <div class="mini-menu col-md-12">
+        <ul class="list-inline">
+        <li>Contact Us: (844) 569-8628</li><span>|</span>
+        
+        <li><a href="/ehr-pricing-quote/">Get a Quote</a></li><span>|</span>
+        <li><a href="https://app.drchrono.com/accounts/login/"><strong>Log In</strong></a></li>
+        
+        </ul>
+      </div>
+      </div>
+    
+      <div class="row">
+      <div class="col-sm-3 col-md-2 text-left logo-wrap">
+        <a href="/"><img src="/site_media/images/drc_logo_charcoal_eh_r.682a4836cae8.svg" class="logo" alt="DrChrono gray logo"></a>
+      </div>
+      <div class="col-sm-9 col-md-10">
+        <nav class="primary-nav">
+        <ul class="list-inline top10">
+        <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Solutions</a>
+        <ul class="dropdown-menu">
+          <li class="top10"><span class="navi-subtitle dark">Providers</span></li>
+          <li><a href="/ehr-emr/specialty/">EHR by Specialty </a></li>
+          <li><a href="/ehr-emr/telemedicine/">Telemedicine</a></li>
+          <li><a href="/ehr-emr/large-practice/">Large Practice</a></li>
+          <li><a href="/ehr-emr/small-practice/">Small Practice</a></li>
+          <li><a href="/ehr-emr/multi-specialty-practice-ehr/">Multi Specialty</a></li>
+          <hr class="navi-bar">
+          <li><span class="navi-subtitle dark">Patients</span></li>
+          <li><a href="https://onpatient.com/" target="_blank">Patient Portal - OnPatient</a></li>
+          <hr class="navi-bar">
+          <li><span class="navi-subtitle dark">Partners & Affiliates</span></li>
+          <li><a href="/become-partner/">Become a Partner</a></li>
+          <li><a href="/api/">API Developers</a></li>
+          <li class="bottom10"><a href="/ehr-emr/apple-mobility-partner/">Apple Mobility Program</a></li>
+        </ul>
+        </li>
+        <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Platform</a>
+        <ul class="dropdown-menu">
+          <li class="top10"><span class="navi-subtitle dark">Product</span></li>
+          <li><a href="/electronic-health-record-ehr/">Electronic Health Records</a></li>
+          <li><a href="/telehealth/">Telehealth</a></li>
+          <li><a href="/practice-management/">Practice Management</a></li>
+          <li><a href="/medical-billing/">Medical Billing</a></li>
+          <li><a href="/revenue-cycle-management/">Revenue Cycle Management</a></li>
+          <li><a href="/patient-portal/">Patient Portal</a></li>
+          <li><a href="/mobile-ipad-ehr-app/">Mobile EHR Solutions</a></li>
+          <li><a href="/payments/">Integrated Payments</a></li>
+          <li class="bottom10"><a href="https://partners.drchrono.com/" target="_blank">App Marketplace</a></li>
+          <hr class="navi-bar">
+          <li><span class="navi-subtitle dark">Features</span></li>
+          <li><a href="/ehr-emr/features/">All Features</a></li>
+          <li><a href="/updox-premium-features/">Premium Features</a></li>
+          <li><a href="/features/lab-integrations/">Lab & Imaging</a></li>
+          <li><a href="/erx-electronic-prescribing/">eRx & EPCS</a></li>
+          <li><a href="/features/clinical-forms/">Medical Templates</a></li>
+          <li class="bottom10"><a href="/resources/ehr-feature-video/">Feature videos</a></li>
+        </ul>
+        </li>
+        <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Resources</a>
+        <ul class="dropdown-menu">
+          <li class="top10"><span class="navi-subtitle dark">Resources & Tools</span></li>
+          <li><a href="/resources/">Resources</a></li>
+          <li><a href="/resources/case-studies/">Case Studies</a></li>
+          <li><a href="https://www.drchrono.com/blog/">Blog</a></li>
+          <li><a href="/resources/specialties/">Specialties</a></li>
+          <li><a href="/testimonials/">Testimonials</a></li>
+          <li><a href="/resources/webinar/">Webinars</a></li>
+          <li><a href="/podcast/">Our Podcast</a></li>
+          <li><a href="/plans-and-pricing/">Plans</a></li>
+          <li><a href="/meaningful-use-ehr/">ONC Certification</a></li>
+          <hr class="navi-bar">
+          <li><span class="navi-subtitle dark">Customer Help</span></li>
+          <li><a href="https://support.drchrono.com/hc/en-us" target="_blank">Support Center</a></li>
+          <li class="bottom10"><a href="/resources/ehr-training-video/">Training videos</a></li>
+        </ul>
+        </li>
+        <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Company</a>
+        <ul class="dropdown-menu">
+          <li class="top10"><a href="/about/">About Us</a></li>
+          <li><a href="https://www.drchrono.com/blog/">Blog</a></li>
+          <li class="bottom10"><a href="https://drchrono.com/blog/categories/press/">Press</a></li>
+        </ul>
+        </li>
+        <li class="dropdown"><a href="/telehealth/">Telehealth</a></li>
+           
+                  <span>
+                    <a id="trynow-btn" class="btn btn-blue" href="/schedule-demo/">Schedule Demo</a>
+                  </span>
+         
+        </ul>
+        </nav>
+      </div>
+      </div>
+    </div>
+    </div>
+   
+    <a href="/"><img src="/site_media/images/drc_logo_charcoal_eh_r.682a4836cae8.svg" class="logo-mobile" alt="DrChrono gray logo"></a>
+    <a id="nav-expander" class="nav-expander">
+    <img src="/site_media/images/menu-icon-dark.a6a0fe3432a2.png" alt="Mobile menu icon">
+    </a>
+    <nav class="mobile">
+    <div class="site-branding">
+      <a href="#" id="nav-close"><img src="/site_media/images/x.44562b314230.png" alt="Close out of menu icon"></a>
+    </div>
+
+    <ul class="text-center list-unstyled">
+      <li class="dropdown">
+        <a data-toggle="collapse" href="#mobile-nav" role="button" aria-expanded="false" aria-controls="mobile-nav">Solutions<span class="caret"></span></a>
+          <ul class="collapse" id="mobile-nav">
+            <li class="top10"><span class="navi-subtitle dark">Providers</span></li>
+            <li><a href="/ehr-emr/specialty/">EHR by Specialty </a></li>
+            <li><a href="/ehr-emr/telemedicine/">Telemedicine</a></li>
+            <li><a href="/ehr-emr/large-practice/">Large Practice</a></li>
+            <li><a href="/ehr-emr/small-practice/">Small Practice</a></li>
+            <li><a href="/ehr-emr/multi-specialty-practice-ehr/">Multi Specialty</a></li>
+            <hr class="navi-bar">
+            <li><span class="navi-subtitle dark">Patients</span></li>
+            <li><a href="https://onpatient.com/" target="_blank">Patient Portal - OnPatient</a></li>
+            <hr class="navi-bar">
+            <li><span class="navi-subtitle dark">Partners & Affiliates</span></li>
+            <li><a href="/become-partner/">Become a Partner</a></li>
+            <li><a href="/api/">API Developers</a></li>
+            <li class="bottom10"><a href="/ehr-emr/apple-mobility-partner/">Apple Mobility Program</a></li>
+          </ul>
+       </li>
+      <li class="dropdown">
+        <a data-toggle="collapse" href="#mobile-nav2" role="button" aria-expanded="false" aria-controls="mobile-nav2">Platform<span class="caret"></span></a>
+          <ul class="collapse" id="mobile-nav2">
+            <li class="top10"><span class="navi-subtitle dark">Product</span></li>
+            <li><a href="/electronic-health-record-ehr/">Electronic Health Records</a></li>
+            <li><a href="/telehealth/">Telehealth</a></li>
+            <li><a href="/practice-management/">Practice Management</a></li>
+            <li><a href="/medical-billing/">Medical Billing</a></li>
+            <li><a href="/revenue-cycle-management/">Revenue Cycle Management</a></li>
+            <li><a href="/patient-portal/">Patient Portal</a></li>
+            <li><a href="/mobile-ipad-ehr-app/">Mobile EHR Solutions</a></li>
+            <li><a href="/payments/">Integrated Payments</a></li>
+            <li class="bottom10"><a href="https://partners.drchrono.com/" target="_blank">App Marketplace</a></li>
+            <hr class="navi-bar">
+            <li><span class="navi-subtitle dark">Features</span></li>
+            <li><a href="/ehr-emr/features/">All Features</a></li>
+            <li><a href="/updox-premium-features/">Premium Features</a></li>
+            <li><a href="/features/lab-integrations/">Lab & Imaging</a></li>
+            <li><a href="/erx-electronic-prescribing/">eRx & EPCS</a></li>
+            <li><a href="/features/clinical-forms/">Medical Templates</a></li>
+            <li class="bottom10"><a href="/resources/ehr-feature-video/">Feature videos</a></li>
+          </ul>
+       </li>
+      <li class="dropdown">
+        <a data-toggle="collapse" href="#mobile-nav3" role="button" aria-expanded="false" aria-controls="mobile-nav3">Resources<span class="caret"></span></a>
+          <ul class="collapse" id="mobile-nav3">
+              <li class="top10"><span class="navi-subtitle dark">Resources & Tools</span></li>
+              <li><a href="/resources/">Resources</a></li>
+              <li><a href="/resources/case-studies/">Case Studies</a></li>
+              <li><a href="https://www.drchrono.com/blog/">Blog</a></li>
+              <li><a href="/resources/specialties/">Specialties</a></li>
+              <li><a href="/testimonials/">Testimonials</a></li>
+              <li><a href="/resources/webinar/">Webinars</a></li>
+              <li><a href="/podcast/">Our Podcast</a></li>
+              <li><a href="/plans-and-pricing/">Plans</a></li>
+              <li><a href="/meaningful-use-ehr/">ONC Certification</a></li>
+              <hr class="navi-bar">
+              <li><span class="navi-subtitle dark">Customer Help</span></li>
+              <li><a href="https://support.drchrono.com/hc/en-us" target="_blank">Support Center</a></li>
+              <li class="bottom10"><a href="/resources/ehr-training-video/">Training videos</a></li>
+          </ul>
+       </li>
+      <li class="dropdown">
+        <a data-toggle="collapse" href="#mobile-nav4" role="button" aria-expanded="false" aria-controls="mobile-nav4">Company<span class="caret"></span></a>
+          <ul class="collapse" id="mobile-nav4">
+            <li><a href="/about/">About Us</a></li>
+            <li><a href="https://www.drchrono.com/blog/">Blog</a></li>
+            <li><a href="https://drchrono.com/blog/categories/press/">Press</a></li>
+          </ul>
+       </li>
+      <li class="dropdown"><a href="/telehealth/">Telehealth</a></li>
+      
+        <span class="block">
+          <a class="btn btn-mobile" href="/learn-more/">Learn More</a>
+        </span>
+        <span class="block top20">
+          <a class="btn btn-primary-inverse" href="https://app.drchrono.com/accounts/login/">Log In</a>
+        </span>
+      
+    </ul>
+    </nav>
+    </header>
+    
+
+
+      
+        <div id="main-content">
+          
+<div class="hidden-lg hidden-md top40">&nbsp;</div>
+<div class="hero bottom60">
+  <div class="header-content">
+    <h1 class="dark bottom30">The page you have requested wasn't found</h1>
+    <p class="dark bottom30">
+      Can't find what you are looking for? Checkout our <a class="color-primary" href="/sitemap/">site map</a>.
+    </p>
+    
+    <a class="btn btn-md btn-primary-inverse" href="/ehr/demo/">See Demo</a>
+    <a class="btn btn-md  btn-primary left5" href="/accounts/login/">Log In</a>
+    
+  </div>
+</div>
+
+        </div>
+      
+
+
+    
+<footer id="footer-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-3">
+            <div class="col col-xs-12 col-sm-4 col-md-12 info">
+               <a href="/"><img src="/site_media/images/drc_logo_charcoal_eh_r.682a4836cae8.svg" class="logo" alt="DrChrono white logo"></a>
+              <p class="nums">
+                Contact Us: (844) 569-8628
+              </p>
+              <a href="https://itunes.apple.com/us/app/drchrono-ehr/id369191782?mt=8" rel="noreferrer"><img src="/site_media/images/Download_on_the_App_Store_Badge_135x40.06ac036d678f.svg" alt="Apple app store logo"/></a>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="col col-xs-12 col-sm-2 col-md-3">
+              <div class="btn-group" role="group" aria-label="">
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-footer dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Solutions <i class="glyphicon glyphicon-chevron-down"></i></button>
+                  <ul class="dropdown-menu">
+                    <li><a href="/schedule-demo/">Free EHR Demo</a></li>
+                    <li><a href="/electronic-health-record-ehr/">EHR</a></li>
+                    <li><a href="/telehealth/">Telehealth</a></li>
+                    <li><a href="/practice-management/">Practice Management</a></li>
+                    <li><a href="/medical-billing/">Medical Billing</a></li>
+                    <li><a href="/revenue-cycle-management/">Revenue Cycle <br> Management</a></li>
+                    <li><a href="/patient-portal/">Patient Portal</a></li>
+                    <li><a href="/mobile-ipad-ehr-app/">Mobile EHR</a></li>
+                    <li><a href="/erx-electronic-prescribing/">eRx</a></li>
+                    <li><a href="/plans-and-pricing/">Plans</a></li>
+                    <li><a href="/ehr-emr/features/">EHR Features</a></li>
+                    <li><a href="/lab-imaging/">Lab &amp; Imaging</a></li>
+                    <li><a href="/ehr-emr/comparedrchrono/">Comparison DrChrono</a></li>
+                    <li><a href="https://app.drchrono.com/patient-education-materials/">Patient Education Materials</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col col-xs-12 col-sm-2 col-md-3">
+              <div class="btn-group" role="group" aria-label="">
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-footer dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Practice <i class="glyphicon glyphicon-chevron-down"></i></button>
+                  <ul class="dropdown-menu">
+                    <li><a href="/features-ehr-emr/">EHR Checklist</a></li>
+                    <li><a href="/meaningful-use-ehr/">ONC Certification & Costs</a></li>
+                    <li><a href="/epcs/">EPCS</a></li>
+                    <li><a href="/macra-mips/">MACRA &amp; MIPS</a></li>
+                    <li><a href="/ehr-emr/ICD-10/">ICD-10 Info</a></li>
+                    <li><a href="https://www.onpatient.com" target="_blank">OnPatient Portal</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col col-xs-12 col-sm-2 col-md-3">
+              <div class="btn-group" role="group" aria-label="">
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-footer dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Resources<i class="glyphicon glyphicon-chevron-down"></i></button>
+                  <ul class="dropdown-menu">
+                    <li><a href="https://support.drchrono.com/hc/en-us" target="_blank">Support Center</a></li>
+                    <li><a href="/api/">Developer API &amp; SDK</a></li>
+                    <li><a href="/faq-ehr-emr/">EHR FAQ</a></li>
+                    <li><a href="/ehr-emr/medical-form-templates/">Medical Form Library</a></li>
+                    <li><a href="https://app.drchrono.com/ehr-emr/Payer-ID-search/">Insurance Lookup</a></li>
+                    <li><a href="https://app.drchrono.com/medical-billing-code-lookup">ICD &amp; HCPCS Lookup</a></li>
+                    <li><a href="/apps/">App Directory</a></li>
+                    <li><a href="/podcast/">Our Podcast</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col col-xs-12 col-sm-2 col-md-3">
+              <div class="btn-group" role="group" aria-label="">
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-footer dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About <i class="glyphicon glyphicon-chevron-down"></i></button>
+                  <ul class="dropdown-menu">
+                    <li><a href="/about/">About Us</a></li>
+                    <li><a href="https://www.drchrono.com/blog/">News &amp; Updates</a></li>
+                    <li><a href="/careers/">Careers</a></li>
+                    <li><a href="/testimonials/">Testimonials</a></li>
+                    <li><a href="/ehr-emr/logos/">Logos &amp; Branding</a></li>
+                    <li><a href="https://drchrono.com/blog/categories/press/">Press</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+           <div class="col col-xs-12 col-sm-2 col-md-3">
+              <div class="btn-group" role="group" aria-label="">
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-footer dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Legal<i class="glyphicon glyphicon-chevron-down"></i></button>
+                  <ul class="dropdown-menu">
+                    <li><a href="/contact/">Contact Us</a></li>
+                    <li><a href="/ehr-emr/security-policy/">Security Policy</a></li>
+                    <li><a href="/ehr-emr/terms/#baa">Business Associate Agreement</a></li>
+                    <li><a href="/api-development-terms-conditions/">API Policy</a></li>
+                    <li><a href="https://www.onpatient.com/terms/" target="_blank">OnPatient Terms of Use</a></li>
+                    <li><a href="https://www.onpatient.com/privacy/" target="_blank">OnPatient Privacy Policy</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+          <div class="row bottom">
+            <div class="col-md-5 copyright">
+              &copy; 2025 Copyright EverHealth Solutions Inc. DBA DrChrono.
+            </div>
+            <div class="col-md-5">
+              <div class="col-md-12">
+                <ul class="list-inline bottom-menu">
+                  <li><a href="/ehr-emr/privacy-policy/">Privacy Policy</a></li>
+                  <li><a href="/ehr-emr/terms/">Terms of Use</a></li>
+                  <li><a href="/sitemap/">Site Map</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <ul class="list-inline social">
+                <li><a href="https://twitter.com/drchrono" target="_blank"><img src="/site_media/images/twitter-bk.233dfe6de0b7.png" alt="twitter icon"></a></li>
+                <li><a href="https://www.facebook.com/drchrono.ehr" target="_blank"><img src="/site_media/images/facebook-bk.0054da1d9a0b.png" alt="facebook icon"></a></li>
+                <li><a href="https://www.youtube.com/user/drchrono" target="_blank"><img src="/site_media/images/youtube-bk.fd1571cb6f60.png" alt="youtube icon"></a></li>
+                <li><a href="https://www.instagram.com/drchrono.ehr/" target="_blank"><img src="/site_media/images/instagram-bk.03ab98cdfd5e.png" alt="instagram icon"></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <script src="https://js.adsrvr.org/up_loader.1.1.0.js" type="text/javascript"></script>
+        <script src="https://js.hsforms.net/forms/embed/47666083.js" defer></script>
+        <script type="text/javascript">
+                    ttd_dom_ready( function() {
+                        if (typeof TTDUniversalPixelApi === 'function') {
+                            var universalPixelApi = new TTDUniversalPixelApi();
+                            universalPixelApi.init("gtz9jiz", ["wznwo8p"], "https://insight.adsrvr.org/track/up");
+                        }
+                    });
+        </script>
+      </footer>
+    
+  </body>
+</html>
