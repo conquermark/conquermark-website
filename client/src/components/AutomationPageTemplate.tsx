@@ -115,8 +115,14 @@ const AutomationPageTemplate: React.FC<AutomationPageProps> = ({
                   Start Automating Now
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
-                <Button size="lg" variant="outline" className="border-slate-700 hover:bg-slate-800 text-slate-300 h-14 text-lg px-8 font-medium" onClick={() => setContactModalOpen(true)}>
-                  View Case Studies
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="border-slate-700 hover:bg-slate-800 text-slate-300 h-14 text-lg px-8 font-medium group" 
+                  onClick={() => document.getElementById('roi-calculator')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                  <TrendingUp className="w-5 h-5 mr-2 text-green-400 group-hover:text-green-300" />
+                  Calculate Savings
                 </Button>
               </div>
 
@@ -185,11 +191,13 @@ const AutomationPageTemplate: React.FC<AutomationPageProps> = ({
       </section>
 
       {/* ROI Calculator Section */}
-      <ROICalculator 
-        defaultHourlyRate={roiRate} 
-        problems={problems} 
-        manualTasks={manualTasks}
-      />
+      <div id="roi-calculator" className="scroll-mt-24">
+        <ROICalculator 
+          defaultHourlyRate={roiRate} 
+          problems={problems} 
+          manualTasks={manualTasks}
+        />
+      </div>
 
       {/* Trust Bar - Tools */}
       <section className="py-12 border-y border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50">
