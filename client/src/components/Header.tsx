@@ -41,17 +41,27 @@ export default function Header() {
     
     // Industry Solutions (Column 3)
     { name: "E-commerce Automation", href: "/automation/ecommerce", category: "Industry Solutions" },
-    { name: "SaaS & Tech Startups", href: "/automation/saas", category: "Industry Solutions" },
+    // { name: "SaaS & Tech Startups", href: "/automation/saas", category: "Industry Solutions" },
     { name: "Healthcare Automation", href: "/automation/healthcare", category: "Industry Solutions" },
     { name: "Education / LMS", href: "/automation/education", category: "Industry Solutions" },
     { name: "Finance & Fintech", href: "/automation/finance", category: "Industry Solutions" },
     
     // Use Cases (Column 4)
+    { name: "SaaS & Tech Startups", href: "/automation/saas", category: "Quick Solutions" },
     { name: "Lead Capture Automation", href: "/automation/lead-capture", category: "Quick Solutions" },
     { name: "WhatsApp/Chatbot", href: "/automation/chatbot-whatsapp", category: "Quick Solutions" },
     { name: "Form-to-CRM Integration", href: "/automation/form-to-crm", category: "Quick Solutions" },
     { name: "Order + Inventory Sync", href: "/automation/order-sync", category: "Quick Solutions" },
     { name: "Slack/Email Notifications", href: "/automation/notifications", category: "Quick Solutions" },
+  ];
+
+  const saasSolutions = [
+    { name: "SaaS Automation", href: "/automation/saas", description: "Automate user onboarding & retention" },
+    { name: "Product Validation", href: "/services/product-validation", description: "Validate your SaaS idea" },
+    { name: "MVP Development", href: "/services/mvp-development", description: "Build your first version" },
+    { name: "Web App Development", href: "/services/web-development", description: "Scalable web applications" },
+    { name: "Mobile App Development", href: "/services/mobile-app", description: "iOS & Android apps" },
+    { name: "Funding & Pitch", href: "/services/funding-pitch", description: "Get investment ready" },
   ];
 
   const digitalMarketingServices = [
@@ -152,6 +162,30 @@ export default function Header() {
                   <Link key={service.name} href={service.href}>
                     <div className="px-4 py-2 text-sm text-foreground/80 hover:text-foreground hover:bg-muted rounded cursor-pointer">
                       {service.name}
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* SaaS Solutions Dropdown */}
+          <div className="relative group">
+            <button className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors cursor-pointer flex items-center gap-1">
+              SaaS Solutions
+              <ChevronDown className="h-4 w-4" />
+            </button>
+            <div className="absolute top-full left-0 mt-2 w-72 bg-background border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <div className="p-2">
+                {saasSolutions.map((service) => (
+                  <Link key={service.name} href={service.href}>
+                    <div className="px-4 py-3 hover:bg-muted rounded cursor-pointer group/item">
+                      <div className="text-sm font-medium text-foreground group-hover/item:text-primary transition-colors">
+                        {service.name}
+                      </div>
+                      <div className="text-xs text-muted-foreground mt-0.5">
+                        {service.description}
+                      </div>
                     </div>
                   </Link>
                 ))}

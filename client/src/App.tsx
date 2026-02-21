@@ -14,10 +14,11 @@ import MobileApp from "./pages/services/MobileApp";
 import WebDevelopment from "./pages/services/WebDevelopment";
 import NoCode from "./pages/services/NoCode";
 import DigitalMarketingService from "./pages/services/DigitalMarketing";
-import DigitalMarketing from "./pages/DigitalMarketing";
+// import DigitalMarketing from "./pages/DigitalMarketing";
 import AIOverview from "./pages/digital-marketing/ai/AIServicesOverview";
 import AIConsulting from "./pages/digital-marketing/ai/AIConsulting";
-import AIDigitalMarketing from "./pages/digital-marketing/ai/AIDigitalMarketing";
+import DigitalMarketingHub from "@/pages/digital-marketing/DigitalMarketingHub";
+import DigitalMarketingAI from "./pages/digital-marketing/ai/AIDigitalMarketing";
 import AIChatGPT from "./pages/digital-marketing/ai/ChatGPTOptimization";
 import AIAgentDevelopment from "./pages/digital-marketing/ai/AIAgentDevelopment";
 import AIGPTIntegration from "./pages/digital-marketing/ai/AIGPTIntegration";
@@ -118,10 +119,11 @@ function Router() {
           <Route path="/services/web-development" component={WebDevelopment} />
           <Route path="/services/no-code" component={NoCode} />
           <Route path="/services/digital-marketing" component={DigitalMarketingService} />
-          <Route path="/digital-marketing" component={DigitalMarketing} />
+          {/* <Route path="/digital-marketing" component={DigitalMarketing} /> */}
           <Route path="/digital-marketing/ai/overview" component={AIOverview} />
           <Route path="/digital-marketing/ai/consulting" component={AIConsulting} />
-          <Route path="/digital-marketing/ai/digital-marketing" component={AIDigitalMarketing} />
+            <Route path="/digital-marketing" component={DigitalMarketingHub} />
+      <Route path="/digital-marketing/ai/digital-marketing" component={DigitalMarketingAI} />
           <Route path="/digital-marketing/ai/chatgpt" component={AIChatGPT} />
           <Route path="/digital-marketing/ai/agent-development" component={AIAgentDevelopment} />
           <Route path="/digital-marketing/ai/gpt-integration" component={AIGPTIntegration} />
