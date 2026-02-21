@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Calculator, DollarSign, Clock, TrendingUp, ArrowRight, Users, Globe, AlertTriangle, CheckCircle2 } from 'lucide-react';
 import ContactModal from '@/components/ContactModal';
+import LeadCaptureModal from '@/components/LeadCaptureModal';
 
 interface ROICalculatorProps {
   defaultHourlyRate?: number;
@@ -40,6 +41,7 @@ const ROICalculator: React.FC<ROICalculatorProps> = ({
   const [monthlySavings, setMonthlySavings] = useState(0);
   const [yearlySavings, setYearlySavings] = useState(0);
   const [contactModalOpen, setContactModalOpen] = useState(false);
+  const [leadCaptureOpen, setLeadCaptureOpen] = useState(false);
   const [showAnalysis, setShowAnalysis] = useState(false);
 
   useEffect(() => {
@@ -234,7 +236,7 @@ const ROICalculator: React.FC<ROICalculatorProps> = ({
                     <Button 
                       size="lg" 
                       className="w-full bg-slate-900 hover:bg-slate-800 text-white dark:bg-white dark:text-slate-900 dark:hover:bg-slate-200 h-14 text-base font-semibold shadow-lg group"
-                      onClick={() => setShowAnalysis(true)}
+                      onClick={() => setLeadCaptureOpen(true)}
                     >
                       <span>Generate Analysis Report</span>
                       <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -270,6 +272,16 @@ const ROICalculator: React.FC<ROICalculatorProps> = ({
         </div>
       </div>
       <ContactModal open={contactModalOpen} onOpenChange={setContactModalOpen} />
+      <LeadCaptureModal 
+        open={leadCaptureOpen} 
+        onOpenChange={setLeadCaptureOpen} 
+        onSuccess={() => setShowAnalysis(true)}
+        data={{
+          problem: selectedProblem,
+          savings: formatCurrency(yearlySavings),
+          industry: industry
+        }}
+      />
     </section>
   );
 };
