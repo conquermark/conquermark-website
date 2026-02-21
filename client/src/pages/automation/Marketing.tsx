@@ -9,9 +9,9 @@ export default function Marketing() {
       title="AI Marketing Automation Services"
       subtitle="Stop sending manual emails. Start building intelligent customer journeys that convert 24/7."
       description="We build custom marketing automation systems that nurture leads, segment audiences, and drive revenue. No more generic blasts—deliver the right message at the right time."
-      heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/ynEXztHdrweDuGCB.jpeg"
+      heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/RUKpMdPktufbRWxY.jpeg"
       problemImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/WrsmxNKzAecZezBI.jpg"
-        workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/hBqhgmmzvkUJwMMU.png"
+        workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/GfDFXGpUYHudpFSt.png"
       
       benefits={[
         {

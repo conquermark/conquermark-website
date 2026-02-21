@@ -9,9 +9,9 @@ export default function Finance() {
       title="AI Finance & Accounting Automation"
       subtitle="Automate invoicing, expense tracking, and reconciliation. Say goodbye to spreadsheets."
       description="We connect your bank, payment gateways, and accounting software to automate bookkeeping. Get real-time financial visibility without the manual error."
-      heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/YYuZQnoeeoWOWGwI.jpg"
-      problemImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/JXxMnkhZFW9X.png"
-        workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/QajqRiesFIjiLCan.jpg"
+      heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/QajqRiesFIjiLCan.jpg"
+      problemImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/UpPsSTcxuXCskzxo.png"
+        workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/FDXQpKrrSEQgEzGV.jpg"
       benefits={[
         {
           icon: <DollarSign className="h-12 w-12" />,

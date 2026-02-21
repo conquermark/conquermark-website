@@ -78,47 +78,53 @@ const AutomationPageTemplate: React.FC<AutomationPageProps> = ({
       
       <ContactModal open={contactModalOpen} onOpenChange={setContactModalOpen} />
 
-      {/* Hero Section - Professional & Trustworthy */}
-      <section className="relative pt-32 pb-24 overflow-hidden bg-gradient-to-b from-slate-50 to-white dark:from-slate-950 dark:to-background">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+      {/* Hero Section - High Impact & Realism */}
+      <section className="relative pt-32 pb-32 overflow-hidden bg-slate-950 text-white">
+        {/* Background Gradient & Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/50 to-slate-950 z-0" />
+        <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10 z-0" />
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               className="space-y-8"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 text-sm font-semibold tracking-wide uppercase">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 text-sm font-semibold tracking-wide uppercase backdrop-blur-sm">
                 <Zap className="w-4 h-4" />
-                <span>Enterprise-Grade Automation</span>
+                <span>Real Automation Systems</span>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
                 {title}
               </h1>
-              <p className="text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-xl">
+              <p className="text-xl text-slate-300 leading-relaxed max-w-xl">
                 {subtitle}
               </p>
+              
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 h-14 text-lg shadow-lg shadow-blue-600/20 font-semibold" onClick={() => setContactModalOpen(true)}>
-                  Get Free Automation Audit
+                  Start Automating Now
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
-                <Button size="lg" variant="outline" className="border-slate-300 hover:bg-slate-50 text-slate-700 h-14 text-lg px-8 font-medium" onClick={() => setContactModalOpen(true)}>
-                  Book Strategy Call
+                <Button size="lg" variant="outline" className="border-slate-700 hover:bg-slate-800 text-slate-300 h-14 text-lg px-8 font-medium" onClick={() => setContactModalOpen(true)}>
+                  View Case Studies
                 </Button>
               </div>
-              <div className="pt-6 flex flex-wrap items-center gap-6 text-sm font-medium text-slate-500 dark:text-slate-400">
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-green-500" />
-                  <span>Certified Experts</span>
+
+              <div className="pt-8 grid grid-cols-3 gap-6 border-t border-slate-800">
+                <div>
+                  <p className="text-3xl font-bold text-white mb-1">60%</p>
+                  <p className="text-sm text-slate-400">Time Saved</p>
                 </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-green-500" />
-                  <span>24/7 Support</span>
+                <div>
+                  <p className="text-3xl font-bold text-white mb-1">3x</p>
+                  <p className="text-sm text-slate-400">Faster Response</p>
                 </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-green-500" />
-                  <span>Data Secure</span>
+                <div>
+                  <p className="text-3xl font-bold text-white mb-1">40+</p>
+                  <p className="text-sm text-slate-400">Tools Connected</p>
                 </div>
               </div>
             </motion.div>
@@ -127,20 +133,45 @@ const AutomationPageTemplate: React.FC<AutomationPageProps> = ({
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative"
+              className="relative group"
             >
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
-                {/* Use Real Dashboard Image if available, otherwise fallback to heroImage */}
+              {/* Main Hero Image Container */}
+              <div className="relative rounded-xl overflow-hidden shadow-2xl border border-slate-700 bg-slate-900 aspect-video">
+                {/* Dark Overlay for Depth */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-slate-950/80 via-transparent to-transparent z-10 pointer-events-none" />
+                
                 <img 
                   src={heroImage} 
-                  alt={`${title} Dashboard - Live Workflow Example`} 
-                  className="w-full h-auto object-cover"
+                  alt={`${title} - Real Automation System`} 
+                  className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-700"
                 />
                 
-                {/* Clean Screenshot Container */}
+                {/* Floating KPI Card - Real Data Style */}
+                <div className="absolute bottom-6 left-6 right-6 z-20">
+                  <div className="bg-slate-900/90 backdrop-blur-md border border-slate-700 p-4 rounded-lg shadow-xl flex items-center justify-between gap-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-400">
+                        <CheckCircle2 className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <p className="text-xs text-slate-400 font-medium uppercase tracking-wider">System Status</p>
+                        <p className="text-sm font-bold text-white">All Systems Operational</p>
+                      </div>
+                    </div>
+                    <div className="h-8 w-px bg-slate-700" />
+                    <div>
+                      <p className="text-xs text-slate-400 font-medium uppercase tracking-wider">Tasks Automating</p>
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                        <p className="text-sm font-bold text-white">Processing Live Data...</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              {/* Subtle Shadow for Depth */}
-              <div className="absolute -z-10 top-4 left-4 w-full h-full bg-slate-200 dark:bg-slate-800 rounded-2xl" />
+              
+              {/* Decorative Glow */}
+              <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-600/20 blur-[100px] rounded-full opacity-50" />
             </motion.div>
           </div>
         </div>

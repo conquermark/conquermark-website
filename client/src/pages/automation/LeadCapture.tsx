@@ -9,9 +9,9 @@ export default function LeadCapture() {
       title="Automated Lead Capture Systems"
       subtitle="Never lose a lead again. Instantly capture, enrich, and route every prospect."
       description="We integrate your forms, landing pages, and ads directly with your CRM. Ensure every lead is captured instantly and followed up with immediately."
-      heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/ynEXztHdrweDuGCB.jpeg"
-      problemImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/Z3zw1K95rl32.png"
-        workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/wWYUXpnrLfuUmhtw.jpg"
+      heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/wWYUXpnrLfuUmhtw.jpg"
+      problemImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/zIiUoqZjzlwTDdRV.jpg"
+        workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/FLVrhLArjSKvzwpj.jpg"
       benefits={[
         {
           icon: <Target className="h-12 w-12" />,
