@@ -87,7 +87,14 @@ export default function Reporting() {
       ctaSubtitle="Automated Reporting & Dashboards"
       seoTitle="Automated Reporting & Dashboards | Conquermark"
       seoDescription="Automate your business reporting. We build custom dashboards in Looker Studio, PowerBI, and Tableau connected to your live data."
-      roiRate={50}
+      manualTasks={[
+    "Social Media Posting",
+    "Email List Cleaning",
+    "Lead Scoring",
+    "Campaign Performance Reporting",
+    "Content Distribution"
+  ]}
+  roiRate={50}
         seoKeywords="automated reporting, business intelligence dashboards, data visualization services, looker studio automation, powerbi integration"
     />
   );

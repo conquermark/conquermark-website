@@ -5,6 +5,13 @@ import { ToolLogos } from '../../components/ToolLogos';
 export default function Education() {
   return (
     <AutomationPageTemplate
+  manualTasks={[
+    "Student Enrollment",
+    "Course Scheduling",
+    "Grade Reporting",
+    "Alumni Outreach",
+    "Tuition Payment Reminders"
+  ]}
         toolLogos={[ToolLogos.Canvas, ToolLogos.Moodle, ToolLogos.Zoom, ToolLogos.GoogleSheets, ToolLogos.Slack, ToolLogos.Typeform]}
       title="Education & EdTech Automation"
       subtitle="Streamline student enrollment, course delivery, and administrative tasks."

@@ -188,7 +188,14 @@ export default function Ecommerce() {
       ctaSubtitle="E-commerce Automation Solutions"
       seoTitle="E-commerce Automation Solutions | Conquermark"
       seoDescription="Scale your e-commerce business with automation. We integrate Shopify, WooCommerce, and Amazon to automate operations."
-      roiRate={45}
+      manualTasks={[
+    "Inventory Syncing",
+    "Order Processing",
+    "Customer Support Tickets",
+    "Return/Refund Handling",
+    "Product Data Updates"
+  ]}
+  roiRate={45}
         seoKeywords="ecommerce automation, shopify automation, woocommerce integration, inventory sync, order fulfillment automation"
     />
   );

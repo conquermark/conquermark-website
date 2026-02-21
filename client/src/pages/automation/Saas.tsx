@@ -154,7 +154,14 @@ export default function Saas() {
       
       seoTitle="SaaS Operations Automation | Conquermark"
       seoDescription="Automate SaaS operations. We streamline user onboarding, subscription billing, and churn management for software companies."
-      roiRate={60}
+      manualTasks={[
+    "Lead Qualification",
+    "Follow-up Emails",
+    "CRM Data Entry",
+    "Proposal Generation",
+    "Meeting Scheduling"
+  ]}
+  roiRate={60}
         seoKeywords="saas automation, saas operations, user onboarding automation, churn reduction workflows, stripe integration"
     />
   );

@@ -135,7 +135,14 @@ export default function N8n() {
       ctaSubtitle="n8n Workflow Automation Experts"
       seoTitle="n8n Workflow Automation Experts | Conquermark"
       seoDescription="Hire certified n8n experts to build custom automation workflows. We specialize in self-hosted n8n implementation and complex integrations."
-      roiRate={65}
+      manualTasks={[
+    "Social Media Posting",
+    "Email List Cleaning",
+    "Lead Scoring",
+    "Campaign Performance Reporting",
+    "Content Distribution"
+  ]}
+  roiRate={65}
         seoKeywords="n8n experts, n8n automation services, n8n workflow builder, self-hosted automation, n8n consultant"
     />
   );

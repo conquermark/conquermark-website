@@ -155,7 +155,14 @@ export default function Support() {
       ctaSubtitle="AI Customer Support Automation"
       seoTitle="AI Customer Support Automation | Conquermark"
       seoDescription="Reduce support costs with AI automation. We implement Zendesk, Intercom, and Freshdesk automation to resolve tickets faster."
-      roiRate={35}
+      manualTasks={[
+    "Lead Qualification",
+    "Follow-up Emails",
+    "CRM Data Entry",
+    "Proposal Generation",
+    "Meeting Scheduling"
+  ]}
+  roiRate={35}
         seoKeywords="customer support automation, ai chatbot services, zendesk automation, intercom workflows, automated helpdesk"
     />
   );

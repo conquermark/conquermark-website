@@ -11,6 +11,7 @@ interface ROICalculatorProps {
   defaultHourlyRate?: number;
   industry?: string;
   problems?: { label: string; impact: number }[]; // impact is multiplier (e.g., 1.2 for high impact)
+  manualTasks?: string[]; // New prop for specific tasks
 }
 
 const CURRENCIES = {
@@ -30,13 +31,19 @@ const DEFAULT_PROBLEMS = [
 const ROICalculator: React.FC<ROICalculatorProps> = ({ 
   defaultHourlyRate = 50, 
   industry = "General",
-  problems = DEFAULT_PROBLEMS
+  problems = DEFAULT_PROBLEMS,
+  manualTasks
 }) => {
+  // Use manualTasks if provided to override default problems
+  const activeProblems = manualTasks 
+    ? manualTasks.map(task => ({ label: task, impact: 1.1 })) 
+    : problems;
+
   const [currency, setCurrency] = useState<keyof typeof CURRENCIES>('USD');
   const [hoursPerWeek, setHoursPerWeek] = useState([10]);
   const [hourlyRate, setHourlyRate] = useState([defaultHourlyRate]);
   const [teamSize, setTeamSize] = useState([1]);
-  const [selectedProblem, setSelectedProblem] = useState(problems[0].label);
+  const [selectedProblem, setSelectedProblem] = useState(activeProblems[0].label);
   
   const [monthlySavings, setMonthlySavings] = useState(0);
   const [yearlySavings, setYearlySavings] = useState(0);
@@ -45,7 +52,7 @@ const ROICalculator: React.FC<ROICalculatorProps> = ({
   const [showAnalysis, setShowAnalysis] = useState(false);
 
   useEffect(() => {
-    const problemImpact = problems.find(p => p.label === selectedProblem)?.impact || 1;
+    const problemImpact = activeProblems.find(p => p.label === selectedProblem)?.impact || 1;
     // Base cost calculation
     const weeklyCost = hoursPerWeek[0] * hourlyRate[0] * teamSize[0];
     // Apply problem impact multiplier to reflect hidden costs (errors, delays, opportunity cost)
@@ -57,7 +64,7 @@ const ROICalculator: React.FC<ROICalculatorProps> = ({
     // Assuming automation saves 80% of manual work time + eliminates hidden costs
     setMonthlySavings(Math.round(monthly * 0.8));
     setYearlySavings(Math.round(yearly * 0.8));
-  }, [hoursPerWeek, hourlyRate, teamSize, selectedProblem, problems]);
+  }, [hoursPerWeek, hourlyRate, teamSize, selectedProblem, activeProblems]);
 
   const formatCurrency = (value: number) => {
     const convertedValue = value * CURRENCIES[currency].rate;
@@ -120,7 +127,7 @@ const ROICalculator: React.FC<ROICalculatorProps> = ({
                       <SelectValue placeholder="Select a bottleneck" />
                     </SelectTrigger>
                     <SelectContent>
-                      {problems.map((p) => (
+                      {activeProblems.map((p) => (
                         <SelectItem key={p.label} value={p.label}>
                           {p.label}
                         </SelectItem>

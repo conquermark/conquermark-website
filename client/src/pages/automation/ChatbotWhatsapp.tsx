@@ -128,7 +128,14 @@ export default function ChatbotWhatsapp() {
       ctaSubtitle="AI Chatbot & WhatsApp Automation"
       seoTitle="AI Chatbot & WhatsApp Automation | Conquermark"
       seoDescription="Build AI chatbots and WhatsApp automation flows. We integrate OpenAI and Twilio to create intelligent conversational experiences."
-      roiRate={30}
+      manualTasks={[
+    "Social Media Posting",
+    "Email List Cleaning",
+    "Lead Scoring",
+    "Campaign Performance Reporting",
+    "Content Distribution"
+  ]}
+  roiRate={30}
         seoKeywords="whatsapp automation, ai chatbot services, messenger bot, conversational marketing, chatbot development"
     />
   );

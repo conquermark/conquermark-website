@@ -196,7 +196,14 @@ export default function Marketing() {
       
       seoTitle="AI Marketing Automation Services | Conquermark"
       seoDescription="Expert AI marketing automation services. We build custom workflows in HubSpot, ActiveCampaign, and Salesforce to nurture leads and drive revenue."
-      roiRate={55}
+      manualTasks={[
+    "Social Media Posting",
+    "Email List Cleaning",
+    "Lead Scoring",
+    "Campaign Performance Reporting",
+    "Content Distribution"
+  ]}
+  roiRate={55}
         seoKeywords="marketing automation agency, hubspot automation, email marketing automation, lead nurturing, marketing operations"
     />
   );

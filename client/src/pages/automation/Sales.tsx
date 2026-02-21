@@ -201,7 +201,14 @@ export default function Sales() {
       
       seoTitle="AI Sales Automation Services | Conquermark"
       seoDescription="Streamline your sales process with AI automation. We integrate Salesforce, Pipedrive, and HubSpot to automate outreach and deal management."
-      roiRate={65}
+      manualTasks={[
+    "Lead Qualification",
+    "Follow-up Emails",
+    "CRM Data Entry",
+    "Proposal Generation",
+    "Meeting Scheduling"
+  ]}
+  roiRate={65}
         seoKeywords="sales automation services, crm automation, salesforce automation, pipedrive integration, automated sales outreach"
     />
   );

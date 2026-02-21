@@ -86,7 +86,14 @@ export default function LeadCapture() {
       ctaSubtitle="Automated Lead Capture Systems"
       seoTitle="Automated Lead Capture Systems | Conquermark"
       seoDescription="Streamline your lead capture process. We automate form submissions, lead enrichment, and CRM routing for maximum conversion."
-      roiRate={40}
+      manualTasks={[
+    "Social Media Posting",
+    "Email List Cleaning",
+    "Lead Scoring",
+    "Campaign Performance Reporting",
+    "Content Distribution"
+  ]}
+  roiRate={40}
         seoKeywords="lead capture automation, form automation, lead routing, crm integration, lead enrichment services"
     />
   );

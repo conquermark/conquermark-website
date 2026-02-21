@@ -187,7 +187,14 @@ export default function Healthcare() {
       ctaSubtitle="Healthcare Workflow Automation"
       seoTitle="Healthcare Workflow Automation | Conquermark"
       seoDescription="HIPAA-compliant healthcare automation services. We automate patient scheduling, intake forms, and EHR integrations."
-      roiRate={90}
+      manualTasks={[
+    "Patient Appointment Reminders",
+    "Insurance Verification",
+    "Patient Intake Forms",
+    "Prescription Refill Requests",
+    "Staff Scheduling"
+  ]}
+  roiRate={90}
         seoKeywords="healthcare automation, hipaa compliant automation, patient scheduling automation, ehr integration, medical practice automation"
     />
   );
