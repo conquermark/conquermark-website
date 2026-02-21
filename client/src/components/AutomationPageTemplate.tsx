@@ -30,6 +30,7 @@ interface AutomationPageProps {
   seoDescription?: string;
   seoKeywords?: string;
   roiRate?: number;
+  problems?: { label: string; impact: number }[];
   
   // Restored Sections
   process?: { step: number; title: string; description: string }[];
@@ -57,6 +58,7 @@ const AutomationPageTemplate: React.FC<AutomationPageProps> = ({
   seoDescription,
   seoKeywords,
   roiRate = 50,
+  problems,
   process = [
     { step: 1, title: "Discovery", description: "We analyze your current workflow and identify bottlenecks." },
     { step: 2, title: "Design", description: "We map out the perfect automation architecture for your needs." },
@@ -181,7 +183,7 @@ const AutomationPageTemplate: React.FC<AutomationPageProps> = ({
       </section>
 
       {/* ROI Calculator Section */}
-      <ROICalculator defaultHourlyRate={roiRate} />
+      <ROICalculator defaultHourlyRate={roiRate} problems={problems} />
 
       {/* Trust Bar - Tools */}
       <section className="py-12 border-y border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50">
