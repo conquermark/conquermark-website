@@ -10,7 +10,8 @@ export default function ChatbotWhatsapp() {
       subtitle="Engage customers instantly on their favorite channels. 24/7 automated conversations."
       description="We build intelligent chatbots for WhatsApp, Facebook Messenger, and your website. Qualify leads, book appointments, and answer FAQs automatically."
       heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/bTyoTAhPnouQNZnN.png" // Unsplash image for business communication/chatbot
-      workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/bTyoTAhPnouQNZnN.png"
+      problemImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/SskTYLUWCZfQMSAd.webp"
+        workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/qnKVkOQsBSSJLVVT.png"
       benefits={[
         {
           icon: <MessageCircle className="h-12 w-12" />,

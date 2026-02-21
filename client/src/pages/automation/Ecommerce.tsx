@@ -10,7 +10,8 @@ export default function Ecommerce() {
       subtitle="Sync inventory, orders, and customers across all channels. Scale your store on autopilot."
       description="We build unified workflows for Shopify, WooCommerce, and Amazon. Automate order fulfillment, inventory updates, and customer notifications."
       heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/ecFSjLeUQutXCbPh.png"
-      workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/YXxlQahlrLJRydVp.png"
+      problemImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/KytavFxKTbzdbLPh.png"
+        workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/YXxlQahlrLJRydVp.png"
       benefits={[
         {
           icon: <ShoppingCart className="h-12 w-12" />,

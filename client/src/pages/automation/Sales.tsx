@@ -10,7 +10,8 @@ export default function Sales() {
       subtitle="Eliminate manual data entry. Focus on closing deals while we automate the busy work."
       description="From lead enrichment to contract generation, we automate your entire sales pipeline. Ensure no lead is left behind and every follow-up is timely."
       heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/hBqhgmmzvkUJwMMU.png"
-      workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/wWYUXpnrLfuUmhtw.jpg"
+      problemImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/OiN9ta12P2d1.png"
+        workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/kSjLsGQYFjvAyweA.png"
       
       benefits={[
         {

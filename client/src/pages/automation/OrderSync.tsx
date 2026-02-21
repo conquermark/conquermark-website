@@ -10,7 +10,8 @@ export default function OrderSync() {
       subtitle="Centralize orders from Shopify, Amazon, and eBay. One dashboard for everything."
       description="We build custom integrations to sync orders, inventory, and tracking numbers across all your sales channels and fulfillment partners."
       heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/ecFSjLeUQutXCbPh.png"
-      workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/YXxlQahlrLJRydVp.png"
+      problemImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/LtBdjKdFGetl.png"
+        workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/YXxlQahlrLJRydVp.png"
       
       features={[
         "Manual processes consuming hours of productive time daily",

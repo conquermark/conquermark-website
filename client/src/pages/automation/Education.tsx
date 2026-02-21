@@ -10,7 +10,8 @@ export default function Education() {
       subtitle="Streamline student enrollment, course delivery, and administrative tasks."
       description="We automate the student lifecycle from application to graduation. Integrate your LMS, CRM, and communication tools for a seamless experience."
       heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/nPtwMcYnqoQQGlAX.png"
-      workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/BibRfaKiNojJhplt.png"
+      problemImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/duoxbvOA2F9T.png"
+        workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/BibRfaKiNojJhplt.png"
       
       features={[
         "Manual processes consuming hours of productive time daily",

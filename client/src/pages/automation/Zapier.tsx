@@ -10,7 +10,8 @@ export default function Zapier() {
       subtitle="Connect your favorite apps in minutes. We build robust Zaps that scale."
       description="Stop relying on brittle Zaps. We build enterprise-grade Zapier workflows with error handling, paths, and custom code steps."
       heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/wWYUXpnrLfuUmhtw.jpg"
-      workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/wWYUXpnrLfuUmhtw.jpg"
+      problemImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/IJdjdOcfdOJgYoHz.jpg"
+        workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/wWYUXpnrLfuUmhtw.jpg"
       
       benefits={[
         {

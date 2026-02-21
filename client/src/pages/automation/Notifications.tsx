@@ -10,7 +10,8 @@ export default function Notifications() {
       subtitle="Get critical alerts where you work. Slack, Teams, or SMS."
       description="We configure intelligent notification workflows. Get alerted about high-value deals, server downtime, or urgent support tickets instantly."
       heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/wWYUXpnrLfuUmhtw.jpg"
-      workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/bTyoTAhPnouQNZnN.png"
+      problemImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/nYfZHLMowakJOyAx.jpg"
+        workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/bTyoTAhPnouQNZnN.png"
       
       benefits={[
         {

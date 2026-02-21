@@ -20,6 +20,7 @@ interface AutomationPageProps {
   }[];
   features: string[]; // Pain Points
   workflowImage?: string;
+  problemImage?: string;
   tools?: string[];
   toolLogos?: { name: string; component: React.ReactNode }[];
   ctaTitle?: string;
@@ -45,6 +46,7 @@ const AutomationPageTemplate: React.FC<AutomationPageProps> = ({
   benefits,
   features,
   workflowImage = "/n8n-workflow.png", // Default to real n8n workflow image
+  problemImage = "/problem-placeholder.jpg", // Default placeholder
   tools = ["Zapier", "Make", "n8n", "Salesforce", "HubSpot", "Slack", "OpenAI", "Stripe"],
   toolLogos = DefaultToolLogos,
   ctaTitle = "Ready to Automate Your Workflow?",
@@ -212,67 +214,75 @@ const AutomationPageTemplate: React.FC<AutomationPageProps> = ({
         </div>
       </section>
 
-      {/* Real Work Visualization Section */}
+      {/* Before & After Visualization Section */}
       <section className="py-24 bg-slate-900 text-white overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <div className="inline-block px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm font-semibold mb-6">
-                Behind The Scenes
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Real Complex Workflows, Simplified.</h2>
-              <p className="text-lg text-slate-300 mb-8 leading-relaxed">
-                We don't just connect A to B. We build intelligent, multi-step workflows with conditional logic, error handling, and data transformation.
-              </p>
-              <div className="space-y-8">
-                <div className="flex gap-5">
-                  <div className="w-12 h-12 rounded-lg bg-blue-600/20 flex items-center justify-center text-blue-400 flex-shrink-0">
-                    <Zap className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold mb-2">Visual Workflow Builder</h3>
-                    <p className="text-slate-400 leading-relaxed">We use n8n and Make to create visual, maintainable automation flows that you can understand.</p>
-                  </div>
-                </div>
-                <div className="flex gap-5">
-                  <div className="w-12 h-12 rounded-lg bg-purple-600/20 flex items-center justify-center text-purple-400 flex-shrink-0">
-                    <Shield className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold mb-2">Error Handling & Logs</h3>
-                    <p className="text-slate-400 leading-relaxed">Robust error catching ensures your business never stops running, even when APIs fail.</p>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-10">
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 h-12" onClick={() => setContactModalOpen(true)}>
-                  See How It Works
-                </Button>
-              </div>
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-block px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm font-semibold mb-6">
+              Real Transformation
             </div>
-            <div className="relative">
-              <div className="relative rounded-xl overflow-hidden shadow-2xl border border-slate-700 bg-slate-800 group">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">From Chaos to Clarity</h2>
+            <p className="text-lg text-slate-300">
+              See the difference professional automation makes. We turn manual, error-prone processes into streamlined, automated workflows.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            {/* Problem Side */}
+            <div className="relative group">
+              <div className="absolute -top-4 left-4 bg-red-500 text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg z-10">
+                BEFORE: Manual Chaos
+              </div>
+              <div className="relative rounded-xl overflow-hidden shadow-2xl border border-red-900/30 bg-slate-800 grayscale hover:grayscale-0 transition-all duration-500">
                 {/* Minimal Browser Header */}
-                <div className="h-8 bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 flex items-center px-4 gap-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-600" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-600" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-600" />
+                <div className="h-8 bg-slate-800 border-b border-slate-700 flex items-center px-4 gap-2">
+                  <div className="w-2.5 h-2.5 rounded-full bg-red-500/50" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-slate-600" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-slate-600" />
                 </div>
-                
-                {/* Workflow Image */}
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                  <img 
-                    src={workflowImage} 
-                    alt="Complex Automation Workflow - Real Example" 
-                    className="w-full h-auto object-cover opacity-95 hover:opacity-100 transition-opacity duration-300"
-                  />
-                  
-                  
-                </div>
+                <img 
+                  src={problemImage} 
+                  alt="Manual Process - Before Automation" 
+                  className="w-full h-auto object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+                />
+                <div className="absolute inset-0 bg-red-900/10 pointer-events-none" />
               </div>
-              
+              <div className="mt-4 text-center">
+                <h3 className="text-xl font-bold text-red-400 mb-2">The Problem</h3>
+                <p className="text-slate-400 text-sm">Manual data entry, disconnected tools, and human errors.</p>
+              </div>
             </div>
+
+            {/* Solution Side */}
+            <div className="relative group">
+              <div className="absolute -top-4 left-4 bg-green-500 text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg z-10">
+                AFTER: Automated Flow
+              </div>
+              <div className="relative rounded-xl overflow-hidden shadow-2xl border border-green-500/30 bg-slate-800 ring-1 ring-green-500/20">
+                {/* Minimal Browser Header */}
+                <div className="h-8 bg-slate-800 border-b border-slate-700 flex items-center px-4 gap-2">
+                  <div className="w-2.5 h-2.5 rounded-full bg-green-500" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-slate-600" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-slate-600" />
+                </div>
+                <img 
+                  src={workflowImage} 
+                  alt="Automated Workflow - After Automation" 
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+              <div className="mt-4 text-center">
+                <h3 className="text-xl font-bold text-green-400 mb-2">The Solution</h3>
+                <p className="text-slate-400 text-sm">Seamless integration, real-time sync, and zero errors.</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-16 text-center">
+            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 h-12 text-lg" onClick={() => setContactModalOpen(true)}>
+              Automate My Workflow
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
           </div>
         </div>
       </section>

@@ -10,7 +10,8 @@ export default function Make() {
       subtitle="Visually design complex automation scenarios. Limitless possibilities."
       description="We leverage the power of Make to build sophisticated automation scenarios. Handle data transformation, arrays, and complex logic with ease."
       heroImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/ynacgMMTqflMcfad.jpeg"
-      workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/ynacgMMTqflMcfad.jpeg"
+      problemImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/KpQwdAMglSiizGRL.png"
+        workflowImage="https://files.manuscdn.com/user_upload_by_module/session_file/310519663037453261/ynacgMMTqflMcfad.jpeg"
       
       benefits={[
         {
