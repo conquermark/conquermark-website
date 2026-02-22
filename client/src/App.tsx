@@ -122,8 +122,8 @@ function Router() {
           {/* <Route path="/digital-marketing" component={DigitalMarketing} /> */}
           <Route path="/digital-marketing/ai/overview" component={AIOverview} />
           <Route path="/digital-marketing/ai/consulting" component={AIConsulting} />
-            <Route path="/digital-marketing" component={DigitalMarketingHub} />
-      <Route path="/digital-marketing/ai/digital-marketing" component={DigitalMarketingAI} />
+          <Route path="/digital-marketing" component={DigitalMarketingHub} />
+          <Route path="/digital-marketing/ai/digital-marketing" component={DigitalMarketingAI} />
           <Route path="/digital-marketing/ai/chatgpt" component={AIChatGPT} />
           <Route path="/digital-marketing/ai/agent-development" component={AIAgentDevelopment} />
           <Route path="/digital-marketing/ai/gpt-integration" component={AIGPTIntegration} />
