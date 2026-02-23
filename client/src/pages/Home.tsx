@@ -16,6 +16,7 @@ import ContactModal from "@/components/ContactModal";
 import SEO from "@/components/SEO";
 import { getSEOData } from "@/config/seoData";
 import LeadMagnetHero from "@/components/LeadMagnetHero";
+import BenefitsSection from "@/components/BenefitsSection";
 
 export default function Home() {
   const seoData = getSEOData('/');
@@ -136,7 +137,10 @@ export default function Home() {
       {/* 1. NEW LEAD MAGNET HERO SECTION */}
       <LeadMagnetHero />
 
-      {/* 2. SOCIAL PROOF BAR */}
+      {/* 2. BENEFITS SECTION */}
+      <BenefitsSection />
+
+      {/* 3. SOCIAL PROOF BAR */}
       <section className="py-12 bg-accent/5 border-y border-accent/20">
         <div className="container">
           <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 text-center">
