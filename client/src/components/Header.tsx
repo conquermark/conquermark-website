@@ -169,29 +169,7 @@ export default function Header() {
             </div>
           </div>
 
-          {/* SaaS Solutions Dropdown */}
-          <div className="relative group">
-            <button className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors cursor-pointer flex items-center gap-1">
-              SaaS Solutions
-              <ChevronDown className="h-4 w-4" />
-            </button>
-            <div className="absolute top-full left-0 mt-2 w-72 bg-background border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-              <div className="p-2">
-                {saasSolutions.map((service) => (
-                  <Link key={service.name} href={service.href}>
-                    <div className="px-4 py-3 hover:bg-muted rounded cursor-pointer group/item">
-                      <div className="text-sm font-medium text-foreground group-hover/item:text-primary transition-colors">
-                        {service.name}
-                      </div>
-                      <div className="text-xs text-muted-foreground mt-0.5">
-                        {service.description}
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
+
 
           {/* Automation Services Dropdown */}
           <div className="relative group">
