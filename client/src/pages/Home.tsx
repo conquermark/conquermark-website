@@ -8,17 +8,19 @@ import {
   Play, Quote, Mail, Shield, Clock, Users, Star, Award, Target
 } from "lucide-react";
 import { toast } from "sonner";
-import { useState, useEffect } from "react";
-import ClientLogos from "@/components/ClientLogos";
-import VideoLightbox from "@/components/VideoLightbox";
-import TestimonialSubmissionModal from "@/components/TestimonialSubmissionModal";
-import TestimonialsDarkHome from "@/components/TestimonialsDarkHome";
-import ContactModal from "@/components/ContactModal";
+import { useState, useEffect, lazy, Suspense } from "react";
 import SEO from "@/components/SEO";
 import { getSEOData } from "@/config/seoData";
 import LeadMagnetHero from "@/components/LeadMagnetHero";
-import BenefitsSection from "@/components/BenefitsSection";
-import PriorityAccessForm from "@/components/PriorityAccessForm";
+
+// Lazy load heavy components
+const ClientLogos = lazy(() => import("@/components/ClientLogos"));
+const VideoLightbox = lazy(() => import("@/components/VideoLightbox"));
+const TestimonialSubmissionModal = lazy(() => import("@/components/TestimonialSubmissionModal"));
+const TestimonialsDarkHome = lazy(() => import("@/components/TestimonialsDarkHome"));
+const ContactModal = lazy(() => import("@/components/ContactModal"));
+const BenefitsSection = lazy(() => import("@/components/BenefitsSection"));
+const PriorityAccessForm = lazy(() => import("@/components/PriorityAccessForm"));
 
 export default function Home() {
   const seoData = getSEOData('/');
@@ -138,6 +140,19 @@ export default function Home() {
       
       {/* 1. NEW LEAD MAGNET HERO SECTION */}
       <LeadMagnetHero />
+
+      {/* 1.5 BRAND POSITIONING STATEMENT */}
+      <section className="py-16 bg-background border-b border-white/5">
+        <div className="container text-center max-w-4xl">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            We Are An <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">AI Automation Agency</span>
+          </h2>
+          <p className="text-xl text-muted-foreground leading-relaxed">
+            We don't just build websites or run ads. We build <strong>autonomous systems</strong> that scale your business. 
+            Whether you need an AI-powered mobile app, a self-driving marketing funnel, or automated operations—we engineer intelligence into every layer of your growth.
+          </p>
+        </div>
+      </section>
 
       {/* 2. BENEFITS SECTION */}
       <BenefitsSection />
@@ -575,63 +590,66 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. VIDEO TESTIMONIALS */}
-      <section className="py-20 md:py-28 bg-muted/30">
-        <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">What Our Clients Say</h2>
-            <p className="text-xl text-foreground/70 max-w-3xl mx-auto">
-              Real founders sharing their experience working with Conquermark.
-            </p>
-          </div>
+      <Suspense fallback={<div className="h-96"></div>}>
+        {/* 6. VIDEO TESTIMONIALS */}
+        <section className="py-20 md:py-28 bg-muted/30">
+          <div className="container">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4">What Our Clients Say</h2>
+              <p className="text-xl text-foreground/70 max-w-3xl mx-auto">
+                Real founders sharing their experience working with Conquermark.
+              </p>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {videoTestimonials.map((testimonial, idx) => (
-              <Card 
-                key={idx} 
-                className="overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
-                onClick={() => openVideoLightbox(testimonial)}
-              >
-                <CardContent className="p-0">
-                  <div className="relative aspect-[3/4] bg-gradient-to-br from-primary/10 to-accent/10 group overflow-hidden">
-                    <img 
-                      src={testimonial.photo}
-                      alt={testimonial.name}
-                      className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
-                      style={{ objectPosition: 'center 20%' }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                    <div className="absolute inset-0 flex items-center justify-center opacity-90 group-hover:opacity-100 transition-all duration-300">
-                      <div className="bg-white/30 backdrop-blur-sm rounded-full p-6 group-hover:bg-white/40 transition-all">
-                        <Play className="h-12 w-12 text-white fill-white" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {videoTestimonials.map((testimonial, idx) => (
+                <Card 
+                  key={idx} 
+                  className="overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
+                  onClick={() => openVideoLightbox(testimonial)}
+                >
+                  <CardContent className="p-0">
+                    <div className="relative aspect-[3/4] bg-gradient-to-br from-primary/10 to-accent/10 group overflow-hidden">
+                      <img 
+                        src={testimonial.photo}
+                        alt={testimonial.name}
+                        loading="lazy"
+                        className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
+                        style={{ objectPosition: 'center 20%' }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+                      <div className="absolute inset-0 flex items-center justify-center opacity-90 group-hover:opacity-100 transition-all duration-300">
+                        <div className="bg-white/30 backdrop-blur-sm rounded-full p-6 group-hover:bg-white/40 transition-all">
+                          <Play className="h-12 w-12 text-white fill-white" />
+                        </div>
+                      </div>
+                      <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <p className="font-bold text-xl mb-1">{testimonial.name}</p>
+                        <p className="text-sm opacity-90">{testimonial.role}</p>
+                        <p className="text-sm font-semibold opacity-90">{testimonial.company}</p>
                       </div>
                     </div>
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                      <p className="font-bold text-xl mb-1">{testimonial.name}</p>
-                      <p className="text-sm opacity-90">{testimonial.role}</p>
-                      <p className="text-sm font-semibold opacity-90">{testimonial.company}</p>
+                    <div className="p-5 bg-card">
+                      <p className="text-sm text-foreground/70 italic line-clamp-3">"{testimonial.quote}"</p>
                     </div>
-                  </div>
-                  <div className="p-5 bg-card">
-                    <p className="text-sm text-foreground/70 italic line-clamp-3">"{testimonial.quote}"</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
 
-          <div className="text-center mt-12">
-            <Button
-              size="lg"
-              variant="outline"
-              onClick={() => setTestimonialModalOpen(true)}
-              className="border-2 border-accent text-accent hover:bg-accent hover:text-accent-foreground"
-            >
-              Share Your Story
-            </Button>
+            <div className="text-center mt-12">
+              <Button
+                size="lg"
+                variant="outline"
+                onClick={() => setTestimonialModalOpen(true)}
+                className="border-2 border-accent text-accent hover:bg-accent hover:text-accent-foreground"
+              >
+                Share Your Story
+              </Button>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </Suspense>
 
       {/* 7. CASE STUDY HIGHLIGHT */}
       <section className="py-20 md:py-28 bg-background">
@@ -818,24 +836,32 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Modals */}
-      <VideoLightbox
-        open={videoLightboxOpen}
-        onOpenChange={setVideoLightboxOpen}
-        videoSrc={currentVideo}
-        title={currentVideoTitle}
-        caption={currentVideoCaption}
-      />
+      <Suspense fallback={null}>
+        {/* Modals */}
+        {videoLightboxOpen && (
+          <VideoLightbox
+            open={videoLightboxOpen}
+            onOpenChange={setVideoLightboxOpen}
+            videoSrc={currentVideo}
+            title={currentVideoTitle}
+            caption={currentVideoCaption}
+          />
+        )}
 
-      <TestimonialSubmissionModal
-        open={testimonialModalOpen}
-        onOpenChange={setTestimonialModalOpen}
-      />
+        {testimonialModalOpen && (
+          <TestimonialSubmissionModal
+            open={testimonialModalOpen}
+            onOpenChange={setTestimonialModalOpen}
+          />
+        )}
 
-      <ContactModal
-        open={contactModalOpen}
-        onOpenChange={setContactModalOpen}
-      />
+        {contactModalOpen && (
+          <ContactModal
+            open={contactModalOpen}
+            onOpenChange={setContactModalOpen}
+          />
+        )}
+      </Suspense>
       </div>
     </>
   );

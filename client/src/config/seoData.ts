@@ -15,16 +15,17 @@ export interface PageSEO {
 export const seoData: Record<string, PageSEO> = {
   // Homepage
   '/': {
-    title: 'AI Automation Agency for Startups | Conquermark',
-    description: 'ConquerMark helps startups validate ideas, build MVPs, and launch products fast. From product strategy to customer acquisition - one partner, end-to-end. Get started today.',
-    keywords: 'AI automation, startup agency, MVP development, product validation, automation services',
+    title: 'Conquermark - AI Automation Agency | Scale Without Headcount',
+    description: 'We build autonomous enterprises. From intelligent agents to self-driving workflows, we help you scale operations, marketing, and sales without adding headcount. Book your free AI audit today.',
+    keywords: 'AI automation agency, autonomous enterprise, AI agents, workflow automation, business automation, AI marketing, AI sales',
     schema: {
       '@context': 'https://schema.org',
       '@type': 'Organization',
       name: 'Conquermark',
-      description: 'AI Automation Agency helping startups validate ideas, build MVPs, and launch products',
+      description: 'AI Automation Agency building autonomous enterprises through intelligent agents and self-driving workflows.',
       url: 'https://conquermark.com',
       logo: 'https://conquermark.com/logo.png',
+      image: 'https://conquermark.com/og-image.jpg',
       contactPoint: {
         '@type': 'ContactPoint',
         telephone: '+1-209-813-4001',
