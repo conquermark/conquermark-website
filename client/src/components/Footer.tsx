@@ -68,10 +68,10 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-[#0f1729] text-white border-t border-white/10">
-      {/* Main Footer Content */}
-      <div className="container py-16 md:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
+    <footer className="w-full bg-[#0f1729] text-white border-t border-white/10">
+      {/* Main Footer Content - Full Width Container */}
+      <div className="w-full px-6 md:px-12 lg:px-16 py-16 md:py-20 max-w-[1920px] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16">
           
           {/* Brand Column (3 cols) */}
           <div className="lg:col-span-3 space-y-6">
@@ -125,7 +125,7 @@ export default function Footer() {
 
           {/* Automation Services (2 cols) */}
           <div className="lg:col-span-2 lg:col-start-5">
-            <h4 className="font-bold text-white mb-6 flex items-center gap-2">
+            <h4 className="font-bold text-white mb-6 flex items-center gap-2 text-lg">
               Automation
             </h4>
             <ul className="space-y-3">
@@ -133,7 +133,7 @@ export default function Footer() {
                 <li key={item.name}>
                   <Link href={item.href}>
                     <span className="text-sm text-gray-400 hover:text-blue-400 transition-colors cursor-pointer flex items-center gap-2 group">
-                      <span className="w-1 h-1 rounded-full bg-blue-500/50 group-hover:bg-blue-400 transition-colors"></span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-500/50 group-hover:bg-blue-400 transition-colors"></span>
                       {item.name}
                     </span>
                   </Link>
@@ -144,7 +144,7 @@ export default function Footer() {
 
           {/* Digital Marketing (2 cols) */}
           <div className="lg:col-span-2">
-            <h4 className="font-bold text-white mb-6">
+            <h4 className="font-bold text-white mb-6 text-lg">
               Growth Marketing
             </h4>
             <ul className="space-y-3">
@@ -152,7 +152,7 @@ export default function Footer() {
                 <li key={item.name}>
                   <Link href={item.href}>
                     <span className="text-sm text-gray-400 hover:text-blue-400 transition-colors cursor-pointer flex items-center gap-2 group">
-                      <span className="w-1 h-1 rounded-full bg-purple-500/50 group-hover:bg-purple-400 transition-colors"></span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-purple-500/50 group-hover:bg-purple-400 transition-colors"></span>
                       {item.name}
                     </span>
                   </Link>
@@ -163,7 +163,7 @@ export default function Footer() {
 
           {/* Company (2 cols) */}
           <div className="lg:col-span-2">
-            <h4 className="font-bold text-white mb-6">
+            <h4 className="font-bold text-white mb-6 text-lg">
               Company
             </h4>
             <ul className="space-y-3">
@@ -181,14 +181,14 @@ export default function Footer() {
 
           {/* Contact & Offices (3 cols) */}
           <div className="lg:col-span-3 lg:pl-4">
-            <h4 className="font-bold text-white mb-6">
+            <h4 className="font-bold text-white mb-6 text-lg">
               Global Presence
             </h4>
             
             <div className="space-y-4 mb-8">
               <a href="tel:+12098134001" className="flex items-center gap-3 group">
-                <div className="h-8 w-8 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-blue-600/20 transition-colors">
-                  <Phone className="h-4 w-4 text-blue-400" />
+                <div className="h-10 w-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-blue-600/20 transition-colors border border-white/5 group-hover:border-blue-500/30">
+                  <Phone className="h-5 w-5 text-blue-400" />
                 </div>
                 <div>
                   <div className="text-sm font-medium text-white group-hover:text-blue-400 transition-colors">+1 (209) 813-4001</div>
@@ -197,8 +197,8 @@ export default function Footer() {
               </a>
               
               <a href="mailto:hello@conquermark.com" className="flex items-center gap-3 group">
-                <div className="h-8 w-8 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-blue-600/20 transition-colors">
-                  <Mail className="h-4 w-4 text-blue-400" />
+                <div className="h-10 w-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-blue-600/20 transition-colors border border-white/5 group-hover:border-blue-500/30">
+                  <Mail className="h-5 w-5 text-blue-400" />
                 </div>
                 <div>
                   <div className="text-sm font-medium text-white group-hover:text-blue-400 transition-colors">hello@conquermark.com</div>
@@ -209,12 +209,12 @@ export default function Footer() {
 
             <div className="grid grid-cols-2 gap-3">
               {offices.map((office, index) => (
-                <div key={index} className="bg-white/5 rounded-lg p-3 border border-white/5 hover:border-white/10 transition-colors group">
+                <div key={index} className="bg-white/5 rounded-lg p-3 border border-white/5 hover:border-blue-500/30 hover:bg-blue-500/5 transition-all duration-300 group cursor-default">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-base group-hover:scale-110 transition-transform duration-300">{office.flag}</span>
-                    <span className="text-xs font-semibold text-white group-hover:text-blue-400 transition-colors">{office.country}</span>
+                    <span className="text-lg group-hover:scale-110 transition-transform duration-300">{office.flag}</span>
+                    <span className="text-xs font-bold text-white group-hover:text-blue-400 transition-colors uppercase tracking-wide">{office.country}</span>
                   </div>
-                  <p className="text-[10px] text-gray-400 leading-tight pl-6 group-hover:text-gray-300 transition-colors">
+                  <p className="text-[10px] text-gray-400 leading-tight pl-7 group-hover:text-gray-300 transition-colors">
                     {office.address}
                   </p>
                 </div>
@@ -225,16 +225,16 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-white/10 bg-black/20">
-        <div className="container py-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      {/* Bottom Bar - Full Width */}
+      <div className="border-t border-white/10 bg-black/20 w-full">
+        <div className="w-full px-6 md:px-12 lg:px-16 py-6 max-w-[1920px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-gray-500">
             © {new Date().getFullYear()} Conquermark. All rights reserved.
           </p>
-          <div className="flex gap-6">
+          <div className="flex gap-8">
             {legal.map((item) => (
               <Link key={item.name} href={item.href}>
-                <span className="text-xs text-gray-500 hover:text-white transition-colors cursor-pointer">
+                <span className="text-xs text-gray-500 hover:text-white transition-colors cursor-pointer font-medium">
                   {item.name}
                 </span>
               </Link>
