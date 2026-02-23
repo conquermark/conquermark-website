@@ -5,6 +5,7 @@ import {
   ArrowRight, Play, Shield, Award, Star
 } from "lucide-react";
 import { useState } from "react";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export default function AutomationServices() {
   const [showAuditForm, setShowAuditForm] = useState(false);
@@ -123,6 +124,7 @@ export default function AutomationServices() {
 
   return (
     <div className="min-h-screen">
+      <Breadcrumbs />
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 text-white py-20 md:py-32">
         <div className="container mx-auto px-4">

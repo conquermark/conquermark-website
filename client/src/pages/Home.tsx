@@ -1,24 +1,24 @@
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Link } from "wouter";
 import { 
   Smartphone, Globe, Zap, TrendingUp, CheckCircle2, 
   ArrowRight, Lightbulb, Pencil, Rocket, BarChart3,
-  Play, Quote, Mail, Shield, Clock, Users, Star, Award, Target
+  Play, Quote, Mail, Shield, Clock, Users, Star, Award, Target, Search
 } from "lucide-react";
 import { toast } from "sonner";
 import { useState, useEffect, lazy, Suspense } from "react";
 import SEO from "@/components/SEO";
 import { getSEOData } from "@/config/seoData";
 import LeadMagnetHero from "@/components/LeadMagnetHero";
+import ContactModal from "@/components/ContactModal";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 // Lazy load heavy components
 const ClientLogos = lazy(() => import("@/components/ClientLogos"));
 const VideoLightbox = lazy(() => import("@/components/VideoLightbox"));
 const TestimonialSubmissionModal = lazy(() => import("@/components/TestimonialSubmissionModal"));
 const TestimonialsDarkHome = lazy(() => import("@/components/TestimonialsDarkHome"));
-const ContactModal = lazy(() => import("@/components/ContactModal"));
 const BenefitsSection = lazy(() => import("@/components/BenefitsSection"));
 const PriorityAccessForm = lazy(() => import("@/components/PriorityAccessForm"));
 
@@ -33,69 +33,12 @@ export default function Home() {
   const [testimonialModalOpen, setTestimonialModalOpen] = useState(false);
   const [contactModalOpen, setContactModalOpen] = useState(false);
 
-  const openVideoLightbox = (testimonial: typeof videoTestimonials[0]) => {
+  const openVideoLightbox = (testimonial: any) => {
     setCurrentVideo(testimonial.video);
     setCurrentVideoTitle(`${testimonial.name}, ${testimonial.role} at ${testimonial.company}`);
     setCurrentVideoCaption(testimonial.caseNote);
     setVideoLightboxOpen(true);
   };
-
-  const services = [
-    {
-      icon: Lightbulb,
-      title: "Product Validation",
-      description: "Customer interviews, landing tests, and go-to-market strategy",
-      link: "/services/product-validation"
-    },
-    {
-      icon: Pencil,
-      title: "Wireframing & UX",
-      description: "User research, wireframes, and prototypes that get to the heart of user needs",
-      link: "/services/wireframing-ux"
-    },
-    {
-      icon: Rocket,
-      title: "MVP Development",
-      description: "Build and launch MVPs in 4-8 weeks with our rapid development process",
-      link: "/services/mvp-development"
-    },
-    {
-      icon: Zap,
-      title: "No-Code Development",
-      description: "Rapid prototyping and no-code platforms for faster time-to-market",
-      link: "/services/no-code"
-    },
-    {
-      icon: Globe,
-      title: "Web App Development",
-      description: "Modern, fast web applications that convert and scale",
-      link: "/services/web-development"
-    },
-    {
-      icon: Smartphone,
-      title: "Mobile App Development",
-      description: "iOS, Android, React Native, Flutter - native and cross-platform solutions",
-      link: "/services/mobile-app"
-    },
-    {
-      icon: TrendingUp,
-      title: "Digital Marketing",
-      description: "Paid ads, SEO, SEM, and growth marketing that drives real results",
-      link: "/services/digital-marketing"
-    },
-    {
-      icon: BarChart3,
-      title: "Funding & Pitch",
-      description: "Pitch decks, financial models, and investor-ready materials",
-      link: "/services/funding-pitch"
-    },
-    {
-      icon: CheckCircle2,
-      title: "Accounting Handling",
-      description: "Bookkeeping, tax prep, and financial reporting for startups",
-      link: "/services/accounting-handling"
-    }
-  ];
 
   const videoTestimonials = [
     {
@@ -137,740 +80,275 @@ export default function Home() {
         schema={seoData.schema}
       />
       <div className="min-h-screen">
-      
-      {/* 1. NEW LEAD MAGNET HERO SECTION */}
-      <LeadMagnetHero />
+        <Breadcrumbs />
+        {/* 1. NEW LEAD MAGNET HERO SECTION */}
+        <LeadMagnetHero />
 
-      {/* 1.5 BRAND POSITIONING STATEMENT */}
-      <section className="py-16 bg-background border-b border-white/5">
-        <div className="container text-center max-w-4xl">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            We Are An <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">AI Automation Agency</span>
-          </h2>
-          <p className="text-xl text-muted-foreground leading-relaxed">
-            We don't just build websites or run ads. We build <strong>autonomous systems</strong> that scale your business. 
-            Whether you need an AI-powered mobile app, a self-driving marketing funnel, or automated operations—we engineer intelligence into every layer of your growth.
-          </p>
-        </div>
-      </section>
-
-      {/* 2. BENEFITS SECTION */}
-      <BenefitsSection />
-
-      {/* 3. SOCIAL PROOF BAR */}
-      <section className="py-12 bg-accent/5 border-y border-accent/20">
-        <div className="container">
-          <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 text-center">
-            <div>
-              <div className="text-4xl font-bold text-accent mb-1">500+</div>
-              <div className="text-sm text-foreground/70">Projects Delivered</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-accent mb-1">98%</div>
-              <div className="text-sm text-foreground/70">Client Satisfaction</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-accent mb-1">$50M+</div>
-              <div className="text-sm text-foreground/70">Revenue Generated</div>
-            </div>
-            <div>
-              <div className="flex items-center justify-center gap-1 mb-1">
-                {[1,2,3,4,5].map(i => <Star key={i} className="h-6 w-6 fill-accent text-accent" />)}
-              </div>
-              <div className="text-sm text-foreground/70">5.0 Rating</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Client Logos */}
-      <ClientLogos />
-
-      {/* 3. DUAL-AUDIENCE FOUNDER SECTION */}
-      <section className="py-20 md:py-32 bg-gradient-to-br from-primary/5 via-background to-accent/5 relative overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(59,130,246,0.05),transparent_50%),radial-gradient(circle_at_70%_50%,rgba(251,146,60,0.05),transparent_50%)]"></div>
-        
-        <div className="container relative z-10">
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Which One Are You?
+        {/* 1.5 BRAND POSITIONING STATEMENT */}
+        <section className="py-16 bg-background border-b border-white/5">
+          <div className="container text-center max-w-4xl">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              We Are An <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">AI Automation Agency</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Whether you're starting from scratch or scaling an established business, we've got the exact playbook you need.
+            <p className="text-xl text-muted-foreground leading-relaxed">
+              We don't just build websites or run ads. We build <strong>autonomous systems</strong> that scale your business. 
+              Whether you need an AI-powered mobile app, a self-driving marketing funnel, or automated operations—we engineer intelligence into every layer of your growth.
             </p>
           </div>
+        </section>
 
-          {/* Two Boxes Side by Side */}
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            
-            {/* BOX 1: STARTUPS & NEW FOUNDERS (B2C) */}
-            <Card className="bg-white/80 backdrop-blur-sm border-2 border-accent/20 hover:border-accent/40 transition-all duration-300 hover:shadow-2xl group">
-              <CardContent className="p-8 md:p-10">
-                {/* Badge */}
-                <div className="inline-block bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                  Got an Idea?
-                </div>
+        {/* 2. BENEFITS SECTION */}
+        <Suspense fallback={<div className="py-20 text-center">Loading benefits...</div>}>
+          <BenefitsSection />
+        </Suspense>
 
-                {/* Hook */}
-                <h3 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-accent transition-colors">
-                  You've got an idea that keeps you up at night.
-                </h3>
-
-                {/* Storytelling Pain Points */}
-                <div className="space-y-4 mb-6 text-base leading-relaxed">
-                  <p>You know it could work.</p>
-                  
-                  <p>You can see it clearly in your head.</p>
-                  
-                  <p>But you're stuck wondering...</p>
-                  
-                  <p><strong>Will anyone actually pay for this?</strong></p>
-                  
-                  <p>Should you build an app? Or start with a website?</p>
-                  
-                  <p>Do you need funding first? Or can you bootstrap?</p>
-                  
-                  <p>How do you find your first 100 customers?</p>
-                  
-                  <p>Where do you even start?</p>
-                  
-                  <p className="italic">And to top it all off...</p>
-                  
-                  <p><strong>You're terrified of spending 6 months building something nobody wants.</strong></p>
-                  
-                  <p>You've heard the horror stories.</p>
-                  
-                  <p>Founders who spent $50K on development only to realize they built the wrong features.</p>
-                  
-                  <p>Startups that launched with zero customers because they never validated demand.</p>
-                  
-                  <p>Ideas that died because the founder tried to do everything themselves.</p>
-                  
-                  <p className="font-semibold mt-4">Look, most founders waste months (or years) building the wrong thing.</p>
-                  
-                  <p>They skip validation because "they just know" it'll work.</p>
-                  
-                  <p>They over-engineer the MVP with features nobody asked for.</p>
-                  
-                  <p>They launch to crickets because they forgot to build an audience first.</p>
-                  
-                  <p>Then they run out of money.</p>
-                  
-                  <p>Or worse - they give up on a great idea because they executed it wrong.</p>
-                  
-                  <p className="font-semibold">We've seen it a hundred times.</p>
-                </div>
-
-                {/* Solution */}
-                <div className="bg-accent/5 border-l-4 border-accent p-6 rounded-r-lg mb-6">
-                  <p className="font-bold text-lg mb-3">Here's the thing: It doesn't have to be this way.</p>
-                  <p className="text-base">What if you had <strong>ONE partner</strong> who could validate your idea with real customers, build the right MVP (not the bloated one), launch strategically with an audience ready to buy, and get you your first paying customers?</p>
-                  <p className="mt-3">Not a developer who just codes what you tell them.</p>
-                  <p>Not an agency that disappears after launch.</p>
-                  <p className="mt-3"><strong>A true partner who's invested in your success from day one.</strong></p>
-                  <p className="mt-3"><strong>No guessing. No wasted time. No launching to crickets.</strong></p>
-                </div>
-
-                {/* Promise */}
-                <div className="space-y-2 mb-6">
-                  <p className="text-xl font-bold">One partner. End-to-end.</p>
-                  <p className="text-xl"><strong className="text-accent">From idea to revenue.</strong></p>
-                </div>
-
-                {/* What We Do */}
-                <div className="space-y-2 text-sm text-muted-foreground mb-6">
-                  <p>✓ Validate demand before you build anything</p>
-                  <p>✓ Build the right MVP (not the bloated one)</p>
-                  <p>✓ Launch with a strategy that gets attention</p>
-                  <p>✓ Acquire your first 100 paying customers</p>
-                </div>
-
-                {/* CTA */}
-                <Link href="/services/mvp-development">
-                  <button className="w-full bg-accent hover:bg-accent/90 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 group">
-                    Start Your Journey
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </button>
-                </Link>
-              </CardContent>
-            </Card>
-
-            {/* BOX 2: ESTABLISHED BUSINESSES (B2B) */}
-            <Card className="bg-white/80 backdrop-blur-sm border-2 border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-2xl group">
-              <CardContent className="p-8 md:p-10">
-                {/* Badge */}
-                <div className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                  Already in Business?
-                </div>
-
-                {/* Hook */}
-                <h3 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-primary transition-colors">
-                  Your business is stuck. And you know it.
-                </h3>
-
-                {/* Storytelling Pain Points */}
-                <div className="space-y-4 mb-6 text-base leading-relaxed">
-                  <p>Maybe you're doing $50K/month but can't break $100K.</p>
-                  
-                  <p>Maybe you're growing but drowning in manual work.</p>
-                  
-                  <p>Maybe your tech stack is held together with duct tape and prayers.</p>
-                  
-                  <p className="italic">Whatever it is...</p>
-                  
-                  <p><strong>You're working 60-hour weeks and still falling behind.</strong></p>
-                  
-                  <p>Customer support tickets are piling up.</p>
-                  
-                  <p>Your team is overwhelmed.</p>
-                  
-                  <p>Your website converts at 1%.</p>
-                  
-                  <p>Your ads are burning money.</p>
-                  
-                  <p className="font-semibold mt-4">You KNOW technology could fix this.</p>
-                  
-                  <p>You know automation could save you 30 hours a week.</p>
-                  
-                  <p>You know a better website could double your revenue.</p>
-                  
-                  <p>But every time you try to fix it?</p>
-                  
-                  <p>You get a developer who ghosts you after the first payment.</p>
-                  
-                  <p>Or an agency that builds something pretty but useless.</p>
-                  
-                  <p>Or a "marketing expert" who burns your entire budget in 3 weeks.</p>
-                  
-                  <p className="font-semibold mt-4">You've heard the horror stories.</p>
-                  
-                  <p>The $30K website redesign that took 9 months and converted worse.</p>
-                  
-                  <p>The automation project that broke everything and cost more to fix.</p>
-                  
-                  <p>The "all-in-one" platform that still didn't work.</p>
-                  
-                  <p className="font-semibold mt-4">And the worst part?</p>
-                  
-                  <p>You're managing 5 different vendors who don't talk to each other.</p>
-                  
-                  <p>Your developer doesn't understand marketing. Your marketer doesn't understand technology.</p>
-                  
-                  <p className="font-semibold">We call this the "tech Frankenstein problem."</p>
-                </div>
-
-                {/* Solution */}
-                <div className="bg-primary/5 border-l-4 border-primary p-6 rounded-r-lg mb-6">
-                  <p className="font-bold text-lg mb-3">Here's the truth: You don't need more vendors.</p>
-                  <p className="text-base">You need <strong>ONE partner</strong> who can handle your <strong>website</strong>, <strong>mobile app</strong>, <strong>automation</strong>, <strong>AI</strong>, and <strong>marketing</strong> - without you managing 5 different people who don't talk to each other.</p>
-                  <p className="mt-3">Not a freelancer who disappears. Not an agency that hands you off to junior staff.</p>
-                  <p className="mt-3"><strong>A true partner who's invested in your success from day one.</strong></p>
-                  <p className="mt-3"><strong>One team. One vision. Real results.</strong></p>
-                </div>
-
-                {/* Promise */}
-                <div className="space-y-2 mb-6">
-                  <p className="text-xl font-bold">One partner. End-to-end.</p>
-                  <p className="text-xl"><strong className="text-primary">From stuck to scaling.</strong></p>
-                </div>
-
-                {/* What We Do */}
-                <div className="space-y-2 text-sm text-muted-foreground mb-6">
-                  <p>✓ Automate the manual work eating your time</p>
-                  <p>✓ Rebuild your tech stack (properly this time)</p>
-                  <p>✓ Integrate AI that actually works</p>
-                  <p>✓ Scale your revenue without scaling your headcount</p>
-                </div>
-
-                {/* CTA */}
-                <Link href="/automation-services">
-                  <button className="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 group">
-                    Scale Your Business
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </button>
-                </Link>
-              </CardContent>
-            </Card>
-
-          </div>
-
-          {/* Bottom Statement */}
-          <div className="text-center mt-16 max-w-3xl mx-auto">
-            <p className="text-xl md:text-2xl font-bold mb-4">
-              We don't consider the project done until you're seeing real results.
-            </p>
-            <p className="text-lg text-muted-foreground">
-              Not just "it looks nice." Not just "it works technically."
-            </p>
-            <p className="text-xl font-semibold mt-4">
-              <span className="text-accent">More customers.</span> <span className="text-primary">More revenue.</span> Less manual work.
-            </p>
-            <p className="text-2xl font-bold mt-6">That's the Conquermark difference.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. SERVICES GRID */}
-      <section className="py-20 md:py-28 bg-muted/30">
-        <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">End-to-End Product Development</h2>
-            <p className="text-xl text-foreground/70 max-w-3xl mx-auto">
-              From idea validation to market launch, we handle every step of your product journey.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {services.map((service, idx) => (
-              <Link key={idx} href={service.link}>
-                <Card className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer group">
-                  <CardContent className="p-6">
-                    <service.icon className="h-12 w-12 text-accent mb-4 group-hover:scale-110 transition-transform" />
-                    <h3 className="text-xl font-semibold mb-2 group-hover:text-accent transition-colors">{service.title}</h3>
-                    <p className="text-foreground/70">{service.description}</p>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 5. THE AUTOMATION PROTOCOL */}
-      <section className="py-20 md:py-28 bg-background">
-        <div className="container max-w-5xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">The Automation Protocol</h2>
-            <p className="text-xl text-foreground/70 max-w-3xl mx-auto">
-              Our engineering-grade process to transition you from manual operations to autonomous systems.
-            </p>
-          </div>
-
-          <div className="space-y-12">
-            {/* Step 1: Audit & Architect */}
-            <div className="flex flex-col md:flex-row gap-6 items-start">
-              <div className="flex-shrink-0">
-                <div className="w-16 h-16 rounded-full bg-accent text-accent-foreground flex items-center justify-center text-2xl font-bold shadow-lg shadow-accent/20">
-                  1
-                </div>
-              </div>
-              <div className="flex-1">
-                <div className="flex items-center gap-3 mb-2">
-                  <h3 className="text-2xl font-bold">Audit & Architect</h3>
-                  <span className="text-sm bg-accent/10 text-accent px-3 py-1 rounded-full font-semibold border border-accent/20">Week 1-2</span>
-                </div>
-                <p className="text-lg text-foreground/70 mb-4">
-                  We map your entire operational workflow to identify high-value automation opportunities.
-                </p>
-                <ul className="space-y-2 text-foreground/70">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                    <span>Full workflow efficiency audit</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                    <span>AI implementation roadmap</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                    <span>ROI projection & tech stack selection</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Step 2: Build & Integrate */}
-            <div className="flex flex-col md:flex-row gap-6 items-start">
-              <div className="flex-shrink-0">
-                <div className="w-16 h-16 rounded-full bg-accent text-accent-foreground flex items-center justify-center text-2xl font-bold shadow-lg shadow-accent/20">
-                  2
-                </div>
-              </div>
-              <div className="flex-1">
-                <div className="flex items-center gap-3 mb-2">
-                  <h3 className="text-2xl font-bold">Build & Integrate</h3>
-                  <span className="text-sm bg-accent/10 text-accent px-3 py-1 rounded-full font-semibold border border-accent/20">Week 3-6</span>
-                </div>
-                <p className="text-lg text-foreground/70 mb-4">
-                  We deploy custom AI agents and connect your existing tools (CRM, Email, Slack) into a unified system.
-                </p>
-                <ul className="space-y-2 text-foreground/70">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                    <span>Custom AI Agent development</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                    <span>API integration (Zapier, n8n, Make)</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                    <span>Secure data pipeline setup</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Step 3: Validate & Launch */}
-            <div className="flex flex-col md:flex-row gap-6 items-start">
-              <div className="flex-shrink-0">
-                <div className="w-16 h-16 rounded-full bg-accent text-accent-foreground flex items-center justify-center text-2xl font-bold shadow-lg shadow-accent/20">
-                  3
-                </div>
-              </div>
-              <div className="flex-1">
-                <div className="flex items-center gap-3 mb-2">
-                  <h3 className="text-2xl font-bold">Validate & Launch</h3>
-                  <span className="text-sm bg-accent/10 text-accent px-3 py-1 rounded-full font-semibold border border-accent/20">Week 7-8</span>
-                </div>
-                <p className="text-lg text-foreground/70 mb-4">
-                  Rigorous testing to ensure 99.9% accuracy before full deployment to your live environment.
-                </p>
-                <ul className="space-y-2 text-foreground/70">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                    <span>Stress testing & edge case handling</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                    <span>Team training & handover</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                    <span>Live deployment & monitoring</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Step 4: Scale & Optimize */}
-            <div className="flex flex-col md:flex-row gap-6 items-start">
-              <div className="flex-shrink-0">
-                <div className="w-16 h-16 rounded-full bg-accent text-accent-foreground flex items-center justify-center text-2xl font-bold shadow-lg shadow-accent/20">
-                  4
-                </div>
-              </div>
-              <div className="flex-1">
-                <div className="flex items-center gap-3 mb-2">
-                  <h3 className="text-2xl font-bold">Scale & Optimize</h3>
-                  <span className="text-sm bg-accent/10 text-accent px-3 py-1 rounded-full font-semibold border border-accent/20">Ongoing</span>
-                </div>
-                <p className="text-lg text-foreground/70 mb-4">
-                  Continuous improvement of your AI workforce to handle higher volumes and more complex tasks.
-                </p>
-                <ul className="space-y-2 text-foreground/70">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                    <span>Performance analytics dashboard</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                    <span>New feature implementation</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                    <span>24/7 system maintenance</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div className="text-center mt-12">
-            <Button 
-              size="lg" 
-              className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold px-8 h-12 shadow-lg shadow-accent/20"
-              onClick={() => setContactModalOpen(true)}
-            >
-              Start Your Transformation <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      <Suspense fallback={<div className="h-96"></div>}>
-        {/* 6. VIDEO TESTIMONIALS */}
-        <section className="py-20 md:py-28 bg-muted/30">
+        {/* 3. SOCIAL PROOF BAR */}
+        <section className="py-10 border-y border-white/5 bg-black/20">
           <div className="container">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">What Our Clients Say</h2>
-              <p className="text-xl text-foreground/70 max-w-3xl mx-auto">
-                Real founders sharing their experience working with Conquermark.
+            <p className="text-center text-sm text-muted-foreground mb-6 uppercase tracking-widest">Trusted by innovative startups</p>
+            <Suspense fallback={<div className="h-12"></div>}>
+              <ClientLogos />
+            </Suspense>
+          </div>
+        </section>
+
+        {/* 4. THE AUTOMATION PROTOCOL (HOW IT WORKS) */}
+        <section className="py-24 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-blue-950/5 to-background pointer-events-none" />
+          <div className="container relative z-10">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <h2 className="text-3xl md:text-5xl font-bold mb-6">The Automation Protocol</h2>
+              <p className="text-xl text-muted-foreground">
+                We don't guess. We engineer. Our 4-step process transforms manual chaos into autonomous order.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {videoTestimonials.map((testimonial, idx) => (
-                <Card 
-                  key={idx} 
-                  className="overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
-                  onClick={() => openVideoLightbox(testimonial)}
-                >
-                  <CardContent className="p-0">
-                    <div className="relative aspect-[3/4] bg-gradient-to-br from-primary/10 to-accent/10 group overflow-hidden">
-                      <img 
-                        src={testimonial.photo}
-                        alt={testimonial.name}
-                        loading="lazy"
-                        className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
-                        style={{ objectPosition: 'center 20%' }}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                      <div className="absolute inset-0 flex items-center justify-center opacity-90 group-hover:opacity-100 transition-all duration-300">
-                        <div className="bg-white/30 backdrop-blur-sm rounded-full p-6 group-hover:bg-white/40 transition-all">
-                          <Play className="h-12 w-12 text-white fill-white" />
-                        </div>
-                      </div>
-                      <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                        <p className="font-bold text-xl mb-1">{testimonial.name}</p>
-                        <p className="text-sm opacity-90">{testimonial.role}</p>
-                        <p className="text-sm font-semibold opacity-90">{testimonial.company}</p>
-                      </div>
-                    </div>
-                    <div className="p-5 bg-card">
-                      <p className="text-sm text-foreground/70 italic line-clamp-3">"{testimonial.quote}"</p>
-                    </div>
-                  </CardContent>
-                </Card>
+            <div className="grid md:grid-cols-4 gap-8">
+              {[
+                {
+                  step: "01",
+                  title: "Audit & Architect",
+                  desc: "We map your entire workflow, identify bottlenecks, and design a custom AI architecture.",
+                  icon: <Search className="w-6 h-6 text-blue-400" />
+                },
+                {
+                  step: "02",
+                  title: "Build & Integrate",
+                  desc: "We deploy AI agents and connect your stack (CRM, Email, Slack) into a unified system.",
+                  icon: <Zap className="w-6 h-6 text-cyan-400" />
+                },
+                {
+                  step: "03",
+                  title: "Validate & Test",
+                  desc: "Rigorous stress-testing to ensure 99.9% accuracy before we flip the switch.",
+                  icon: <CheckCircle2 className="w-6 h-6 text-indigo-400" />
+                },
+                {
+                  step: "04",
+                  title: "Scale & Optimize",
+                  desc: "Continuous monitoring and refinement to maximize ROI as your volume grows.",
+                  icon: <TrendingUp className="w-6 h-6 text-purple-400" />
+                }
+              ].map((item, i) => (
+                <div key={i} className="relative group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <Card className="relative h-full bg-card/50 border-white/10 hover:border-blue-500/50 transition-all duration-300">
+                    <CardContent className="p-8">
+                      <div className="text-4xl font-bold text-white/5 mb-4">{item.step}</div>
+                      <div className="mb-4 p-3 bg-blue-500/10 rounded-lg w-fit">{item.icon}</div>
+                      <h3 className="text-xl font-bold mb-3">{item.title}</h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
+                    </CardContent>
+                  </Card>
+                </div>
               ))}
-            </div>
-
-            <div className="text-center mt-12">
-              <Button
-                size="lg"
-                variant="outline"
-                onClick={() => setTestimonialModalOpen(true)}
-                className="border-2 border-accent text-accent hover:bg-accent hover:text-accent-foreground"
-              >
-                Share Your Story
-              </Button>
             </div>
           </div>
         </section>
-      </Suspense>
 
-      {/* 7. CASE STUDY HIGHLIGHT */}
-      <section className="py-20 md:py-28 bg-background">
-        <div className="container">
-          <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-2xl p-8 md:p-12 max-w-5xl mx-auto border border-primary/10 shadow-2xl shadow-primary/5">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
-              <div className="text-sm font-bold text-accent uppercase tracking-wider bg-accent/10 px-4 py-1.5 rounded-full border border-accent/20">
-                AI SUCCESS STORY
+        {/* 5. AI-POWERED CASE STUDY */}
+        <section className="py-24 bg-black/40 border-y border-white/5">
+          <div className="container">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 text-green-400 text-sm font-medium mb-6">
+                  <TrendingUp className="w-4 h-4" />
+                  <span>Real Results</span>
+                </div>
+                <h2 className="text-3xl md:text-5xl font-bold mb-6">
+                  Saved 40+ Hours Per Week & Reduced Tickets by 70%
+                </h2>
+                <p className="text-xl text-muted-foreground mb-8">
+                  How we helped a logistics company deploy an AI Support Agent to handle 5,000+ monthly inquiries instantly.
+                </p>
+                
+                <div className="space-y-6 mb-10">
+                  {[
+                    { label: "Response Time", before: "4 Hours", after: "2 Seconds" },
+                    { label: "Support Costs", before: "$12k/mo", after: "$2.5k/mo" },
+                    { label: "CSAT Score", before: "3.8/5", after: "4.9/5" }
+                  ].map((stat, i) => (
+                    <div key={i} className="flex items-center justify-between p-4 rounded-lg bg-white/5 border border-white/5">
+                      <span className="font-medium">{stat.label}</span>
+                      <div className="flex items-center gap-4">
+                        <span className="text-muted-foreground line-through text-sm">{stat.before}</span>
+                        <ArrowRight className="w-4 h-4 text-muted-foreground" />
+                        <span className="text-green-400 font-bold">{stat.after}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <Link href="/case-studies">
+                  <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 h-12 rounded-full">
+                    Read Full Case Study <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </Link>
               </div>
-              <div className="flex items-center gap-2 text-foreground/60 text-sm">
-                <Globe className="h-4 w-4" />
-                <span>Fintech Enterprise</span>
+
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-purple-500/20 rounded-2xl blur-2xl" />
+                <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-card/50 aspect-video flex items-center justify-center group cursor-pointer" onClick={() => openVideoLightbox(videoTestimonials[0])}>
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
+                  <div className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Play className="w-8 h-8 text-white fill-white ml-1" />
+                  </div>
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <p className="text-white font-medium text-lg">"We scaled without hiring a single new support agent."</p>
+                    <p className="text-white/60 text-sm mt-2">- Terrence, Co-Founder</p>
+                  </div>
+                </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 6. VIDEO TESTIMONIALS */}
+        <section className="py-24">
+          <div className="container">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <h2 className="text-3xl md:text-5xl font-bold mb-6">Founders Trust Conquermark</h2>
+              <p className="text-xl text-muted-foreground">
+                Hear directly from the entrepreneurs who automated their growth with us.
+              </p>
             </div>
             
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
-              Saving <span className="text-accent">40+ Hours Per Week</span> with Autonomous Support Agents
-            </h2>
-            <p className="text-lg text-foreground/70 mb-10 max-w-3xl">
-              How we deployed a custom AI Support Agent for a fintech scale-up, reducing ticket volume by 70% while increasing customer satisfaction scores.
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10 p-6 bg-background/50 rounded-xl border border-white/5">
-              <div className="text-center border-r border-white/10 last:border-0">
-                <div className="text-5xl font-bold text-accent mb-2">70%</div>
-                <div className="text-foreground/70 font-medium">Reduction in Tickets</div>
-              </div>
-              <div className="text-center border-r border-white/10 last:border-0">
-                <div className="text-5xl font-bold text-accent mb-2">$12k</div>
-                <div className="text-foreground/70 font-medium">Monthly Savings</div>
-              </div>
-              <div className="text-center">
-                <div className="text-5xl font-bold text-accent mb-2">24/7</div>
-                <div className="text-foreground/70 font-medium">Instant Response Time</div>
-              </div>
-            </div>
-
-            <ul className="space-y-4 mb-10">
-              <li className="flex items-start gap-3">
-                <CheckCircle2 className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
-                <span className="text-foreground/80 text-lg"><strong>Zero-Touch Resolution:</strong> AI handles 65% of queries without human intervention.</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <CheckCircle2 className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
-                <span className="text-foreground/80 text-lg"><strong>Seamless Handoff:</strong> Complex issues are instantly routed to the right human expert.</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <CheckCircle2 className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
-                <span className="text-foreground/80 text-lg"><strong>Knowledge Base Sync:</strong> The agent automatically learns from new help docs and slack threads.</span>
-              </li>
-            </ul>
-
-            <Button 
-              variant="outline" 
-              className="border-2 border-accent text-accent hover:bg-accent hover:text-accent-foreground h-12 px-8 text-lg"
-              asChild
-            >
-              <Link href="/case-studies">
-                Read Full Case Study <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
+            <Suspense fallback={<div className="h-96 flex items-center justify-center">Loading testimonials...</div>}>
+              <TestimonialsDarkHome 
+                testimonials={videoTestimonials} 
+                onPlayVideo={openVideoLightbox} 
+              />
+            </Suspense>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* 8. PERFORMANCE ASSURANCE */}
-      <section className="py-20 md:py-28 bg-muted/30">
-        <div className="container max-w-5xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Our Performance Assurance</h2>
-            <p className="text-xl text-foreground/70 max-w-3xl mx-auto">
-              We don't just promise results. We contractually guarantee them.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="text-center p-8 border-accent/20 hover:border-accent/50 transition-colors shadow-lg shadow-accent/5">
-              <CardContent className="p-0">
-                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6">
-                  <Shield className="h-8 w-8 text-accent" />
+        {/* 7. PERFORMANCE ASSURANCE (ZERO RISK) */}
+        <section className="py-24 bg-blue-950/20 border-y border-blue-500/10">
+          <div className="container">
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-500/10 mb-8">
+                <Shield className="w-8 h-8 text-blue-400" />
+              </div>
+              <h2 className="text-3xl md:text-5xl font-bold mb-6">Performance Assurance</h2>
+              <p className="text-xl text-muted-foreground mb-10">
+                We don't just deliver code; we deliver outcomes. Our contracts are backed by strict SLAs and performance guarantees.
+              </p>
+              
+              <div className="grid md:grid-cols-3 gap-6 text-left">
+                <div className="p-6 rounded-xl bg-background/50 border border-white/5">
+                  <h3 className="font-bold text-lg mb-2 flex items-center gap-2">
+                    <Target className="w-5 h-5 text-blue-400" /> ROI-First Scope
+                  </h3>
+                  <p className="text-sm text-muted-foreground">We define success metrics before we start. If we don't hit them, we keep working until we do.</p>
                 </div>
-                <h3 className="text-xl font-bold mb-3">ROI-First Guarantee</h3>
-                <p className="text-foreground/70 leading-relaxed">
-                  If our automation solutions don't demonstrate a clear path to positive ROI within 90 days, we'll work for free until they do.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center p-8 border-accent/20 hover:border-accent/50 transition-colors shadow-lg shadow-accent/5">
-              <CardContent className="p-0">
-                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6">
-                  <Clock className="h-8 w-8 text-accent" />
+                <div className="p-6 rounded-xl bg-background/50 border border-white/5">
+                  <h3 className="font-bold text-lg mb-2 flex items-center gap-2">
+                    <Clock className="w-5 h-5 text-cyan-400" /> On-Time Delivery
+                  </h3>
+                  <p className="text-sm text-muted-foreground">We respect your roadmap. Late delivery penalties are written directly into our agreements.</p>
                 </div>
-                <h3 className="text-xl font-bold mb-3">SLA-Backed Uptime</h3>
-                <p className="text-foreground/70 leading-relaxed">
-                  Our AI agents are monitored 24/7. We guarantee 99.9% uptime for all critical workflows, backed by service credits.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="text-center p-8 border-accent/20 hover:border-accent/50 transition-colors shadow-lg shadow-accent/5">
-              <CardContent className="p-0">
-                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6">
-                  <Award className="h-8 w-8 text-accent" />
+                <div className="p-6 rounded-xl bg-background/50 border border-white/5">
+                  <h3 className="font-bold text-lg mb-2 flex items-center gap-2">
+                    <Zap className="w-5 h-5 text-indigo-400" /> Bug-Free Warranty
+                  </h3>
+                  <p className="text-sm text-muted-foreground">30-day post-launch support included. Any bugs found are fixed immediately at zero cost.</p>
                 </div>
-                <h3 className="text-xl font-bold mb-3">Code Ownership</h3>
-                <p className="text-foreground/70 leading-relaxed">
-                  You own 100% of the IP. We build on your infrastructure, ensuring you're never locked into a proprietary black box.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* 9. URGENCY SECTION */}
-      <section className="py-20 md:py-28 bg-gradient-to-br from-accent/10 to-primary/10 border-y border-accent/20">
-        <div className="container max-w-4xl text-center">
-          <div className="inline-flex items-center gap-2 bg-accent/20 text-accent px-4 py-2 rounded-full font-semibold mb-6">
-            <Target className="h-5 w-5" />
-            <span>Limited Availability</span>
-          </div>
-          
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            We Only Take 8 New Clients Per Quarter
-          </h2>
-          
-          <p className="text-lg text-foreground/70 mb-8">
-            To ensure quality and dedicated attention, we limit our client intake. 
-            <strong className="text-foreground"> 3 spots remaining for Q1 2026.</strong>
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-            <div className="flex items-start gap-3 text-left">
-              <CheckCircle2 className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
-              <div>
-                <div className="font-semibold mb-1">Dedicated Team</div>
-                <div className="text-sm text-foreground/70">Your project gets a dedicated product manager and dev team</div>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 text-left">
-              <CheckCircle2 className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
-              <div>
-                <div className="font-semibold mb-1">Weekly Check-ins</div>
-                <div className="text-sm text-foreground/70">Direct access to founders, not just account managers</div>
-              </div>
-            </div>
-            <div className="flex items-start gap-3 text-left">
-              <CheckCircle2 className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
-              <div>
-                <div className="font-semibold mb-1">Fast Turnaround</div>
-                <div className="text-sm text-foreground/70">Start within 2 weeks of signing, not months</div>
               </div>
             </div>
           </div>
+        </section>
 
-          <div className="mt-12">
-            <PriorityAccessForm />
-          </div>
-        </div>
-      </section>
-
-      {/* 10. FINAL CTA */}
-      <section className="py-24 bg-gradient-to-br from-purple-900 to-slate-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10" />
-        <div className="container relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              Ready to Automate Your Business?
-            </h2>
-            <p className="text-xl mb-10 text-purple-100/80">
-              Stop wasting time on manual tasks. Get your custom automation roadmap today.
+        {/* 8. FINAL CTA */}
+        <section className="py-24 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-background pointer-events-none" />
+          <div className="container relative z-10 text-center max-w-3xl mx-auto">
+            <h2 className="text-4xl md:text-6xl font-bold mb-8">Ready to Automate?</h2>
+            <p className="text-xl text-muted-foreground mb-10">
+              Stop trading time for money. Build a business that runs itself.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg" 
-                className="bg-white text-purple-900 hover:bg-purple-50 h-14 px-8 text-lg font-bold shadow-xl"
-                onClick={() => setContactModalOpen(true)}
-              >
-                Start Automating Now
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="border-purple-400/30 text-purple-100 hover:bg-purple-900/50 h-14 px-8 text-lg"
-              >
-                Download Playbook
-              </Button>
+              <Link href="/contact">
+                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-10 h-14 rounded-full text-lg shadow-lg shadow-blue-900/20">
+                  Book Strategy Call
+                </Button>
+              </Link>
+              <Link href="/case-studies">
+                <Button size="lg" variant="outline" className="border-white/10 hover:bg-white/5 px-10 h-14 rounded-full text-lg">
+                  View Case Studies
+                </Button>
+              </Link>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
+      {/* MODALS */}
       <Suspense fallback={null}>
-        {/* Modals */}
         {videoLightboxOpen && (
-          <VideoLightbox
-            open={videoLightboxOpen}
-            onOpenChange={setVideoLightboxOpen}
-            videoSrc={currentVideo}
+          <VideoLightbox 
+            open={videoLightboxOpen} 
+            onOpenChange={setVideoLightboxOpen} 
+            videoUrl={currentVideo}
             title={currentVideoTitle}
             caption={currentVideoCaption}
           />
         )}
-
+        
         {testimonialModalOpen && (
-          <TestimonialSubmissionModal
-            open={testimonialModalOpen}
-            onOpenChange={setTestimonialModalOpen}
+          <TestimonialSubmissionModal 
+            open={testimonialModalOpen} 
+            onOpenChange={setTestimonialModalOpen} 
           />
         )}
 
-        {contactModalOpen && (
-          <ContactModal
-            open={contactModalOpen}
-            onOpenChange={setContactModalOpen}
-          />
-        )}
+        <ContactModal 
+          open={contactModalOpen} 
+          onOpenChange={setContactModalOpen} 
+        />
       </Suspense>
-      </div>
     </>
+  );
+}
+
+function Button({ className, variant = "default", size = "default", ...props }: any) {
+  const baseStyles = "inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50";
+  const variants = {
+    default: "bg-primary text-primary-foreground hover:bg-primary/90",
+    outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+    ghost: "hover:bg-accent hover:text-accent-foreground",
+    link: "text-primary underline-offset-4 hover:underline"
+  };
+  const sizes = {
+    default: "h-10 px-4 py-2",
+    sm: "h-9 rounded-md px-3",
+    lg: "h-11 rounded-md px-8",
+    icon: "h-10 w-10"
+  };
+  
+  return (
+    <button 
+      className={`${baseStyles} ${variants[variant as keyof typeof variants]} ${sizes[size as keyof typeof sizes]} ${className}`} 
+      {...props} 
+    />
   );
 }

@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, BarChart, Search, PenTool, Megaphone, CheckCircle2, TrendingUp, Users, Target } from "lucide-react";
 import ContactModal from "@/components/ContactModal";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Breadcrumbs from "@/components/Breadcrumbs";
+
 
 export default function DigitalMarketingHub() {
   const [contactModalOpen, setContactModalOpen] = useState(false);
@@ -51,6 +52,9 @@ export default function DigitalMarketingHub() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-50 font-sans selection:bg-blue-500/30">
       <Header />
+      <div className="pt-20">
+        <Breadcrumbs />
+      </div>
       <ContactModal open={contactModalOpen} onOpenChange={setContactModalOpen} />
 
       {/* Hero Section */}
@@ -210,7 +214,7 @@ export default function DigitalMarketingHub() {
         </div>
       </section>
 
-      <Footer />
+      
     </div>
   );
 }
