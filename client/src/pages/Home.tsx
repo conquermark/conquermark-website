@@ -12,6 +12,7 @@ import { useState, useEffect } from "react";
 import ClientLogos from "@/components/ClientLogos";
 import VideoLightbox from "@/components/VideoLightbox";
 import TestimonialSubmissionModal from "@/components/TestimonialSubmissionModal";
+import TestimonialsDarkHome from "@/components/TestimonialsDarkHome";
 import ContactModal from "@/components/ContactModal";
 import SEO from "@/components/SEO";
 import { getSEOData } from "@/config/seoData";
@@ -573,63 +574,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. VIDEO TESTIMONIALS */}
-      <section className="py-20 md:py-28 bg-muted/30">
-        <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">What Our Clients Say</h2>
-            <p className="text-xl text-foreground/70 max-w-3xl mx-auto">
-              Real founders sharing their experience working with Conquermark.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {videoTestimonials.map((testimonial, idx) => (
-              <Card 
-                key={idx} 
-                className="overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
-                onClick={() => openVideoLightbox(testimonial)}
-              >
-                <CardContent className="p-0">
-                  <div className="relative aspect-[3/4] bg-gradient-to-br from-primary/10 to-accent/10 group overflow-hidden">
-                    <img 
-                      src={testimonial.photo}
-                      alt={testimonial.name}
-                      className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
-                      style={{ objectPosition: 'center 20%' }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                    <div className="absolute inset-0 flex items-center justify-center opacity-90 group-hover:opacity-100 transition-all duration-300">
-                      <div className="bg-white/30 backdrop-blur-sm rounded-full p-6 group-hover:bg-white/40 transition-all">
-                        <Play className="h-12 w-12 text-white fill-white" />
-                      </div>
-                    </div>
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                      <p className="font-bold text-xl mb-1">{testimonial.name}</p>
-                      <p className="text-sm opacity-90">{testimonial.role}</p>
-                      <p className="text-sm font-semibold opacity-90">{testimonial.company}</p>
-                    </div>
-                  </div>
-                  <div className="p-5 bg-card">
-                    <p className="text-sm text-foreground/70 italic line-clamp-3">"{testimonial.quote}"</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Button
-              size="lg"
-              variant="outline"
-              onClick={() => setTestimonialModalOpen(true)}
-              className="border-2 border-accent text-accent hover:bg-accent hover:text-accent-foreground"
-            >
-              Share Your Story
-            </Button>
-          </div>
-        </div>
-      </section>
+      {/* 6. TESTIMONIALS (Dark Mode) */}
+      <TestimonialsDarkHome />
 
       {/* 7. CASE STUDY HIGHLIGHT */}
       <section className="py-20 md:py-28 bg-background">
@@ -789,36 +735,34 @@ export default function Home() {
       </section>
 
       {/* 10. FINAL CTA */}
-      <section className="py-20 md:py-28 bg-background">
-        <div className="container max-w-4xl text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Ready to Build Your Product?
-          </h2>
-          <p className="text-xl text-foreground/70 mb-10">
-            Schedule a free 30-minute strategy call to discuss your idea and see if we're a good fit.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <Button 
-              size="lg" 
-              className="bg-accent hover:bg-accent/90 text-accent-foreground text-lg px-8 py-6"
-              onClick={() => setContactModalOpen(true)}
-            >
-              Schedule Strategy Call <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground text-lg px-8 py-6"
-              onClick={() => setContactModalOpen(true)}
-            >
-              Get Custom Quote
-            </Button>
+      <section className="py-24 bg-gradient-to-br from-purple-900 to-slate-900 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10" />
+        <div className="container relative z-10">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">
+              Ready to Automate Your Business?
+            </h2>
+            <p className="text-xl mb-10 text-purple-100/80">
+              Stop wasting time on manual tasks. Get your custom automation roadmap today.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                size="lg" 
+                className="bg-white text-purple-900 hover:bg-purple-50 h-14 px-8 text-lg font-bold shadow-xl"
+                onClick={() => setContactModalOpen(true)}
+              >
+                Start Automating Now
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-purple-400/30 text-purple-100 hover:bg-purple-900/50 h-14 px-8 text-lg"
+              >
+                Download Playbook
+              </Button>
+            </div>
           </div>
-
-          <p className="text-sm text-foreground/60">
-            No sales pitch. No pressure. Just an honest conversation about your product.
-          </p>
         </div>
       </section>
 
