@@ -2,7 +2,7 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Linkedin, Twitter, Facebook, Instagram, Mail, Phone, MapPin, ArrowRight, Globe, BookOpen, FileText, Wrench } from "lucide-react";
-import FooterMap from "./FooterMap";
+
 import { toast } from "sonner";
 
 export default function Footer() {
@@ -238,9 +238,6 @@ export default function Footer() {
                 </div>
               ))}
             </div>
-            
-            {/* Interactive Map */}
-            <FooterMap />
           </div>
 
         </div>
