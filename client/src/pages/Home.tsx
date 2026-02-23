@@ -18,6 +18,7 @@ import SEO from "@/components/SEO";
 import { getSEOData } from "@/config/seoData";
 import LeadMagnetHero from "@/components/LeadMagnetHero";
 import BenefitsSection from "@/components/BenefitsSection";
+import PriorityAccessForm from "@/components/PriorityAccessForm";
 
 export default function Home() {
   const seoData = getSEOData('/');
@@ -779,13 +780,9 @@ export default function Home() {
             </div>
           </div>
 
-          <Button 
-            size="lg" 
-            className="bg-accent hover:bg-accent/90 text-accent-foreground text-lg px-8 py-6"
-            onClick={() => setContactModalOpen(true)}
-          >
-            Claim Your Spot <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
+          <div className="mt-12">
+            <PriorityAccessForm />
+          </div>
         </div>
       </section>
 
