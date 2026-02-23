@@ -50,20 +50,18 @@ export default function LeadMagnetHero() {
             </div>
             
             <h1 className="text-4xl md:text-6xl font-bold leading-tight tracking-tight">
-              Stop Wasting Hours on <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-orange-500">Manual Work.</span>
-              <br />
-              Automate Your Growth.
+              Don't Just Hire More Staff. <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-orange-500">Deploy AI Agents.</span>
             </h1>
             
             <p className="text-lg md:text-xl text-gray-300 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-              Discover the exact strategies we use to save businesses 40+ hours per week. Get the comprehensive guide to AI-driven operations.
+              Stop scaling your payroll. Start scaling your intelligence. Build a 24/7 autonomous workforce that never sleeps.
             </p>
             
             <div className="flex flex-col gap-3 max-w-md mx-auto lg:mx-0">
               {[
-                "Identify high-impact automation opportunities",
-                "Select the right tools (Zapier, Make, n8n)",
-                "Blueprint for scaling without hiring more staff"
+                "Replace manual tasks with autonomous agents",
+                "Blueprints for self-driving business workflows",
+                "Scale operations instantly without new hires"
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-3 text-gray-200">
                   <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0" />
