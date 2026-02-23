@@ -13,8 +13,8 @@ export default function Footer() {
 
   const automationServices = [
     { name: "Marketing Automation", href: "/automation/marketing" },
-    { name: "Sales & CRM Automation", href: "/automation/sales-crm" },
-    { name: "Customer Support", href: "/automation/customer-support" },
+    { name: "Sales & CRM Automation", href: "/automation/sales" },
+    { name: "Customer Support", href: "/automation/support" },
     { name: "n8n Workflows", href: "/automation/n8n" },
     { name: "Zapier Integration", href: "/automation/zapier" },
     { name: "Make.com Scenarios", href: "/automation/make" },
@@ -22,21 +22,21 @@ export default function Footer() {
   ];
 
   const digitalMarketing = [
-    { name: "SEO Optimization", href: "/services/seo" },
-    { name: "PPC Advertising", href: "/services/ppc" },
-    { name: "Social Media Ads", href: "/services/social-ads" },
-    { name: "Content Strategy", href: "/services/content" },
-    { name: "Email Marketing", href: "/services/email" },
-    { name: "Conversion Rate Opt", href: "/services/cro" },
+    { name: "SEO Optimization", href: "/digital-marketing/seo/overview" },
+    { name: "PPC Advertising", href: "/digital-marketing/advertising/ppc" },
+    { name: "Social Media Ads", href: "/digital-marketing/advertising/social-media" },
+    { name: "Content Strategy", href: "/digital-marketing/content/overview" },
+    { name: "Email Marketing", href: "/digital-marketing/content/digital-marketing" },
+    { name: "Conversion Rate Opt", href: "/digital-marketing/seo/visibility-tracking" },
     { name: "Product Validation", href: "/services/product-validation" },
   ];
 
   const resources = [
     { name: "Blog & Insights", href: "/blog", icon: BookOpen },
     { name: "Case Studies", href: "/case-studies", icon: FileText },
-    { name: "ROI Calculator", href: "/resources/roi-calculator", icon: Wrench },
-    { name: "Whitepapers", href: "/resources/whitepapers", icon: FileText },
-    { name: "Webinars", href: "/resources/webinars", icon: Globe },
+    { name: "ROI Calculator", href: "/resources", icon: Wrench },
+    { name: "Whitepapers", href: "/resources", icon: FileText },
+    { name: "Webinars", href: "/resources", icon: Globe },
   ];
 
   const company = [
