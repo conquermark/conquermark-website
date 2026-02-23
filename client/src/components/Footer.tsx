@@ -154,40 +154,54 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold mb-4">Contact Us</h4>
             
-            {/* Phone */}
-            <div className="mb-4">
+            <div className="space-y-4">
+              {/* Phone */}
               <a 
                 href="tel:+12098134001" 
-                className="flex items-center gap-2 text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors group"
+                className="flex items-start gap-3 text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors group"
               >
-                <Phone className="h-4 w-4 group-hover:animate-pulse" />
-                <span className="font-semibold">+1 (209) 813-4001</span>
+                <div className="bg-primary-foreground/10 p-2 rounded-full group-hover:bg-accent group-hover:text-accent-foreground transition-colors">
+                  <Phone className="h-4 w-4" />
+                </div>
+                <div className="mt-1">
+                  <div className="font-semibold text-primary-foreground">+1 (209) 813-4001</div>
+                  <div className="text-xs text-primary-foreground/60">Mon-Fri, 9am-6pm EST</div>
+                </div>
               </a>
-            </div>
 
-            {/* Email */}
-            <div className="mb-4">
+              {/* Email */}
               <a 
                 href="mailto:hello@conquermark.com" 
-                className="flex items-center gap-2 text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+                className="flex items-start gap-3 text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors group"
               >
-                <Mail className="h-4 w-4" />
-                <span>hello@conquermark.com</span>
-              </a>
-            </div>
-
-            {/* Offices */}
-            <div className="space-y-3 mt-4">
-              {offices.map((office, index) => (
-                <div key={index} className="text-sm">
-                  <div className="font-semibold text-primary-foreground/90 mb-1">
-                    {office.country}
-                  </div>
-                  <div className="text-primary-foreground/70 text-xs">
-                    {office.address}
-                  </div>
+                <div className="bg-primary-foreground/10 p-2 rounded-full group-hover:bg-accent group-hover:text-accent-foreground transition-colors">
+                  <Mail className="h-4 w-4" />
                 </div>
-              ))}
+                <div className="mt-1">
+                  <div className="font-semibold text-primary-foreground">hello@conquermark.com</div>
+                  <div className="text-xs text-primary-foreground/60">24/7 Support</div>
+                </div>
+              </a>
+
+              {/* Global Offices */}
+              <div className="pt-4 border-t border-primary-foreground/10">
+                <h5 className="text-xs font-semibold text-primary-foreground/60 uppercase tracking-wider mb-3">Global Offices</h5>
+                <div className="space-y-3">
+                  {offices.map((office, index) => (
+                    <div key={index} className="flex items-start gap-3 group">
+                      <MapPin className="h-4 w-4 mt-0.5 text-accent opacity-70 group-hover:opacity-100 transition-opacity" />
+                      <div>
+                        <div className="text-sm font-medium text-primary-foreground/90 group-hover:text-white transition-colors">
+                          {office.country}
+                        </div>
+                        <div className="text-xs text-primary-foreground/60">
+                          {office.address}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>

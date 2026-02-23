@@ -574,8 +574,63 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. TESTIMONIALS (Dark Mode) */}
-      <TestimonialsDarkHome />
+      {/* 6. VIDEO TESTIMONIALS */}
+      <section className="py-20 md:py-28 bg-muted/30">
+        <div className="container">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">What Our Clients Say</h2>
+            <p className="text-xl text-foreground/70 max-w-3xl mx-auto">
+              Real founders sharing their experience working with Conquermark.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {videoTestimonials.map((testimonial, idx) => (
+              <Card 
+                key={idx} 
+                className="overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
+                onClick={() => openVideoLightbox(testimonial)}
+              >
+                <CardContent className="p-0">
+                  <div className="relative aspect-[3/4] bg-gradient-to-br from-primary/10 to-accent/10 group overflow-hidden">
+                    <img 
+                      src={testimonial.photo}
+                      alt={testimonial.name}
+                      className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
+                      style={{ objectPosition: 'center 20%' }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+                    <div className="absolute inset-0 flex items-center justify-center opacity-90 group-hover:opacity-100 transition-all duration-300">
+                      <div className="bg-white/30 backdrop-blur-sm rounded-full p-6 group-hover:bg-white/40 transition-all">
+                        <Play className="h-12 w-12 text-white fill-white" />
+                      </div>
+                    </div>
+                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                      <p className="font-bold text-xl mb-1">{testimonial.name}</p>
+                      <p className="text-sm opacity-90">{testimonial.role}</p>
+                      <p className="text-sm font-semibold opacity-90">{testimonial.company}</p>
+                    </div>
+                  </div>
+                  <div className="p-5 bg-card">
+                    <p className="text-sm text-foreground/70 italic line-clamp-3">"{testimonial.quote}"</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Button
+              size="lg"
+              variant="outline"
+              onClick={() => setTestimonialModalOpen(true)}
+              className="border-2 border-accent text-accent hover:bg-accent hover:text-accent-foreground"
+            >
+              Share Your Story
+            </Button>
+          </div>
+        </div>
+      </section>
 
       {/* 7. CASE STUDY HIGHLIGHT */}
       <section className="py-20 md:py-28 bg-background">
@@ -697,7 +752,7 @@ export default function Home() {
           
           <p className="text-lg text-foreground/70 mb-8">
             To ensure quality and dedicated attention, we limit our client intake. 
-            <strong className="text-foreground"> 3 spots remaining for Q1 2025.</strong>
+            <strong className="text-foreground"> 3 spots remaining for Q1 2026.</strong>
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
