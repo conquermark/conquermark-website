@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Linkedin, Twitter, Facebook, Instagram, Mail, Phone, MapPin, ArrowRight, Globe } from "lucide-react";
+import { Linkedin, Twitter, Facebook, Instagram, Mail, Phone, MapPin, ArrowRight, Globe, BookOpen, FileText, Wrench } from "lucide-react";
 import { toast } from "sonner";
 
 export default function Footer() {
@@ -30,12 +30,20 @@ export default function Footer() {
     { name: "Product Validation", href: "/services/product-validation" },
   ];
 
+  const resources = [
+    { name: "Blog & Insights", href: "/blog", icon: BookOpen },
+    { name: "Case Studies", href: "/case-studies", icon: FileText },
+    { name: "ROI Calculator", href: "/resources/roi-calculator", icon: Wrench },
+    { name: "Whitepapers", href: "/resources/whitepapers", icon: FileText },
+    { name: "Webinars", href: "/resources/webinars", icon: Globe },
+  ];
+
   const company = [
     { name: "About Us", href: "/about" },
-    { name: "Case Studies", href: "/case-studies" },
-    { name: "Contact", href: "/contact" },
     { name: "Careers", href: "/careers" },
-    { name: "Blog", href: "/blog" },
+    { name: "Contact", href: "/contact" },
+    { name: "Privacy Policy", href: "/privacy-policy" },
+    { name: "Terms of Service", href: "/terms-of-service" },
   ];
 
   const offices = [
@@ -61,20 +69,14 @@ export default function Footer() {
     }
   ];
 
-  const legal = [
-    { name: "Privacy Policy", href: "/privacy-policy" },
-    { name: "Terms of Service", href: "/terms-of-service" },
-    { name: "Cookie Policy", href: "/cookie-policy" },
-  ];
-
   return (
     <footer className="w-full bg-[#0f1729] text-white border-t border-white/10">
       {/* Main Footer Content - Full Width Container */}
       <div className="w-full px-6 md:px-12 lg:px-16 py-16 md:py-20 max-w-[1920px] mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10 lg:gap-8 xl:gap-12">
           
-          {/* Brand Column (3 cols) */}
-          <div className="lg:col-span-3 space-y-6">
+          {/* Column 1: Brand & Newsletter */}
+          <div className="space-y-6">
             <Link href="/">
               <div className="flex items-center gap-2 cursor-pointer">
                 <div className="h-8 w-8 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
@@ -83,7 +85,7 @@ export default function Footer() {
                 <span className="text-2xl font-bold tracking-tight text-white">Conquermark</span>
               </div>
             </Link>
-            <p className="text-gray-400 leading-relaxed text-sm pr-4">
+            <p className="text-gray-400 leading-relaxed text-sm">
               We build autonomous enterprises. From intelligent agents to self-driving workflows, we help you scale without the headcount.
             </p>
             
@@ -99,10 +101,9 @@ export default function Footer() {
               ))}
             </div>
 
-            <div className="pt-6">
-              <div className="bg-white/5 rounded-xl p-5 border border-white/10">
-                <h4 className="font-semibold text-sm mb-3 flex items-center gap-2">
-                  <Mail className="h-4 w-4 text-blue-400" />
+            <div className="pt-4">
+              <div className="bg-white/5 rounded-xl p-4 border border-white/10">
+                <h4 className="font-semibold text-xs mb-3 flex items-center gap-2 uppercase tracking-wider text-gray-400">
                   Subscribe to Insights
                 </h4>
                 <form onSubmit={handleNewsletterSubmit} className="space-y-2">
@@ -123,9 +124,9 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Automation Services (2 cols) */}
-          <div className="lg:col-span-2 lg:col-start-5">
-            <h4 className="font-bold text-white mb-6 flex items-center gap-2 text-lg">
+          {/* Column 2: Automation Services */}
+          <div>
+            <h4 className="font-bold text-white mb-6 text-lg">
               Automation
             </h4>
             <ul className="space-y-3">
@@ -142,8 +143,8 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Digital Marketing (2 cols) */}
-          <div className="lg:col-span-2">
+          {/* Column 3: Growth Marketing */}
+          <div>
             <h4 className="font-bold text-white mb-6 text-lg">
               Growth Marketing
             </h4>
@@ -161,8 +162,27 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Company (2 cols) */}
-          <div className="lg:col-span-2">
+          {/* Column 4: Resources (New) */}
+          <div>
+            <h4 className="font-bold text-white mb-6 text-lg">
+              Resources
+            </h4>
+            <ul className="space-y-3">
+              {resources.map((item) => (
+                <li key={item.name}>
+                  <Link href={item.href}>
+                    <span className="text-sm text-gray-400 hover:text-white transition-colors cursor-pointer flex items-center gap-2 group">
+                      <item.icon className="h-4 w-4 text-gray-500 group-hover:text-blue-400 transition-colors" />
+                      {item.name}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 5: Company */}
+          <div>
             <h4 className="font-bold text-white mb-6 text-lg">
               Company
             </h4>
@@ -179,16 +199,16 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact & Offices (3 cols) */}
-          <div className="lg:col-span-3 lg:pl-4">
+          {/* Column 6: Global Presence & Contact */}
+          <div>
             <h4 className="font-bold text-white mb-6 text-lg">
               Global Presence
             </h4>
             
-            <div className="space-y-4 mb-8">
+            <div className="space-y-4 mb-6">
               <a href="tel:+12098134001" className="flex items-center gap-3 group">
-                <div className="h-10 w-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-blue-600/20 transition-colors border border-white/5 group-hover:border-blue-500/30">
-                  <Phone className="h-5 w-5 text-blue-400" />
+                <div className="h-9 w-9 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-blue-600/20 transition-colors border border-white/5 group-hover:border-blue-500/30">
+                  <Phone className="h-4 w-4 text-blue-400" />
                 </div>
                 <div>
                   <div className="text-sm font-medium text-white group-hover:text-blue-400 transition-colors">+1 (209) 813-4001</div>
@@ -197,8 +217,8 @@ export default function Footer() {
               </a>
               
               <a href="mailto:hello@conquermark.com" className="flex items-center gap-3 group">
-                <div className="h-10 w-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-blue-600/20 transition-colors border border-white/5 group-hover:border-blue-500/30">
-                  <Mail className="h-5 w-5 text-blue-400" />
+                <div className="h-9 w-9 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-blue-600/20 transition-colors border border-white/5 group-hover:border-blue-500/30">
+                  <Mail className="h-4 w-4 text-blue-400" />
                 </div>
                 <div>
                   <div className="text-sm font-medium text-white group-hover:text-blue-400 transition-colors">hello@conquermark.com</div>
@@ -207,16 +227,13 @@ export default function Footer() {
               </a>
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 gap-2">
               {offices.map((office, index) => (
-                <div key={index} className="bg-white/5 rounded-lg p-3 border border-white/5 hover:border-blue-500/30 hover:bg-blue-500/5 transition-all duration-300 group cursor-default">
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="text-lg group-hover:scale-110 transition-transform duration-300">{office.flag}</span>
+                <div key={index} className="bg-white/5 rounded-lg p-2.5 border border-white/5 hover:border-blue-500/30 hover:bg-blue-500/5 transition-all duration-300 group cursor-default flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="text-base group-hover:scale-110 transition-transform duration-300">{office.flag}</span>
                     <span className="text-xs font-bold text-white group-hover:text-blue-400 transition-colors uppercase tracking-wide">{office.country}</span>
                   </div>
-                  <p className="text-[10px] text-gray-400 leading-tight pl-7 group-hover:text-gray-300 transition-colors">
-                    {office.address}
-                  </p>
                 </div>
               ))}
             </div>
@@ -231,14 +248,8 @@ export default function Footer() {
           <p className="text-xs text-gray-500">
             © {new Date().getFullYear()} Conquermark. All rights reserved.
           </p>
-          <div className="flex gap-8">
-            {legal.map((item) => (
-              <Link key={item.name} href={item.href}>
-                <span className="text-xs text-gray-500 hover:text-white transition-colors cursor-pointer font-medium">
-                  {item.name}
-                </span>
-              </Link>
-            ))}
+          <div className="flex gap-6 text-xs text-gray-500">
+            <span>Built with ❤️ for the future of work.</span>
           </div>
         </div>
       </div>
