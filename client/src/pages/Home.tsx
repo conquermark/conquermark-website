@@ -438,140 +438,140 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. HOW IT WORKS TIMELINE */}
+      {/* 5. THE AUTOMATION PROTOCOL */}
       <section className="py-20 md:py-28 bg-background">
         <div className="container max-w-5xl">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">How It Works</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">The Automation Protocol</h2>
             <p className="text-xl text-foreground/70 max-w-3xl mx-auto">
-              Our proven 4-step process to take you from idea to launch
+              Our engineering-grade process to transition you from manual operations to autonomous systems.
             </p>
           </div>
 
           <div className="space-y-12">
-            {/* Step 1 */}
+            {/* Step 1: Audit & Architect */}
             <div className="flex flex-col md:flex-row gap-6 items-start">
               <div className="flex-shrink-0">
-                <div className="w-16 h-16 rounded-full bg-accent text-accent-foreground flex items-center justify-center text-2xl font-bold">
+                <div className="w-16 h-16 rounded-full bg-accent text-accent-foreground flex items-center justify-center text-2xl font-bold shadow-lg shadow-accent/20">
                   1
                 </div>
               </div>
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
-                  <h3 className="text-2xl font-bold">Validate Idea</h3>
-                  <span className="text-sm bg-accent/10 text-accent px-3 py-1 rounded-full font-semibold">Week 1-2</span>
+                  <h3 className="text-2xl font-bold">Audit & Architect</h3>
+                  <span className="text-sm bg-accent/10 text-accent px-3 py-1 rounded-full font-semibold border border-accent/20">Week 1-2</span>
                 </div>
                 <p className="text-lg text-foreground/70 mb-4">
-                  Customer interviews, market research, and landing page tests to validate demand before you build.
+                  We map your entire operational workflow to identify high-value automation opportunities.
                 </p>
                 <ul className="space-y-2 text-foreground/70">
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                    <span>20+ customer discovery interviews</span>
+                    <span>Full workflow efficiency audit</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                    <span>Landing page with waitlist validation</span>
+                    <span>AI implementation roadmap</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                    <span>Competitive analysis & market sizing</span>
+                    <span>ROI projection & tech stack selection</span>
                   </li>
                 </ul>
               </div>
             </div>
 
-            {/* Step 2 */}
+            {/* Step 2: Build & Integrate */}
             <div className="flex flex-col md:flex-row gap-6 items-start">
               <div className="flex-shrink-0">
-                <div className="w-16 h-16 rounded-full bg-accent text-accent-foreground flex items-center justify-center text-2xl font-bold">
+                <div className="w-16 h-16 rounded-full bg-accent text-accent-foreground flex items-center justify-center text-2xl font-bold shadow-lg shadow-accent/20">
                   2
                 </div>
               </div>
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
-                  <h3 className="text-2xl font-bold">Wireframe & MVP</h3>
-                  <span className="text-sm bg-accent/10 text-accent px-3 py-1 rounded-full font-semibold">Week 3-8</span>
+                  <h3 className="text-2xl font-bold">Build & Integrate</h3>
+                  <span className="text-sm bg-accent/10 text-accent px-3 py-1 rounded-full font-semibold border border-accent/20">Week 3-6</span>
                 </div>
                 <p className="text-lg text-foreground/70 mb-4">
-                  Rapid prototyping and minimum viable product development to get to market fast.
+                  We deploy custom AI agents and connect your existing tools (CRM, Email, Slack) into a unified system.
                 </p>
                 <ul className="space-y-2 text-foreground/70">
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                    <span>User flows & wireframes</span>
+                    <span>Custom AI Agent development</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                    <span>MVP development (web or mobile)</span>
+                    <span>API integration (Zapier, n8n, Make)</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                    <span>Beta testing with early users</span>
+                    <span>Secure data pipeline setup</span>
                   </li>
                 </ul>
               </div>
             </div>
 
-            {/* Step 3 */}
+            {/* Step 3: Validate & Launch */}
             <div className="flex flex-col md:flex-row gap-6 items-start">
               <div className="flex-shrink-0">
-                <div className="w-16 h-16 rounded-full bg-accent text-accent-foreground flex items-center justify-center text-2xl font-bold">
+                <div className="w-16 h-16 rounded-full bg-accent text-accent-foreground flex items-center justify-center text-2xl font-bold shadow-lg shadow-accent/20">
                   3
                 </div>
               </div>
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
-                  <h3 className="text-2xl font-bold">Launch</h3>
-                  <span className="text-sm bg-accent/10 text-accent px-3 py-1 rounded-full font-semibold">Week 9-10</span>
+                  <h3 className="text-2xl font-bold">Validate & Launch</h3>
+                  <span className="text-sm bg-accent/10 text-accent px-3 py-1 rounded-full font-semibold border border-accent/20">Week 7-8</span>
                 </div>
                 <p className="text-lg text-foreground/70 mb-4">
-                  Strategic launch with paid channels, organic strategy, and conversion optimization.
+                  Rigorous testing to ensure 99.9% accuracy before full deployment to your live environment.
                 </p>
                 <ul className="space-y-2 text-foreground/70">
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                    <span>Product Hunt & launch strategy</span>
+                    <span>Stress testing & edge case handling</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                    <span>Paid ads setup (Google, Meta)</span>
+                    <span>Team training & handover</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                    <span>Analytics & tracking implementation</span>
+                    <span>Live deployment & monitoring</span>
                   </li>
                 </ul>
               </div>
             </div>
 
-            {/* Step 4 */}
+            {/* Step 4: Scale & Optimize */}
             <div className="flex flex-col md:flex-row gap-6 items-start">
               <div className="flex-shrink-0">
-                <div className="w-16 h-16 rounded-full bg-accent text-accent-foreground flex items-center justify-center text-2xl font-bold">
+                <div className="w-16 h-16 rounded-full bg-accent text-accent-foreground flex items-center justify-center text-2xl font-bold shadow-lg shadow-accent/20">
                   4
                 </div>
               </div>
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
-                  <h3 className="text-2xl font-bold">Grow</h3>
-                  <span className="text-sm bg-accent/10 text-accent px-3 py-1 rounded-full font-semibold">Ongoing</span>
+                  <h3 className="text-2xl font-bold">Scale & Optimize</h3>
+                  <span className="text-sm bg-accent/10 text-accent px-3 py-1 rounded-full font-semibold border border-accent/20">Ongoing</span>
                 </div>
                 <p className="text-lg text-foreground/70 mb-4">
-                  Data-driven optimization, A/B testing, and scalable acquisition channels.
+                  Continuous improvement of your AI workforce to handle higher volumes and more complex tasks.
                 </p>
                 <ul className="space-y-2 text-foreground/70">
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                    <span>Conversion rate optimization</span>
+                    <span>Performance analytics dashboard</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                    <span>A/B testing & experimentation</span>
+                    <span>New feature implementation</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                    <span>Scaling paid acquisition</span>
+                    <span>24/7 system maintenance</span>
                   </li>
                 </ul>
               </div>
@@ -581,10 +581,10 @@ export default function Home() {
           <div className="text-center mt-12">
             <Button 
               size="lg" 
-              className="bg-accent hover:bg-accent/90 text-accent-foreground"
+              className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold px-8 h-12 shadow-lg shadow-accent/20"
               onClick={() => setContactModalOpen(true)}
             >
-              Schedule Strategy Call <ArrowRight className="ml-2 h-5 w-5" />
+              Start Your Transformation <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
         </div>
@@ -654,102 +654,110 @@ export default function Home() {
       {/* 7. CASE STUDY HIGHLIGHT */}
       <section className="py-20 md:py-28 bg-background">
         <div className="container">
-          <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-2xl p-8 md:p-12 max-w-5xl mx-auto border border-primary/10">
-            <div className="text-sm font-semibold text-accent mb-4 uppercase tracking-wide">CASE STUDY</div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Mobile App Launch Success</h2>
-            <p className="text-lg text-foreground/70 mb-8">
-              How we helped a fintech startup then built an MVP in 6 weeks and scaled to 10,000 users in 3 months with paid acquisition.
+          <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-2xl p-8 md:p-12 max-w-5xl mx-auto border border-primary/10 shadow-2xl shadow-primary/5">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+              <div className="text-sm font-bold text-accent uppercase tracking-wider bg-accent/10 px-4 py-1.5 rounded-full border border-accent/20">
+                AI SUCCESS STORY
+              </div>
+              <div className="flex items-center gap-2 text-foreground/60 text-sm">
+                <Globe className="h-4 w-4" />
+                <span>Fintech Enterprise</span>
+              </div>
+            </div>
+            
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+              Saving <span className="text-accent">40+ Hours Per Week</span> with Autonomous Support Agents
+            </h2>
+            <p className="text-lg text-foreground/70 mb-10 max-w-3xl">
+              How we deployed a custom AI Support Agent for a fintech scale-up, reducing ticket volume by 70% while increasing customer satisfaction scores.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-              <div className="text-center">
-                <div className="text-5xl font-bold text-accent mb-2">3x</div>
-                <div className="text-foreground/70">Revenue Growth</div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10 p-6 bg-background/50 rounded-xl border border-white/5">
+              <div className="text-center border-r border-white/10 last:border-0">
+                <div className="text-5xl font-bold text-accent mb-2">70%</div>
+                <div className="text-foreground/70 font-medium">Reduction in Tickets</div>
+              </div>
+              <div className="text-center border-r border-white/10 last:border-0">
+                <div className="text-5xl font-bold text-accent mb-2">$12k</div>
+                <div className="text-foreground/70 font-medium">Monthly Savings</div>
               </div>
               <div className="text-center">
-                <div className="text-5xl font-bold text-accent mb-2">10k</div>
-                <div className="text-foreground/70">Users in 3 months</div>
-              </div>
-              <div className="text-center">
-                <div className="text-5xl font-bold text-accent mb-2">6</div>
-                <div className="text-foreground/70 flex items-center justify-center gap-1">
-                  <span>weeks</span>
-                  <span className="text-sm">(MVP launch)</span>
-                </div>
+                <div className="text-5xl font-bold text-accent mb-2">24/7</div>
+                <div className="text-foreground/70 font-medium">Instant Response Time</div>
               </div>
             </div>
 
-            <ul className="space-y-3 mb-8">
+            <ul className="space-y-4 mb-10">
               <li className="flex items-start gap-3">
                 <CheckCircle2 className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
-                <span className="text-foreground/80">Validated product-market fit through customer interviews</span>
+                <span className="text-foreground/80 text-lg"><strong>Zero-Touch Resolution:</strong> AI handles 65% of queries without human intervention.</span>
               </li>
               <li className="flex items-start gap-3">
                 <CheckCircle2 className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
-                <span className="text-foreground/80">Launched MVP in 6 weeks</span>
+                <span className="text-foreground/80 text-lg"><strong>Seamless Handoff:</strong> Complex issues are instantly routed to the right human expert.</span>
               </li>
               <li className="flex items-start gap-3">
                 <CheckCircle2 className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
-                <span className="text-foreground/80">Scaled to 10k users with paid acquisition</span>
+                <span className="text-foreground/80 text-lg"><strong>Knowledge Base Sync:</strong> The agent automatically learns from new help docs and slack threads.</span>
               </li>
             </ul>
 
             <Button 
               variant="outline" 
-              className="border-2 border-accent text-accent hover:bg-accent hover:text-accent-foreground"
+              className="border-2 border-accent text-accent hover:bg-accent hover:text-accent-foreground h-12 px-8 text-lg"
               asChild
             >
               <Link href="/case-studies">
-                Read Case Study <ArrowRight className="ml-2 h-5 w-5" />
+                Read Full Case Study <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
           </div>
         </div>
       </section>
 
-      {/* 8. RISK REVERSAL / GUARANTEE */}
+      {/* 8. PERFORMANCE ASSURANCE */}
       <section className="py-20 md:py-28 bg-muted/30">
         <div className="container max-w-5xl">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Zero-Risk Guarantee</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Our Performance Assurance</h2>
             <p className="text-xl text-foreground/70 max-w-3xl mx-auto">
-              We're so confident in our process, we back it with a guarantee
+              We don't just promise results. We contractually guarantee them.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="text-center p-8">
+            <Card className="text-center p-8 border-accent/20 hover:border-accent/50 transition-colors shadow-lg shadow-accent/5">
               <CardContent className="p-0">
-                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6">
                   <Shield className="h-8 w-8 text-accent" />
                 </div>
-                <h3 className="text-xl font-bold mb-3">14-Day Guarantee</h3>
-                <p className="text-foreground/70">
-                  If you're not satisfied with our validation process in the first 14 days, we'll refund 100% of your deposit.
+                <h3 className="text-xl font-bold mb-3">ROI-First Guarantee</h3>
+                <p className="text-foreground/70 leading-relaxed">
+                  If our automation solutions don't demonstrate a clear path to positive ROI within 90 days, we'll work for free until they do.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="text-center p-8">
+            <Card className="text-center p-8 border-accent/20 hover:border-accent/50 transition-colors shadow-lg shadow-accent/5">
               <CardContent className="p-0">
-                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6">
                   <Clock className="h-8 w-8 text-accent" />
                 </div>
-                <h3 className="text-xl font-bold mb-3">On-Time Delivery</h3>
-                <p className="text-foreground/70">
-                  We commit to timeline milestones. If we miss a major deadline, you get a 10% credit on your next project.
+                <h3 className="text-xl font-bold mb-3">SLA-Backed Uptime</h3>
+                <p className="text-foreground/70 leading-relaxed">
+                  Our AI agents are monitored 24/7. We guarantee 99.9% uptime for all critical workflows, backed by service credits.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="text-center p-8">
+            <Card className="text-center p-8 border-accent/20 hover:border-accent/50 transition-colors shadow-lg shadow-accent/5">
               <CardContent className="p-0">
-                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-6">
                   <Award className="h-8 w-8 text-accent" />
                 </div>
-                <h3 className="text-xl font-bold mb-3">Quality Promise</h3>
-                <p className="text-foreground/70">
-                  Every deliverable goes through our 3-stage QA process. We don't consider it done until you're thrilled.
+                <h3 className="text-xl font-bold mb-3">Code Ownership</h3>
+                <p className="text-foreground/70 leading-relaxed">
+                  You own 100% of the IP. We build on your infrastructure, ensuring you're never locked into a proprietary black box.
                 </p>
               </CardContent>
             </Card>
