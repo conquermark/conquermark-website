@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Linkedin, Twitter, Facebook, Instagram, Mail, Phone, MapPin } from "lucide-react";
+import { Linkedin, Twitter, Facebook, Instagram, Mail, Phone, MapPin, ArrowRight, Globe } from "lucide-react";
 import { toast } from "sonner";
 
 export default function Footer() {
@@ -10,44 +10,56 @@ export default function Footer() {
     toast.success("Thanks for subscribing! We'll be in touch soon.");
   };
 
-  const services = [
-    { name: "Automation Services", href: "/automation-services" },
+  const automationServices = [
     { name: "Marketing Automation", href: "/automation/marketing" },
     { name: "Sales & CRM Automation", href: "/automation/sales-crm" },
-    { name: "Customer Support Automation", href: "/automation/customer-support" },
-    { name: "n8n Automation", href: "/automation/n8n" },
-    { name: "Zapier Automation", href: "/automation/zapier" },
-    { name: "Make.com Automation", href: "/automation/make" },
-    { name: "E-commerce Automation", href: "/automation/ecommerce" },
+    { name: "Customer Support", href: "/automation/customer-support" },
+    { name: "n8n Workflows", href: "/automation/n8n" },
+    { name: "Zapier Integration", href: "/automation/zapier" },
+    { name: "Make.com Scenarios", href: "/automation/make" },
+    { name: "E-commerce Ops", href: "/automation/ecommerce" },
+  ];
+
+  const digitalMarketing = [
+    { name: "SEO Optimization", href: "/services/seo" },
+    { name: "PPC Advertising", href: "/services/ppc" },
+    { name: "Social Media Ads", href: "/services/social-ads" },
+    { name: "Content Strategy", href: "/services/content" },
+    { name: "Email Marketing", href: "/services/email" },
+    { name: "Conversion Rate Opt", href: "/services/cro" },
     { name: "Product Validation", href: "/services/product-validation" },
   ];
 
   const company = [
-    { name: "About", href: "/about" },
+    { name: "About Us", href: "/about" },
     { name: "Case Studies", href: "/case-studies" },
     { name: "Contact", href: "/contact" },
+    { name: "Careers", href: "/careers" },
+    { name: "Blog", href: "/blog" },
   ];
 
   const offices = [
     {
-      country: "🇮🇳 India HQ",
+      country: "India HQ",
+      flag: "🇮🇳",
       address: "Ahmedabad, GJ 380026"
     },
     {
-      country: "🇺🇸 USA Office",
+      country: "USA Office",
+      flag: "🇺🇸",
       address: "Fort Lauderdale, FL"
     },
     {
-      country: "🇭🇰 Hong Kong Office",
+      country: "Hong Kong",
+      flag: "🇭🇰",
       address: "Ngau Tau Kok"
     },
     {
-      country: "🇦🇺 Australia Office",
+      country: "Australia",
+      flag: "🇦🇺",
       address: "Sydney NSW 2000"
     }
   ];
-
-
 
   const legal = [
     { name: "Privacy Policy", href: "/privacy-policy" },
@@ -56,192 +68,173 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-primary text-primary-foreground">
-      <div className="container py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
-          {/* Company Info */}
-          <div className="lg:col-span-2">
-            <h3 className="text-2xl font-bold mb-4">CONQUERMARK</h3>
-            <p className="text-primary-foreground/80 mb-6 max-w-md">
-              Build. Validate. Launch. We take your idea to market with
-              end-to-end product development and growth marketing.
+    <footer className="bg-[#0f1729] text-white border-t border-white/10">
+      {/* Main Footer Content */}
+      <div className="container py-16 md:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
+          
+          {/* Brand Column (3 cols) */}
+          <div className="lg:col-span-3 space-y-6">
+            <Link href="/">
+              <div className="flex items-center gap-2 cursor-pointer">
+                <div className="h-8 w-8 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-xl">C</span>
+                </div>
+                <span className="text-2xl font-bold tracking-tight text-white">Conquermark</span>
+              </div>
+            </Link>
+            <p className="text-gray-400 leading-relaxed text-sm pr-4">
+              We build autonomous enterprises. From intelligent agents to self-driving workflows, we help you scale without the headcount.
             </p>
-            <div className="flex gap-4">
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-accent transition-colors"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-accent transition-colors"
-              >
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-accent transition-colors"
-              >
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-accent transition-colors"
-              >
-                <Instagram className="h-5 w-5" />
-              </a>
-            </div>
-          </div>
-
-          {/* Services Column 1 */}
-          <div>
-            <h4 className="font-semibold mb-4">Services</h4>
-            <ul className="space-y-2">
-              {services.slice(0, 5).map((item) => (
-                <li key={item.name}>
-                  <Link href={item.href}>
-                    <span className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors cursor-pointer">
-                      {item.name}
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Services Column 2 */}
-          <div>
-            <h4 className="font-semibold mb-4 opacity-0">More</h4>
-            <ul className="space-y-2">
-              {services.slice(5).map((item) => (
-                <li key={item.name}>
-                  <Link href={item.href}>
-                    <span className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors cursor-pointer">
-                      {item.name}
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Company */}
-          <div>
-            <h4 className="font-semibold mb-4">Company</h4>
-            <ul className="space-y-2">
-              {company.map((item) => (
-                <li key={item.name}>
-                  <Link href={item.href}>
-                    <span className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors cursor-pointer">
-                      {item.name}
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact Us */}
-          <div>
-            <h4 className="font-semibold mb-4">Contact Us</h4>
             
-            <div className="space-y-4">
-              {/* Phone */}
-              <a 
-                href="tel:+12098134001" 
-                className="flex items-start gap-3 text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors group"
-              >
-                <div className="bg-primary-foreground/10 p-2 rounded-full group-hover:bg-accent group-hover:text-accent-foreground transition-colors">
-                  <Phone className="h-4 w-4" />
-                </div>
-                <div className="mt-1">
-                  <div className="font-semibold text-primary-foreground">+1 (209) 813-4001</div>
-                  <div className="text-xs text-primary-foreground/60">Mon-Fri, 9am-6pm EST</div>
-                </div>
-              </a>
+            <div className="flex gap-3 pt-2">
+              {[Linkedin, Twitter, Facebook, Instagram].map((Icon, i) => (
+                <a
+                  key={i}
+                  href="#"
+                  className="h-9 w-9 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-blue-600 hover:text-white transition-all duration-300"
+                >
+                  <Icon className="h-4 w-4" />
+                </a>
+              ))}
+            </div>
 
-              {/* Email */}
-              <a 
-                href="mailto:hello@conquermark.com" 
-                className="flex items-start gap-3 text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors group"
-              >
-                <div className="bg-primary-foreground/10 p-2 rounded-full group-hover:bg-accent group-hover:text-accent-foreground transition-colors">
-                  <Mail className="h-4 w-4" />
-                </div>
-                <div className="mt-1">
-                  <div className="font-semibold text-primary-foreground">hello@conquermark.com</div>
-                  <div className="text-xs text-primary-foreground/60">24/7 Support</div>
-                </div>
-              </a>
-
-              {/* Global Offices */}
-              <div className="pt-4 border-t border-primary-foreground/10">
-                <h5 className="text-xs font-semibold text-primary-foreground/60 uppercase tracking-wider mb-3">Global Offices</h5>
-                <div className="space-y-3">
-                  {offices.map((office, index) => (
-                    <div key={index} className="flex items-start gap-3 group">
-                      <MapPin className="h-4 w-4 mt-0.5 text-accent opacity-70 group-hover:opacity-100 transition-opacity" />
-                      <div>
-                        <div className="text-sm font-medium text-primary-foreground/90 group-hover:text-white transition-colors">
-                          {office.country}
-                        </div>
-                        <div className="text-xs text-primary-foreground/60">
-                          {office.address}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+            <div className="pt-6">
+              <div className="bg-white/5 rounded-xl p-5 border border-white/10">
+                <h4 className="font-semibold text-sm mb-3 flex items-center gap-2">
+                  <Mail className="h-4 w-4 text-blue-400" />
+                  Subscribe to Insights
+                </h4>
+                <form onSubmit={handleNewsletterSubmit} className="space-y-2">
+                  <Input
+                    type="email"
+                    placeholder="Enter your email"
+                    required
+                    className="bg-black/20 border-white/10 text-white placeholder:text-gray-500 h-9 text-sm focus-visible:ring-blue-500"
+                  />
+                  <Button
+                    type="submit"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white h-9 text-sm font-medium"
+                  >
+                    Subscribe
+                  </Button>
+                </form>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Newsletter Signup */}
-        <div className="border-t border-primary-foreground/20 pt-8 mb-8">
-          <div className="max-w-md">
-            <h4 className="font-semibold mb-2 flex items-center gap-2">
-              <Mail className="h-5 w-5" />
-              Subscribe to our newsletter
+          {/* Automation Services (2 cols) */}
+          <div className="lg:col-span-2 lg:col-start-5">
+            <h4 className="font-bold text-white mb-6 flex items-center gap-2">
+              Automation
             </h4>
-            <p className="text-sm text-primary-foreground/80 mb-4">
-              Get the latest insights on product development and growth marketing.
-            </p>
-            <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                required
-                className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
-              />
-              <Button
-                type="submit"
-                className="bg-accent hover:bg-accent/90 text-accent-foreground"
-              >
-                Subscribe
-              </Button>
-            </form>
+            <ul className="space-y-3">
+              {automationServices.map((item) => (
+                <li key={item.name}>
+                  <Link href={item.href}>
+                    <span className="text-sm text-gray-400 hover:text-blue-400 transition-colors cursor-pointer flex items-center gap-2 group">
+                      <span className="w-1 h-1 rounded-full bg-blue-500/50 group-hover:bg-blue-400 transition-colors"></span>
+                      {item.name}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
-        </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-primary-foreground/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-primary-foreground/60">
+          {/* Digital Marketing (2 cols) */}
+          <div className="lg:col-span-2">
+            <h4 className="font-bold text-white mb-6">
+              Growth Marketing
+            </h4>
+            <ul className="space-y-3">
+              {digitalMarketing.map((item) => (
+                <li key={item.name}>
+                  <Link href={item.href}>
+                    <span className="text-sm text-gray-400 hover:text-blue-400 transition-colors cursor-pointer flex items-center gap-2 group">
+                      <span className="w-1 h-1 rounded-full bg-purple-500/50 group-hover:bg-purple-400 transition-colors"></span>
+                      {item.name}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Company (2 cols) */}
+          <div className="lg:col-span-2">
+            <h4 className="font-bold text-white mb-6">
+              Company
+            </h4>
+            <ul className="space-y-3">
+              {company.map((item) => (
+                <li key={item.name}>
+                  <Link href={item.href}>
+                    <span className="text-sm text-gray-400 hover:text-white transition-colors cursor-pointer">
+                      {item.name}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact & Offices (3 cols) */}
+          <div className="lg:col-span-3 lg:pl-4">
+            <h4 className="font-bold text-white mb-6">
+              Global Presence
+            </h4>
+            
+            <div className="space-y-4 mb-8">
+              <a href="tel:+12098134001" className="flex items-center gap-3 group">
+                <div className="h-8 w-8 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-blue-600/20 transition-colors">
+                  <Phone className="h-4 w-4 text-blue-400" />
+                </div>
+                <div>
+                  <div className="text-sm font-medium text-white group-hover:text-blue-400 transition-colors">+1 (209) 813-4001</div>
+                  <div className="text-xs text-gray-500">Mon-Fri, 9am-6pm EST</div>
+                </div>
+              </a>
+              
+              <a href="mailto:hello@conquermark.com" className="flex items-center gap-3 group">
+                <div className="h-8 w-8 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-blue-600/20 transition-colors">
+                  <Mail className="h-4 w-4 text-blue-400" />
+                </div>
+                <div>
+                  <div className="text-sm font-medium text-white group-hover:text-blue-400 transition-colors">hello@conquermark.com</div>
+                  <div className="text-xs text-gray-500">24/7 Support Team</div>
+                </div>
+              </a>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              {offices.map((office, index) => (
+                <div key={index} className="bg-white/5 rounded-lg p-3 border border-white/5 hover:border-white/10 transition-colors group">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-base group-hover:scale-110 transition-transform duration-300">{office.flag}</span>
+                    <span className="text-xs font-semibold text-white group-hover:text-blue-400 transition-colors">{office.country}</span>
+                  </div>
+                  <p className="text-[10px] text-gray-400 leading-tight pl-6 group-hover:text-gray-300 transition-colors">
+                    {office.address}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="border-t border-white/10 bg-black/20">
+        <div className="container py-6 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-xs text-gray-500">
             © {new Date().getFullYear()} Conquermark. All rights reserved.
           </p>
           <div className="flex gap-6">
             {legal.map((item) => (
               <Link key={item.name} href={item.href}>
-                <span className="text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors cursor-pointer">
+                <span className="text-xs text-gray-500 hover:text-white transition-colors cursor-pointer">
                   {item.name}
                 </span>
               </Link>
