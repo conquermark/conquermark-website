@@ -8,6 +8,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import BackToTop from "./components/BackToTop";
 import Home from "./pages/Home";
 import Services from "./pages/Services";
 import MobileApp from "./pages/services/MobileApp";
@@ -111,6 +112,7 @@ function Router() {
   return (
     <div className="flex flex-col min-h-screen">
       <ScrollToTop />
+      <BackToTop />
       <Header />
       <main className="flex-1 pt-16 md:pt-20">
         <Switch>
