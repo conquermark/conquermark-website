@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { CheckCircle2, ArrowRight, Download, ShieldCheck } from "lucide-react";
 import { toast } from "sonner";
 
 export default function LeadMagnetHeroMarketing() {
+  const [, setLocation] = useLocation();
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -22,6 +24,7 @@ export default function LeadMagnetHeroMarketing() {
       setIsSubmitting(false);
       toast.success("Guide sent! Check your inbox.");
       setEmail("");
+      setLocation("/thank-you");
     }, 1500);
   };
 

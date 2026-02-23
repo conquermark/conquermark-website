@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "wouter";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,6 +12,7 @@ interface AIAuditPopupProps {
 }
 
 export default function AIAuditPopup({ trigger = "scroll" }: AIAuditPopupProps) {
+  const [, setLocation] = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [hasShown, setHasShown] = useState(false);
   const [formData, setFormData] = useState({
@@ -74,6 +76,7 @@ export default function AIAuditPopup({ trigger = "scroll" }: AIAuditPopupProps) 
     setIsOpen(false);
     // Here you would typically send the data to your backend
     console.log("AI Audit Request:", formData);
+    setLocation("/thank-you");
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

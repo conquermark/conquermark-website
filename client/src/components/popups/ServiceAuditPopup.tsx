@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "wouter";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -87,6 +88,7 @@ const serviceConfig = {
 };
 
 export default function ServiceAuditPopup({ serviceType, trigger = "scroll" }: ServiceAuditPopupProps) {
+  const [, setLocation] = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [hasShown, setHasShown] = useState(false);
   const [formData, setFormData] = useState({
@@ -153,6 +155,7 @@ export default function ServiceAuditPopup({ serviceType, trigger = "scroll" }: S
     toast.success(`Perfect! We'll send your free ${config.title.toLowerCase()} within 24 hours.`);
     setIsOpen(false);
     console.log(`${serviceType} Audit Request:`, formData);
+    setLocation("/thank-you");
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

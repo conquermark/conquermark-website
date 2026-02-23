@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { CheckCircle2, ArrowRight, Download, Lock } from "lucide-react";
 import { toast } from "sonner";
 
 export default function LeadMagnetHero() {
+  const [, setLocation] = useLocation();
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -22,7 +24,7 @@ export default function LeadMagnetHero() {
       setIsSubmitting(false);
       toast.success("Success! Your Playbook is on its way to your inbox.");
       setEmail("");
-      // In a real implementation, this would trigger a download or redirect
+      setLocation("/thank-you");
     }, 1500);
   };
 

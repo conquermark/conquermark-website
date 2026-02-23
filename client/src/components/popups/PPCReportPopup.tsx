@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "wouter";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,6 +12,7 @@ interface PPCReportPopupProps {
 }
 
 export default function PPCReportPopup({ trigger = "scroll" }: PPCReportPopupProps) {
+  const [, setLocation] = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [hasShown, setHasShown] = useState(false);
   const [formData, setFormData] = useState({
@@ -70,6 +72,7 @@ export default function PPCReportPopup({ trigger = "scroll" }: PPCReportPopupPro
     toast.success("Thanks! We'll send your Free PPC Performance Report within 24 hours.");
     setIsOpen(false);
     console.log("PPC Report Request:", formData);
+    setLocation("/thank-you");
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

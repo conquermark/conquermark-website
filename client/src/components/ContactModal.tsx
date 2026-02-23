@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation } from "wouter";
 import {
   Dialog,
   DialogContent,
@@ -35,6 +36,7 @@ export default function ContactModal({
   title = "Get Started Today",
   description = "Tell us about your project and we'll get back to you within 24 hours."
 }: ContactModalProps) {
+  const [, setLocation] = useLocation();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -99,6 +101,7 @@ export default function ContactModal({
       agreeToContact: false
     });
     onOpenChange(false);
+    setLocation("/thank-you");
   };
 
   const handleChange = (field: string, value: string | boolean) => {

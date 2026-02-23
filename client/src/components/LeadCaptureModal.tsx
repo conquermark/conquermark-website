@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLocation } from 'wouter';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -17,6 +18,7 @@ interface LeadCaptureModalProps {
 }
 
 const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ open, onOpenChange, onSuccess, data }) => {
+  const [, setLocation] = useLocation();
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [company, setCompany] = useState('');
@@ -55,6 +57,7 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ open, onOpenChange,
     setLoading(false);
     onSuccess();
     onOpenChange(false);
+    setLocation("/thank-you");
   };
 
   // Variant Content Definitions

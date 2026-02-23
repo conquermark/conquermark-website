@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
@@ -6,6 +7,7 @@ import { ArrowRight, Lock, CheckCircle2, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
 export default function PriorityAccessForm() {
+  const [, setLocation] = useLocation();
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
@@ -25,6 +27,7 @@ export default function PriorityAccessForm() {
     setLoading(false);
     setSubmitted(true);
     toast.success("Priority application received! We'll contact you shortly.");
+    setLocation("/thank-you");
   };
 
   if (submitted) {

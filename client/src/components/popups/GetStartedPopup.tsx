@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "wouter";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,6 +8,7 @@ import { X, Rocket } from "lucide-react";
 import { toast } from "sonner";
 
 export default function GetStartedPopup() {
+  const [, setLocation] = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [hasShown, setHasShown] = useState(false);
   const [formData, setFormData] = useState({
@@ -61,6 +63,7 @@ export default function GetStartedPopup() {
     toast.success("Perfect! We'll reach out within 24 hours to discuss your project.");
     setIsOpen(false);
     console.log("Get Started Lead:", formData);
+    setLocation("/thank-you");
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "wouter";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,6 +12,7 @@ interface SEOChecklistPopupProps {
 }
 
 export default function SEOChecklistPopup({ trigger = "scroll" }: SEOChecklistPopupProps) {
+  const [, setLocation] = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [hasShown, setHasShown] = useState(false);
   const [formData, setFormData] = useState({
@@ -69,6 +71,7 @@ export default function SEOChecklistPopup({ trigger = "scroll" }: SEOChecklistPo
     toast.success("Thanks! We'll send your Free SEO Checklist & Site Audit within 24 hours.");
     setIsOpen(false);
     console.log("SEO Checklist Request:", formData);
+    setLocation("/thank-you");
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,3 +1,4 @@
+import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -7,9 +8,12 @@ import { Mail, Phone, MapPin } from "lucide-react";
 import { toast } from "sonner";
 
 export default function Contact() {
+  const [, setLocation] = useLocation();
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast.success("Thanks for reaching out! We'll get back to you within 24 hours.");
+    setLocation("/thank-you");
   };
 
   return (
