@@ -15,13 +15,14 @@ export interface PageSEO {
 export const seoData: Record<string, PageSEO> = {
   // Homepage
   '/': {
-    title: 'Conquermark - AI Automation Agency | Scale Without Headcount',
-    description: 'We build autonomous enterprises. From intelligent agents to self-driving workflows, we help you scale operations, marketing, and sales without adding headcount. Book your free AI audit today.',
+    title: 'AI Automation Agency | Scale Operations with Autonomous Agents',
+    description: 'Conquermark builds autonomous enterprises. Deploy custom AI agents and self-driving workflows to scale sales, marketing, and ops without adding headcount.',
     keywords: 'AI automation agency, autonomous enterprise, AI agents, workflow automation, business automation, AI marketing, AI sales',
     schema: {
       '@context': 'https://schema.org',
       '@type': 'Organization',
       name: 'Conquermark',
+      alternateName: 'Conquermark AI Automation Agency',
       description: 'AI Automation Agency building autonomous enterprises through intelligent agents and self-driving workflows.',
       url: 'https://conquermark.com',
       logo: 'https://conquermark.com/logo.png',
@@ -36,19 +37,19 @@ export const seoData: Record<string, PageSEO> = {
       address: [
         {
           '@type': 'PostalAddress',
-          streetAddress: 'C9, Ami Akhand Anand Part 2, Near Ambika Hotel, CTM Cross Road',
-          addressLocality: 'Ahmedabad',
-          addressRegion: 'GJ',
-          postalCode: '380026',
-          addressCountry: 'IN'
-        },
-        {
-          '@type': 'PostalAddress',
           streetAddress: '307 SW 15th Street',
           addressLocality: 'Fort Lauderdale',
           addressRegion: 'FL',
           postalCode: '33315',
           addressCountry: 'US'
+        },
+        {
+          '@type': 'PostalAddress',
+          streetAddress: 'C9, Ami Akhand Anand Part 2, Near Ambika Hotel, CTM Cross Road',
+          addressLocality: 'Ahmedabad',
+          addressRegion: 'GJ',
+          postalCode: '380026',
+          addressCountry: 'IN'
         }
       ],
       sameAs: [
@@ -61,15 +62,15 @@ export const seoData: Record<string, PageSEO> = {
 
   // Main Service Pages
   '/services': {
-    title: 'Startup Development Services - MVP to Launch | Conquermark',
-    description: 'End-to-end product development services for startups. Product validation, MVP development, web & mobile apps, and growth marketing. Launch faster with Conquermark.',
-    keywords: 'startup services, MVP development, product validation, web development, mobile apps'
+    title: 'AI & Development Services | Build, Automate, and Scale',
+    description: 'Comprehensive AI automation and development services. From MVP development to enterprise-grade AI agents, we build systems that scale your business.',
+    keywords: 'AI services, development services, MVP development, automation services, scaling business'
   },
 
   '/services/product-validation': {
-    title: 'Product Validation Services - Test Before You Build | Conquermark',
-    description: 'Validate your startup idea with customer interviews, landing page tests, and market research. Reduce risk and build what customers actually want. Free consultation available.',
-    keywords: 'product validation, customer interviews, market research, startup validation, idea testing'
+    title: 'Product Validation Services | Test Ideas Before Building',
+    description: 'Validate your product idea with data-driven market research and customer interviews. Minimize risk and ensure market fit before writing a single line of code.',
+    keywords: 'product validation, market research, idea validation, startup testing, customer discovery'
   },
 
   '/services/wireframing-ux': {
@@ -79,9 +80,9 @@ export const seoData: Record<string, PageSEO> = {
   },
 
   '/services/mvp-development': {
-    title: 'MVP Development Services - Launch in 4-8 Weeks | Conquermark',
-    description: 'Build and launch your MVP in 4-8 weeks with our rapid development process. Validate assumptions, get user feedback, and iterate faster. Request a free consultation.',
-    keywords: 'MVP development, minimum viable product, rapid development, startup MVP, product launch'
+    title: 'MVP Development Services | Launch Your Product in 4-8 Weeks',
+    description: 'Rapid MVP development services to get your product to market fast. We build scalable, user-centric MVPs that validate your core value proposition.',
+    keywords: 'MVP development, rapid prototyping, minimum viable product, startup launch, agile development'
   },
 
   '/services/no-code': {
@@ -122,136 +123,136 @@ export const seoData: Record<string, PageSEO> = {
 
   // Automation Services
   '/automation-services': {
-    title: 'Business Automation Services - Save 20+ Hours/Week | Conquermark',
-    description: 'Professional automation services using n8n, Zapier, Make, and custom APIs. Automate marketing, sales, support, and operations. Free automation audit available.',
-    keywords: 'business automation, workflow automation, n8n, Zapier, Make, automation services'
+    title: 'Business Automation Services | Save 20+ Hours Per Week',
+    description: 'End-to-end business automation services. We design and deploy custom workflows using n8n, Zapier, and AI agents to streamline your operations.',
+    keywords: 'business automation, workflow automation, process optimization, AI automation, operational efficiency'
   },
 
   '/automation/marketing': {
-    title: 'Marketing Automation Services - Scale Your Growth | Conquermark',
-    description: 'Automate email campaigns, lead nurturing, social media, and analytics. Increase conversion rates by 40% while saving 15+ hours/week. Free marketing automation audit.',
-    keywords: 'marketing automation, email automation, lead nurturing, automated campaigns'
+    title: 'Marketing Automation Services | Scale Growth on Autopilot',
+    description: 'Automate your entire marketing funnel. From lead nurturing to campaign analytics, we build self-driving marketing systems that increase conversion rates.',
+    keywords: 'marketing automation, email automation, lead nurturing, automated campaigns, growth automation'
   },
 
   '/automation/sales': {
-    title: 'Sales & CRM Automation Services - Close More Deals | Conquermark',
-    description: 'Automate lead capture, follow-ups, pipeline management, and reporting. Respond to leads in under 60 seconds. Increase sales productivity by 50%.',
+    title: 'Sales & CRM Automation Services | Close More Deals Faster',
+    description: 'Automate your sales pipeline. Instant lead response, automated follow-ups, and CRM syncing to help your team close more deals with less manual work.',
     keywords: 'sales automation, CRM automation, lead management, sales pipeline, automated follow-ups'
   },
 
   '/automation/support': {
-    title: 'Customer Support Automation - 24/7 Instant Responses | Conquermark',
-    description: 'Automate ticket routing, chatbots, FAQ responses, and customer onboarding. Reduce response time by 80% and support costs by 60%. Free support audit.',
-    keywords: 'support automation, customer service automation, chatbot, ticket automation'
+    title: 'Customer Support Automation | 24/7 Instant AI Responses',
+    description: 'Deliver 24/7 support with AI agents. Automate ticket routing, FAQs, and onboarding to reduce response times by 80% and cut support costs.',
+    keywords: 'support automation, customer service automation, chatbot, ticket automation, AI support'
   },
 
   '/automation/internal-workflows': {
-    title: 'Workflow & Operations Automation Services | Conquermark',
-    description: 'Automate internal processes, approvals, data entry, and reporting. Save 20+ hours per week on repetitive tasks. Streamline operations with custom workflows.',
-    keywords: 'workflow automation, operations automation, process automation, internal workflows'
+    title: 'Workflow & Operations Automation | Streamline Internal Processes',
+    description: 'Eliminate manual data entry and repetitive tasks. We build custom internal workflows to automate approvals, reporting, and operations.',
+    keywords: 'workflow automation, operations automation, process automation, internal workflows, business efficiency'
   },
 
   '/automation/reporting': {
-    title: 'Reporting & Dashboard Automation Services | Conquermark',
-    description: 'Automated dashboards and reports with real-time data. Connect all your tools and get instant insights. No more manual spreadsheets. Free dashboard audit.',
-    keywords: 'reporting automation, automated dashboards, business intelligence, data automation'
+    title: 'Reporting & Dashboard Automation | Real-Time Business Insights',
+    description: 'Stop manually updating spreadsheets. Get automated, real-time dashboards that connect all your data sources for instant business intelligence.',
+    keywords: 'reporting automation, automated dashboards, business intelligence, data automation, KPI tracking'
   },
 
   '/automation/n8n': {
-    title: 'n8n Automation Services - Self-Hosted & Unlimited | Conquermark',
-    description: 'Deploy n8n on your infrastructure for unlimited workflows without per-task costs. Complete data control, complex logic, custom integrations. Schedule a free audit.',
-    keywords: 'n8n automation, n8n services, self-hosted automation, workflow automation'
+    title: 'n8n Automation Services | Unlimited Self-Hosted Workflows',
+    description: 'Expert n8n implementation services. We deploy and manage self-hosted n8n instances for unlimited, secure, and cost-effective workflow automation.',
+    keywords: 'n8n automation, n8n services, self-hosted automation, workflow automation, n8n expert'
   },
 
   '/automation/zapier': {
-    title: 'Zapier Automation Services - Expert Workflow Setup | Conquermark',
-    description: 'Professional Zapier automation services. Connect 5000+ apps with multi-step Zaps. Certified Zapier experts. Save 15+ hours/week. Free Zapier audit available.',
-    keywords: 'Zapier automation, Zapier expert, Zap creation, app integration'
+    title: 'Zapier Automation Services | Expert Workflow Integration',
+    description: 'Certified Zapier experts. We build complex, multi-step Zaps to connect your favorite apps and automate your business processes seamlessly.',
+    keywords: 'Zapier automation, Zapier expert, Zap creation, app integration, workflow automation'
   },
 
   '/automation/make': {
-    title: 'Make.com (Integromat) Automation Services | Conquermark',
-    description: 'Advanced Make.com automation with complex scenarios, error handling, and data transformations. Visual workflow builder for powerful integrations. Free Make audit.',
-    keywords: 'Make automation, Integromat, Make.com services, workflow scenarios'
+    title: 'Make.com Automation Services | Advanced Workflow Scenarios',
+    description: 'Unlock the power of Make.com (formerly Integromat). We build complex, visual automation scenarios with advanced logic and data transformation.',
+    keywords: 'Make automation, Integromat, Make.com services, workflow scenarios, complex automation'
   },
 
   '/automation/pabbly': {
-    title: 'Pabbly Connect Automation Services - Affordable Workflows | Conquermark',
-    description: 'Pabbly Connect automation services with unlimited workflows at fixed cost. Perfect for high-volume operations. Connect 1000+ apps. Free Pabbly consultation.',
-    keywords: 'Pabbly automation, Pabbly Connect, affordable automation, workflow services'
+    title: 'Pabbly Connect Automation | Affordable Unlimited Workflows',
+    description: 'Maximize ROI with Pabbly Connect. We set up unlimited automation workflows at a fixed cost, perfect for high-volume business operations.',
+    keywords: 'Pabbly automation, Pabbly Connect, affordable automation, workflow services, high-volume automation'
   },
 
   '/automation/custom-api': {
-    title: 'Custom API & Webhook Integration Services | Conquermark',
-    description: 'Custom API development and webhook integrations. Connect any system with REST APIs, GraphQL, and webhooks. Enterprise-grade integrations. Free technical consultation.',
-    keywords: 'API integration, webhook integration, custom API, REST API, GraphQL'
+    title: 'Custom API & Webhook Integration | Connect Any System',
+    description: 'Enterprise-grade API integration services. We connect disparate systems using custom REST APIs, GraphQL, and webhooks for seamless data flow.',
+    keywords: 'API integration, webhook integration, custom API, REST API, GraphQL, system integration'
   },
 
   '/automation/ecommerce': {
-    title: 'E-commerce Automation Services - Shopify, WooCommerce | Conquermark',
-    description: 'Automate order processing, inventory sync, customer notifications, and fulfillment. Works with Shopify, WooCommerce, and all major platforms. Free e-commerce audit.',
-    keywords: 'ecommerce automation, Shopify automation, WooCommerce automation, order automation'
+    title: 'E-commerce Automation | Shopify & WooCommerce Workflows',
+    description: 'Automate your online store. From order processing to inventory sync, we streamline operations for Shopify, WooCommerce, and other platforms.',
+    keywords: 'ecommerce automation, Shopify automation, WooCommerce automation, order automation, inventory sync'
   },
 
   '/automation/saas': {
-    title: 'SaaS Automation Services - Scale Your Tech Startup | Conquermark',
-    description: 'Automation for SaaS companies: onboarding, billing, support, and analytics. Reduce churn, increase LTV, and scale efficiently. Free SaaS automation audit.',
-    keywords: 'SaaS automation, startup automation, user onboarding automation, SaaS workflows'
+    title: 'SaaS Automation Services | Scale Your Tech Startup',
+    description: 'Automate your SaaS operations. We build workflows for user onboarding, billing, support, and churn reduction to help you scale efficiently.',
+    keywords: 'SaaS automation, startup automation, user onboarding automation, SaaS workflows, churn reduction'
   },
 
   '/automation/healthcare': {
-    title: 'Healthcare Automation Services - HIPAA Compliant | Conquermark',
-    description: 'HIPAA-compliant automation for healthcare: appointment scheduling, patient reminders, billing, and records management. Secure and compliant workflows.',
-    keywords: 'healthcare automation, HIPAA compliant automation, medical automation, patient management'
+    title: 'Healthcare Automation | HIPAA-Compliant Workflows',
+    description: 'Secure, HIPAA-compliant automation for healthcare providers. Automate patient scheduling, reminders, and records management with confidence.',
+    keywords: 'healthcare automation, HIPAA compliant automation, medical automation, patient management, secure workflows'
   },
 
   '/automation/education': {
-    title: 'Education & LMS Automation Services | Conquermark',
-    description: 'Automate student enrollment, course delivery, grading, and communications. Works with all major LMS platforms. Enhance learning experiences with automation.',
-    keywords: 'education automation, LMS automation, student management, course automation'
+    title: 'Education & LMS Automation | Streamline Learning',
+    description: 'Automate student enrollment, grading, and course delivery. We integrate with major LMS platforms to enhance the educational experience.',
+    keywords: 'education automation, LMS automation, student management, course automation, edtech'
   },
 
   '/automation/finance': {
-    title: 'Finance & Fintech Automation Services - Secure & Compliant | Conquermark',
-    description: 'Automation for finance and fintech: transaction processing, compliance reporting, fraud detection, and customer onboarding. Bank-grade security.',
-    keywords: 'finance automation, fintech automation, transaction automation, compliance automation'
+    title: 'Finance & Fintech Automation | Secure Financial Workflows',
+    description: 'Bank-grade automation for finance. Streamline transaction processing, compliance reporting, and fraud detection with secure, automated workflows.',
+    keywords: 'finance automation, fintech automation, transaction automation, compliance automation, secure finance'
   },
 
   '/automation/lead-capture': {
-    title: 'Lead Capture Automation - Never Miss a Lead | Conquermark',
-    description: 'Automate lead capture from all sources: website forms, social media, ads, and more. Instant notifications and CRM sync. Respond in under 60 seconds.',
-    keywords: 'lead capture automation, lead generation, automated lead capture, CRM integration'
+    title: 'Lead Capture Automation | Never Miss a Potential Client',
+    description: 'Capture every lead instantly. We automate lead collection from forms, chat, and social media, syncing them directly to your CRM for immediate action.',
+    keywords: 'lead capture automation, lead generation, CRM sync, automated follow-up, sales automation'
   },
 
   '/automation/chatbot-whatsapp': {
-    title: 'WhatsApp & Chatbot Automation Services | Conquermark',
-    description: 'WhatsApp Business API integration and chatbot automation. 24/7 customer support, order updates, and notifications. Reach customers where they are.',
-    keywords: 'WhatsApp automation, chatbot automation, WhatsApp Business API, automated messaging'
+    title: 'WhatsApp & Chatbot Automation | 24/7 Customer Engagement',
+    description: 'Engage customers on WhatsApp. We build AI chatbots and automated messaging flows using the WhatsApp Business API for 24/7 support.',
+    keywords: 'WhatsApp automation, chatbot automation, WhatsApp Business API, automated messaging, customer engagement'
   },
 
   '/automation/form-to-crm': {
-    title: 'Form to CRM Integration & Automation Services | Conquermark',
-    description: 'Connect web forms to your CRM automatically. Instant lead capture, data validation, and duplicate prevention. Works with all major CRMs and form builders.',
-    keywords: 'form to CRM, form integration, CRM automation, lead capture forms'
+    title: 'Form to CRM Integration | Instant Data Sync',
+    description: 'Stop manual data entry. We connect your web forms directly to your CRM, ensuring instant lead capture, validation, and zero data loss.',
+    keywords: 'form to CRM, form integration, CRM automation, lead capture forms, data sync'
   },
 
   '/automation/order-sync': {
-    title: 'Order & Inventory Sync Automation Services | Conquermark',
-    description: 'Real-time order and inventory synchronization across all sales channels. Prevent overselling, automate fulfillment, and update stock levels automatically.',
-    keywords: 'order sync, inventory automation, stock sync, multi-channel sync'
+    title: 'Order & Inventory Sync | Real-Time Multi-Channel Updates',
+    description: 'Keep your inventory in check. We automate real-time order and stock synchronization across all your sales channels to prevent overselling.',
+    keywords: 'order sync, inventory automation, stock sync, multi-channel sync, ecommerce automation'
   },
 
   '/automation/notifications': {
-    title: 'Slack & Email Notification Automation Services | Conquermark',
-    description: 'Automated notifications for Slack, email, SMS, and more. Get instant alerts for important events. Custom notification rules and escalations.',
-    keywords: 'notification automation, Slack automation, email automation, alert automation'
+    title: 'Notification Automation | Instant Alerts via Slack & Email',
+    description: 'Stay in the loop. We set up automated notifications via Slack, email, and SMS for critical business events, ensuring you never miss a beat.',
+    keywords: 'notification automation, Slack automation, email automation, alert automation, business alerts'
   },
 
   // Digital Marketing Pages
   '/digital-marketing': {
-    title: 'AI-Powered Digital Marketing Services | Conquermark',
-    description: 'Comprehensive digital marketing services: SEO, PPC, content marketing, social media, and AI-powered campaigns. Grow your startup with data-driven marketing.',
-    keywords: 'digital marketing, AI marketing, SEO services, PPC management, content marketing'
+    title: 'AI-Powered Digital Marketing | Data-Driven Growth',
+    description: 'Scale your growth with AI. Our digital marketing services leverage artificial intelligence for precision SEO, PPC, and content strategies.',
+    keywords: 'digital marketing, AI marketing, SEO services, PPC management, content marketing, growth hacking'
   },
 
   // About Pages
@@ -262,9 +263,9 @@ export const seoData: Record<string, PageSEO> = {
   },
 
   '/contact': {
-    title: 'Contact Conquermark - Get Free Consultation | +1 (209) 813-4001',
-    description: 'Contact Conquermark for a free consultation. Call +1 (209) 813-4001 or email hello@conquermark.com. Offices in USA, India, Hong Kong, and Australia.',
-    keywords: 'contact conquermark, free consultation, startup consultation, get in touch'
+    title: 'Contact Us | Schedule Your Free AI Strategy Consultation',
+    description: 'Ready to automate your business? Contact Conquermark today for a free consultation. Offices in USA, India, Hong Kong, and Australia.',
+    keywords: 'contact us, AI consultation, business automation strategy, get in touch, schedule call'
   },
 
   '/case-studies': {

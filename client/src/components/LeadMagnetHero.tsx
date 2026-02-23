@@ -9,9 +9,17 @@ export default function LeadMagnetHero() {
   const [, setLocation] = useLocation();
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [honeypot, setHoneypot] = useState(""); // Spam protection
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Honeypot check
+    if (honeypot) {
+      console.log("Spam bot detected");
+      return;
+    }
+
     if (!email) {
       toast.error("Please enter your email address");
       return;
@@ -74,10 +82,10 @@ export default function LeadMagnetHero() {
 
             {/* Lead Capture Form */}
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 max-w-md mx-auto lg:mx-0 shadow-2xl">
-              <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+              <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
                 <Download className="h-5 w-5 text-accent" />
                 Get Your Free Playbook
-              </h3>
+              </h2>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <Input 
@@ -87,6 +95,16 @@ export default function LeadMagnetHero() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
+                  />
+                  {/* Honeypot field - hidden from real users */}
+                  <input 
+                    type="text" 
+                    name="website_url_check" 
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                    style={{ display: 'none' }}
+                    tabIndex={-1}
+                    autoComplete="off"
                   />
                 </div>
                 <Button 
