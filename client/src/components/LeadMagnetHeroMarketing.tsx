@@ -1,16 +1,15 @@
 import { useState } from "react";
-import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { CheckCircle2, ArrowRight, Download, ShieldCheck } from "lucide-react";
 import { toast } from "sonner";
+import { sendEmail } from "@/lib/email";
 
 export default function LeadMagnetHeroMarketing() {
-  const [, setLocation] = useLocation();
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) {
       toast.error("Please enter your email address");
@@ -18,14 +17,16 @@ export default function LeadMagnetHeroMarketing() {
     }
     
     setIsSubmitting(true);
-    
-    // Simulate API call
-    setTimeout(() => {
+
+    try {
+      await sendEmail("Marketing Guide Download", { email });
       setIsSubmitting(false);
       toast.success("Guide sent! Check your inbox.");
       setEmail("");
-      setLocation("/thank-you");
-    }, 1500);
+    } catch (error) {
+      setIsSubmitting(false);
+      toast.error(error instanceof Error ? error.message : "Failed to submit form. Please try again.");
+    }
   };
 
   return (
@@ -63,7 +64,7 @@ export default function LeadMagnetHeroMarketing() {
             </p>
 
             <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-2xl p-6 md:p-8 shadow-2xl">
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form noValidate onSubmit={handleSubmit} className="space-y-4">
                 <div className="space-y-2">
                   <label htmlFor="email" className="text-sm font-medium text-slate-300 ml-1">
                     Get the Free Guide + 3-Step Action Plan

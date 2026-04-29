@@ -10,9 +10,8 @@ Sitemap: https://conquermark.com/sitemap.xml
 # Crawl-delay for all bots (optional, helps prevent server overload)
 Crawl-delay: 1
 
-# Disallow admin or internal pages if any (currently none)
-# Disallow: /admin/
-# Disallow: /private/
+# Disallow admin/internal pages
+Disallow: /admin/
 
 # Allow all major search engines
 User-agent: Googlebot

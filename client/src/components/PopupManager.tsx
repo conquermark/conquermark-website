@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { X } from "lucide-react";
 import { toast } from "sonner";
+import { sendEmail } from "@/lib/email";
 
 type PopupType = "exit-intent" | "scroll-trigger" | "timed" | null;
 
@@ -70,28 +71,34 @@ export default function PopupManager() {
     return () => clearTimeout(timer);
   }, [hasShownTimed, activePopup]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // In production, this would send to your backend
-    console.log("Popup form submission:", { email, type: activePopup });
-    
+
     let message = "";
+    let formType = "Website Popup";
     switch (activePopup) {
       case "exit-intent":
+        formType = "Exit Intent Popup";
         message = "Great! Check your inbox for the Product Development Checklist.";
         break;
       case "scroll-trigger":
+        formType = "Scroll Trigger Popup";
         message = "Thanks! We'll send you a custom plan proposal within 24 hours.";
         break;
       case "timed":
+        formType = "Timed Review Popup";
         message = "Perfect! We'll reach out to schedule your free 15-minute product review.";
         break;
     }
-    
-    toast.success(message);
-    setEmail("");
-    setActivePopup(null);
+
+    try {
+      await sendEmail(formType, { email, popupType: activePopup || "" });
+      toast.success(message);
+      setEmail("");
+      setActivePopup(null);
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Failed to submit form. Please try again.");
+    }
   };
 
   const handleClose = () => {
@@ -156,7 +163,7 @@ export default function PopupManager() {
             {content.subtitle}
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form noValidate onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="popup-email">Email Address</Label>
               <Input

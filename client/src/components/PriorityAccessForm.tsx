@@ -1,13 +1,12 @@
 import { useState } from "react";
-import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, Lock, CheckCircle2, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import { sendEmail } from "@/lib/email";
 
 export default function PriorityAccessForm() {
-  const [, setLocation] = useLocation();
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
@@ -21,13 +20,15 @@ export default function PriorityAccessForm() {
     e.preventDefault();
     setLoading(true);
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-
-    setLoading(false);
-    setSubmitted(true);
-    toast.success("Priority application received! We'll contact you shortly.");
-    setLocation("/thank-you");
+    try {
+      await sendEmail("Priority Access Application", formData);
+      setLoading(false);
+      setSubmitted(true);
+      toast.success("Priority application received! We'll contact you shortly.");
+    } catch (error) {
+      setLoading(false);
+      toast.error(error instanceof Error ? error.message : "Failed to submit form. Please try again.");
+    }
   };
 
   if (submitted) {
@@ -68,7 +69,7 @@ export default function PriorityAccessForm() {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form noValidate onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2 text-left">
             <label className="text-sm font-medium ml-1">Full Name</label>
             <Input 

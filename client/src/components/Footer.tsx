@@ -1,14 +1,43 @@
+import { useState } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Linkedin, Twitter, Facebook, Instagram, Mail, Phone, MapPin, ArrowRight, Globe, BookOpen, FileText, Wrench } from "lucide-react";
 
 import { toast } from "sonner";
+import { sendEmail } from "@/lib/email";
 
 export default function Footer() {
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
+  const [isSubscribing, setIsSubscribing] = useState(false);
+
+  const handleNewsletterSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    toast.success("Thanks for subscribing! We'll be in touch soon.");
+    const form = e.currentTarget;
+    const email = (form.querySelector('input[type="email"]') as HTMLInputElement | null)?.value || "";
+
+    if (isSubscribing) return;
+    if (!email.trim()) {
+      toast.error("Please enter your email.");
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+
+    try {
+      setIsSubscribing(true);
+      await sendEmail("Subscribe to Insights", {
+        email: email.trim(),
+        submitButton: "Subscribe",
+      });
+      toast.success("Thanks for subscribing! We'll be in touch soon.");
+      form.reset();
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Failed to subscribe. Please try again.");
+    } finally {
+      setIsSubscribing(false);
+    }
   };
 
   const automationServices = [
@@ -107,7 +136,7 @@ export default function Footer() {
                 <h4 className="font-semibold text-xs mb-3 flex items-center gap-2 uppercase tracking-wider text-gray-400">
                   Subscribe to Insights
                 </h4>
-                <form onSubmit={handleNewsletterSubmit} className="space-y-2">
+                <form onSubmit={handleNewsletterSubmit} noValidate className="space-y-2">
                   <Input
                     type="email"
                     placeholder="Enter your email"
@@ -116,9 +145,10 @@ export default function Footer() {
                   />
                   <Button
                     type="submit"
+                    disabled={isSubscribing}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white h-9 text-sm font-medium"
                   >
-                    Subscribe
+                    {isSubscribing ? "Subscribing..." : "Subscribe"}
                   </Button>
                 </form>
               </div>

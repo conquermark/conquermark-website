@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "wouter";
 import { useToast } from "@/hooks/use-toast";
+import { sendEmail } from "@/lib/email";
 import { Shield, Clock, Award, Users, CheckCircle2, ArrowRight, FileText, PenTool } from "lucide-react";
 
 export default function ContentAuditLanding() {
@@ -35,13 +36,21 @@ export default function ContentAuditLanding() {
     setStep(step + 1);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Content Strategy Audit Form Submitted:", formData);
-    toast({
-      title: "Content Strategy Audit Request Received! 🎉",
-      description: "We'll send your personalized content strategy report within 24 hours.",
-    });
+    try {
+      await sendEmail("Content Strategy Audit Request", formData);
+      toast({
+        title: "Content Strategy Audit Request Received! 🎉",
+        description: "We'll send your personalized content strategy report within 24 hours.",
+      });
+    } catch (error) {
+      toast({
+        title: "Submission failed",
+        description: error instanceof Error ? error.message : "Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -120,7 +129,7 @@ export default function ContentAuditLanding() {
                 />
               </div>
 
-              <form onSubmit={handleSubmit}>
+              <form noValidate onSubmit={handleSubmit}>
                 {step === 1 && (
                   <div className="space-y-4">
                     <div>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "wouter";
 import { useToast } from "@/hooks/use-toast";
+import { sendEmail } from "@/lib/email";
 import { Shield, Clock, Award, Users, CheckCircle2, ArrowRight, Target, TrendingUp } from "lucide-react";
 
 export default function AdvertisingAuditLanding() {
@@ -35,13 +36,21 @@ export default function AdvertisingAuditLanding() {
     setStep(step + 1);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Advertising Audit Form Submitted:", formData);
-    toast({
-      title: "Advertising Audit Request Received! 🎉",
-      description: "We'll send your comprehensive advertising audit report within 24 hours.",
-    });
+    try {
+      await sendEmail("Advertising Audit Request", formData);
+      toast({
+        title: "Advertising Audit Request Received! 🎉",
+        description: "We'll send your comprehensive advertising audit report within 24 hours.",
+      });
+    } catch (error) {
+      toast({
+        title: "Submission failed",
+        description: error instanceof Error ? error.message : "Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -120,7 +129,7 @@ export default function AdvertisingAuditLanding() {
                 />
               </div>
 
-              <form onSubmit={handleSubmit}>
+              <form noValidate onSubmit={handleSubmit}>
                 {step === 1 && (
                   <div className="space-y-4">
                     <div>

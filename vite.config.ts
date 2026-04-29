@@ -1,10 +1,23 @@
 import { jsxLocPlugin } from "@builder.io/vite-plugin-jsx-loc";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
+import dotenv from "dotenv";
 import fs from "node:fs";
 import path from "node:path";
 import { defineConfig, type Plugin, type ViteDevServer } from "vite";
 import { vitePluginManusRuntime } from "vite-plugin-manus-runtime";
+import {
+  adminConfigured,
+  adminCookie,
+  adminLogin,
+  adminLogout,
+  clearAdminCookie,
+  getAdminSubmissions,
+  isAdminAuthenticated,
+} from "./server/admin";
+import { handleFormSubmission } from "./server/formSubmissions";
+
+dotenv.config();
 
 // =============================================================================
 // Manus Debug Collector - Vite Plugin
@@ -150,7 +163,104 @@ function vitePluginManusDebugCollector(): Plugin {
   };
 }
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector()];
+function vitePluginFormSubmissions(): Plugin {
+  const parseJsonBody = async (req: any) => {
+    const existingBody = (req as { body?: unknown }).body;
+    if (existingBody && typeof existingBody === "object") {
+      return existingBody;
+    }
+
+    const rawBody = await new Promise<string>((resolve) => {
+      let body = "";
+      req.on("data", (chunk: Buffer) => {
+        body += chunk.toString();
+      });
+      req.on("end", () => resolve(body));
+    });
+
+    return JSON.parse(rawBody || "{}");
+  };
+
+  const sendJson = (res: any, status: number, payload: unknown, headers?: Record<string, string>) => {
+    res.writeHead(status, { "Content-Type": "application/json", ...(headers || {}) });
+    res.end(JSON.stringify(payload));
+  };
+
+  return {
+    name: "conquermark-form-submissions",
+    configureServer(server: ViteDevServer) {
+      server.middlewares.use("/admin", (_req, res, next) => {
+        res.setHeader("X-Robots-Tag", "noindex, nofollow, noarchive, nosnippet");
+        next();
+      });
+
+      server.middlewares.use("/api/send-email", (req, res, next) => {
+        if (req.method !== "POST") return next();
+        (async () => {
+          try {
+            const result = await handleFormSubmission(await parseJsonBody(req));
+            res.writeHead(result.status, { "Content-Type": "application/json" });
+            res.end(JSON.stringify(result.body));
+          } catch (error) {
+            console.error("Form submission error:", error);
+            res.writeHead(500, { "Content-Type": "application/json" });
+            res.end(JSON.stringify({ success: false, message: "Failed to process request" }));
+          }
+        })();
+      });
+
+      server.middlewares.use("/api/admin/login", async (req, res, next) => {
+        if (req.method !== "POST") return next();
+        try {
+          const body = (await parseJsonBody(req)) as Record<string, unknown>;
+          const username = String(body.username || "").trim();
+          const password = String(body.password || "");
+          const result = adminLogin(username, password);
+          if (!result.ok) {
+            return sendJson(res, 401, { success: false, message: result.reason });
+          }
+          return sendJson(
+            res,
+            200,
+            { success: true, configured: adminConfigured() },
+            { "Set-Cookie": adminCookie(result.token) },
+          );
+        } catch (error) {
+          console.error("Admin login error:", error);
+          return sendJson(res, 500, { success: false, message: "Failed to process request" });
+        }
+      });
+
+      server.middlewares.use("/api/admin/logout", (req, res, next) => {
+        if (req.method !== "POST") return next();
+        adminLogout(req.headers.cookie);
+        return sendJson(res, 200, { success: true }, { "Set-Cookie": clearAdminCookie() });
+      });
+
+      server.middlewares.use("/api/admin/me", (req, res, next) => {
+        if (req.method !== "GET") return next();
+        return sendJson(res, 200, {
+          authenticated: isAdminAuthenticated(req.headers.cookie),
+          configured: adminConfigured(),
+        });
+      });
+
+      server.middlewares.use("/api/admin/submissions", (req, res, next) => {
+        if (req.method !== "GET") return next();
+        if (!isAdminAuthenticated(req.headers.cookie)) {
+          return sendJson(res, 401, { success: false, message: "Unauthorized" });
+        }
+
+        const url = new URL(req.url || "", "http://localhost");
+        const requestedLimit = Number(url.searchParams.get("limit") || 500);
+        const limit = Number.isFinite(requestedLimit) ? Math.max(1, Math.min(2000, requestedLimit)) : 500;
+        return sendJson(res, 200, { success: true, submissions: getAdminSubmissions(limit) });
+      });
+    },
+  };
+}
+
+const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginFormSubmissions(), vitePluginManusDebugCollector()];
 
 export default defineConfig({
   plugins,

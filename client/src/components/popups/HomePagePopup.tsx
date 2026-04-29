@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "wouter";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { X, Rocket } from "lucide-react";
 import { toast } from "sonner";
+import { sendEmail } from "@/lib/email";
 
 export default function HomePagePopup() {
-  const [, setLocation] = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [hasShown, setHasShown] = useState(false);
   const [formData, setFormData] = useState({
@@ -58,12 +57,15 @@ export default function HomePagePopup() {
     };
   }, [hasShown]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Perfect! We'll send you a custom plan within 24 hours.");
-    setIsOpen(false);
-    console.log("Homepage Lead:", formData);
-    setLocation("/thank-you");
+    try {
+      await sendEmail("Homepage Popup Lead", formData);
+      toast.success("Perfect! We'll send you a custom plan within 24 hours.");
+      setIsOpen(false);
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Failed to submit form. Please try again.");
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -107,7 +109,7 @@ export default function HomePagePopup() {
             Tell us about your project and we'll send you a tailored roadmap with timeline and pricing.
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-3.5">
+          <form noValidate onSubmit={handleSubmit} className="space-y-3.5">
             <div>
               <Label htmlFor="name" className="text-sm">Your Name *</Label>
               <Input

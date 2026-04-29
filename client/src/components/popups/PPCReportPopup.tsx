@@ -1,18 +1,17 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "wouter";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Target, X, CheckCircle } from "lucide-react";
 import { toast } from "sonner";
+import { sendEmail } from "@/lib/email";
 
 interface PPCReportPopupProps {
   trigger?: "exit" | "scroll" | "time";
 }
 
 export default function PPCReportPopup({ trigger = "scroll" }: PPCReportPopupProps) {
-  const [, setLocation] = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [hasShown, setHasShown] = useState(false);
   const [formData, setFormData] = useState({
@@ -67,12 +66,15 @@ export default function PPCReportPopup({ trigger = "scroll" }: PPCReportPopupPro
     }
   }, [trigger, hasShown]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Thanks! We'll send your Free PPC Performance Report within 24 hours.");
-    setIsOpen(false);
-    console.log("PPC Report Request:", formData);
-    setLocation("/thank-you");
+    try {
+      await sendEmail("PPC Performance Report Popup", formData);
+      toast.success("Thanks! We'll send your Free PPC Performance Report within 24 hours.");
+      setIsOpen(false);
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Failed to submit form. Please try again.");
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -128,7 +130,7 @@ export default function PPCReportPopup({ trigger = "scroll" }: PPCReportPopupPro
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form noValidate onSubmit={handleSubmit} className="space-y-4">
             <div>
               <Label htmlFor="name">Full Name *</Label>
               <Input

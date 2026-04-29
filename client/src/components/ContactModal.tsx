@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useLocation } from "wouter";
 import {
   Dialog,
   DialogContent,
@@ -20,6 +19,7 @@ import {
 } from "@/components/ui/select";
 import { toast } from "sonner";
 import { Checkbox } from "@/components/ui/checkbox";
+import { sendEmail } from "@/lib/email";
 
 interface ContactModalProps {
   open: boolean;
@@ -36,7 +36,7 @@ export default function ContactModal({
   title = "Get Started Today",
   description = "Tell us about your project and we'll get back to you within 24 hours."
 }: ContactModalProps) {
-  const [, setLocation] = useLocation();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -76,32 +76,57 @@ export default function ContactModal({
     "Just exploring"
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (isSubmitting) return;
+    if (!formData.name.trim()) {
+      toast.error("Please enter your name.");
+      return;
+    }
+    if (!formData.email.trim()) {
+      toast.error("Please enter your email.");
+      return;
+    }
+    if (!formData.service.trim()) {
+      toast.error("Please select a service.");
+      return;
+    }
+    if (!formData.message.trim()) {
+      toast.error("Please enter a brief project summary.");
+      return;
+    }
     
     if (!formData.agreeToContact) {
       toast.error("Please agree to be contacted");
       return;
     }
 
-    // In production, this would send to your backend/CRM
-    console.log("Form submission:", formData);
-    
-    toast.success("Thanks! We'll review your submission and email you within 24 hours.");
-    
-    // Reset form and close modal
-    setFormData({
-      name: "",
-      email: "",
-      company: "",
-      service: defaultService,
-      budget: "",
-      timeline: "",
-      message: "",
-      agreeToContact: false
-    });
-    onOpenChange(false);
-    setLocation("/thank-you");
+    try {
+      setIsSubmitting(true);
+      await sendEmail("Talk to an Expert", {
+        ...formData,
+        submitButton: "Submit Request",
+        sourceTitle: title,
+      });
+      toast.success("Thanks! We'll review your submission and email you within 24 hours.");
+
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        service: defaultService,
+        budget: "",
+        timeline: "",
+        message: "",
+        agreeToContact: false
+      });
+      onOpenChange(false);
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Failed to submit form. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (field: string, value: string | boolean) => {
@@ -116,7 +141,7 @@ export default function ContactModal({
           <DialogDescription>{description}</DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+        <form onSubmit={handleSubmit} noValidate className="space-y-4 mt-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="name">Name *</Label>
@@ -125,7 +150,6 @@ export default function ContactModal({
                 value={formData.name}
                 onChange={(e) => handleChange("name", e.target.value)}
                 placeholder="John Doe"
-                required
               />
             </div>
 
@@ -137,7 +161,6 @@ export default function ContactModal({
                 value={formData.email}
                 onChange={(e) => handleChange("email", e.target.value)}
                 placeholder="john@company.com"
-                required
               />
             </div>
           </div>
@@ -152,34 +175,33 @@ export default function ContactModal({
             />
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="service">Service Interested In *</Label>
-            <Select
-              value={formData.service}
-              onValueChange={(value) => handleChange("service", value)}
-              required
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Select a service" />
-              </SelectTrigger>
-              <SelectContent>
-                {services.map((service) => (
-                  <SelectItem key={service} value={service}>
-                    {service}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+            <div className="space-y-2 md:col-span-12">
+              <Label htmlFor="service">Service Interested In *</Label>
+              <Select
+                value={formData.service}
+                onValueChange={(value) => handleChange("service", value)}
+              >
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select a service" />
+                </SelectTrigger>
+                <SelectContent>
+                  {services.map((service) => (
+                    <SelectItem key={service} value={service}>
+                      {service}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
+            <div className="space-y-2 md:col-span-6">
               <Label htmlFor="budget">Budget Range (Optional)</Label>
               <Select
                 value={formData.budget}
                 onValueChange={(value) => handleChange("budget", value)}
               >
-                <SelectTrigger>
+                <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select budget" />
                 </SelectTrigger>
                 <SelectContent>
@@ -192,13 +214,13 @@ export default function ContactModal({
               </Select>
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-2 md:col-span-6">
               <Label htmlFor="timeline">Timeline (Optional)</Label>
               <Select
                 value={formData.timeline}
                 onValueChange={(value) => handleChange("timeline", value)}
               >
-                <SelectTrigger>
+                <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select timeline" />
                 </SelectTrigger>
                 <SelectContent>
@@ -220,7 +242,6 @@ export default function ContactModal({
               onChange={(e) => handleChange("message", e.target.value)}
               placeholder="Tell us about your project, goals, and any specific requirements..."
               rows={4}
-              required
             />
           </div>
 
@@ -229,7 +250,6 @@ export default function ContactModal({
               id="agree"
               checked={formData.agreeToContact}
               onCheckedChange={(checked) => handleChange("agreeToContact", checked as boolean)}
-              required
             />
             <label
               htmlFor="agree"
@@ -244,8 +264,9 @@ export default function ContactModal({
             type="submit"
             className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"
             size="lg"
+            disabled={isSubmitting}
           >
-            Submit Request
+            {isSubmitting ? "Submitting..." : "Submit Request"}
           </Button>
 
           <p className="text-xs text-center text-foreground/60">

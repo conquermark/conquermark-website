@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import { sendEmail } from "@/lib/email";
 
 interface TestimonialSubmissionModalProps {
   open: boolean;
@@ -30,24 +31,32 @@ export default function TestimonialSubmissionModal({
     videoFile: null as File | null
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // In production, this would upload to your backend/storage
-    console.log("Testimonial submission:", formData);
-    
-    toast.success("Thanks for sharing your story! We'll review it and be in touch soon.");
-    
-    // Reset form and close modal
-    setFormData({
-      name: "",
-      role: "",
-      company: "",
-      email: "",
-      testimonial: "",
-      videoFile: null
-    });
-    onOpenChange(false);
+
+    try {
+      await sendEmail("Testimonial Submission", {
+        name: formData.name,
+        role: formData.role,
+        company: formData.company,
+        email: formData.email,
+        testimonial: formData.testimonial,
+        videoFile: formData.videoFile?.name || "",
+      });
+      toast.success("Thanks for sharing your story! We'll review it and be in touch soon.");
+
+      setFormData({
+        name: "",
+        role: "",
+        company: "",
+        email: "",
+        testimonial: "",
+        videoFile: null
+      });
+      onOpenChange(false);
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Failed to submit form. Please try again.");
+    }
   };
 
   const handleChange = (field: string, value: string | File | null) => {
@@ -73,7 +82,7 @@ export default function TestimonialSubmissionModal({
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+        <form noValidate onSubmit={handleSubmit} className="space-y-4 mt-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="name">Name *</Label>

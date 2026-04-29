@@ -15,6 +15,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import ClientLogos from "@/components/ClientLogos";
 import VideoLightbox from "@/components/VideoLightbox";
+import { sendEmail } from "@/lib/email";
 
 export default function FreeAuditLanding() {
   const [location] = useLocation();
@@ -200,16 +201,21 @@ export default function FreeAuditLanding() {
     setStep(step + 1);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Free Audit Form Submitted:", { ...formData, serviceType });
-    toast({
-      title: "Audit Request Received! 🎉",
-      description: "We'll send your detailed audit report within 24 hours.",
-    });
-    
-    // Here you would send to your backend/CRM
-    // For now, just log it
+    try {
+      await sendEmail("Free Audit Request", { ...formData, serviceType });
+      toast({
+        title: "Audit Request Received! 🎉",
+        description: "We'll send your detailed audit report within 24 hours.",
+      });
+    } catch (error) {
+      toast({
+        title: "Submission failed",
+        description: error instanceof Error ? error.message : "Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   const openVideo = (videoUrl: string) => {
@@ -292,7 +298,7 @@ export default function FreeAuditLanding() {
                   </div>
                 </div>
 
-                <form onSubmit={handleSubmit}>
+                <form noValidate onSubmit={handleSubmit}>
                   {step === 1 && (
                     <div className="space-y-4">
                       <div>

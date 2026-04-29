@@ -22,16 +22,22 @@ import {
 } from "lucide-react";
 import ContactModal from "@/components/ContactModal";
 import { toast } from "sonner";
+import { sendEmail } from "@/lib/email";
 
 export default function DigitalMarketing() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [email, setEmail] = useState("");
 
-  const handleProposalSubmit = (e: React.FormEvent) => {
+  const handleProposalSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (email) {
-      toast.success("Thanks! We'll send your custom digital marketing proposal within 24 hours.");
-      setEmail("");
+      try {
+        await sendEmail("Digital Marketing Proposal Request", { email });
+        toast.success("Thanks! We'll send your custom digital marketing proposal within 24 hours.");
+        setEmail("");
+      } catch (error) {
+        toast.error(error instanceof Error ? error.message : "Failed to submit form. Please try again.");
+      }
     }
   };
 
@@ -174,7 +180,7 @@ export default function DigitalMarketing() {
               </p>
 
               {/* Lead Capture Form */}
-              <form onSubmit={handleProposalSubmit} className="flex flex-col sm:flex-row gap-4 mb-8">
+              <form noValidate onSubmit={handleProposalSubmit} className="flex flex-col sm:flex-row gap-4 mb-8">
                 <Input
                   type="email"
                   placeholder="Enter your email"

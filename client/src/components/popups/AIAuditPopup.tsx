@@ -1,18 +1,17 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "wouter";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Brain, X, CheckCircle } from "lucide-react";
 import { toast } from "sonner";
+import { sendEmail } from "@/lib/email";
 
 interface AIAuditPopupProps {
   trigger?: "exit" | "scroll" | "time";
 }
 
 export default function AIAuditPopup({ trigger = "scroll" }: AIAuditPopupProps) {
-  const [, setLocation] = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [hasShown, setHasShown] = useState(false);
   const [formData, setFormData] = useState({
@@ -70,13 +69,15 @@ export default function AIAuditPopup({ trigger = "scroll" }: AIAuditPopupProps) 
     }
   }, [trigger, hasShown]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Thanks! We'll send your Free AI Readiness Audit within 24 hours.");
-    setIsOpen(false);
-    // Here you would typically send the data to your backend
-    console.log("AI Audit Request:", formData);
-    setLocation("/thank-you");
+    try {
+      await sendEmail("AI Readiness Audit Popup", formData);
+      toast.success("Thanks! We'll send your Free AI Readiness Audit within 24 hours.");
+      setIsOpen(false);
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Failed to submit form. Please try again.");
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -132,7 +133,7 @@ export default function AIAuditPopup({ trigger = "scroll" }: AIAuditPopupProps) 
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form noValidate onSubmit={handleSubmit} className="space-y-4">
             <div>
               <Label htmlFor="name">Full Name *</Label>
               <Input

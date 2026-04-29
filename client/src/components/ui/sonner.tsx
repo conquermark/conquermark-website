@@ -7,7 +7,18 @@ const Toaster = ({ ...props }: ToasterProps) => {
   return (
     <Sonner
       theme={theme as ToasterProps["theme"]}
+      position="bottom-right"
+      offset={16}
+      visibleToasts={4}
       className="toaster group"
+      richColors
+      toastOptions={{
+        className: "break-words",
+        style: {
+          width: "min(420px, calc(100vw - 2rem))",
+          maxWidth: "calc(100vw - 2rem)",
+        },
+      }}
       style={
         {
           "--normal-bg": "var(--popover)",

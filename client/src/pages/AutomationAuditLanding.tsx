@@ -12,6 +12,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle2, Zap, Clock, Shield, Award, Star, ArrowRight } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { sendEmail } from "@/lib/email";
 
 export default function AutomationAuditLanding() {
   const [step, setStep] = useState(1);
@@ -43,28 +44,34 @@ export default function AutomationAuditLanding() {
     setStep(2);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    console.log("Automation Audit Form Submitted:", formData);
-    
-    toast({
-      title: "Success! 🎉",
-      description: "We'll send your automation audit within 24-48 hours!",
-    });
-    
-    // Reset form
-    setFormData({
-      fullName: "",
-      email: "",
-      website: "",
-      phone: "",
-      businessType: "",
-      currentTools: "",
-      mainGoal: "",
-      challenges: ""
-    });
-    setStep(1);
+
+    try {
+      await sendEmail("Automation Audit Request", formData);
+      toast({
+        title: "Success! 🎉",
+        description: "We'll send your automation audit within 24-48 hours!",
+      });
+
+      setFormData({
+        fullName: "",
+        email: "",
+        website: "",
+        phone: "",
+        businessType: "",
+        currentTools: "",
+        mainGoal: "",
+        challenges: ""
+      });
+      setStep(1);
+    } catch (error) {
+      toast({
+        title: "Submission failed",
+        description: error instanceof Error ? error.message : "Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   const benefits = [
@@ -204,7 +211,7 @@ export default function AutomationAuditLanding() {
                   </div>
                 </div>
 
-                <form onSubmit={handleSubmit}>
+                <form noValidate onSubmit={handleSubmit}>
                   {step === 1 ? (
                     <div className="space-y-4">
                       <h2 className="text-2xl font-bold mb-4">Get Your Free Audit</h2>

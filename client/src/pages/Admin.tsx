@@ -1,0 +1,329 @@
+import { FormEvent, useEffect, useMemo, useState } from "react";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+
+type AdminSubmission = {
+  timestamp: string;
+  formType: string;
+  page: string;
+  name: string;
+  email: string;
+  data: Record<string, unknown>;
+};
+
+function formatDate(value: string) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+  return new Intl.DateTimeFormat("en-GB", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true,
+  }).format(date);
+}
+
+function formatDetailLabel(key: string) {
+  return key
+    .replace(/([A-Z])/g, " $1")
+    .replace(/[_-]+/g, " ")
+    .trim()
+    .replace(/^./, (m) => m.toUpperCase());
+}
+
+function formatDetailValue(value: unknown) {
+  if (value === null || value === undefined || value === "") return "-";
+  if (typeof value === "boolean") return value ? "Yes" : "No";
+  return String(value);
+}
+
+export default function Admin() {
+  const [authChecked, setAuthChecked] = useState(false);
+  const [configured, setConfigured] = useState(true);
+  const [authenticated, setAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [submissions, setSubmissions] = useState<AdminSubmission[]>([]);
+  const [selectedForm, setSelectedForm] = useState("all");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    document.title = "Conquermark Admin";
+
+    const setRobotsMeta = (name: string, content: string) => {
+      let tag = document.querySelector(`meta[name="${name}"]`);
+      if (!tag) {
+        tag = document.createElement("meta");
+        tag.setAttribute("name", name);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute("content", content);
+    };
+
+    setRobotsMeta("robots", "noindex, nofollow, noarchive, nosnippet");
+    setRobotsMeta("googlebot", "noindex, nofollow, noarchive, nosnippet");
+  }, []);
+
+  const loadSubmissions = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch("/api/admin/submissions?limit=1000");
+      if (response.status === 401) {
+        setAuthenticated(false);
+        return;
+      }
+      const payload = await response.json();
+      if (!response.ok || !payload.success) {
+        throw new Error(payload.message || "Failed to load submissions");
+      }
+      setSubmissions(Array.isArray(payload.submissions) ? payload.submissions : []);
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Failed to load submissions");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await fetch("/api/admin/me");
+        const payload = await response.json();
+        setConfigured(Boolean(payload.configured));
+        setAuthenticated(Boolean(payload.authenticated));
+        if (payload.authenticated) {
+          await loadSubmissions();
+        }
+      } catch {
+        setConfigured(false);
+        setAuthenticated(false);
+      } finally {
+        setAuthChecked(true);
+      }
+    })();
+  }, []);
+
+  const stats = useMemo(() => {
+    const perForm = new Map<string, number>();
+    for (const item of submissions) {
+      perForm.set(item.formType, (perForm.get(item.formType) || 0) + 1);
+    }
+    return Array.from(perForm.entries()).sort((a, b) => b[1] - a[1]);
+  }, [submissions]);
+
+  const formOptions = useMemo(() => stats.map(([formType]) => formType), [stats]);
+
+  const filteredSubmissions = useMemo(() => {
+    if (selectedForm === "all") return submissions;
+    return submissions.filter((item) => item.formType === selectedForm);
+  }, [submissions, selectedForm]);
+
+  const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!username.trim() || !password) {
+      toast.error("Please enter admin username and password.");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const response = await fetch("/api/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username: username.trim(), password }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload.success) {
+        throw new Error(payload.message || "Login failed");
+      }
+      setAuthenticated(true);
+      setPassword("");
+      await loadSubmissions();
+      toast.success("Logged in.");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Login failed");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleLogout = async () => {
+    setLoading(true);
+    try {
+      await fetch("/api/admin/logout", { method: "POST" });
+      setAuthenticated(false);
+      setSubmissions([]);
+      setSelectedForm("all");
+      toast.success("Logged out.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (!authChecked) {
+    return <div className="mx-auto max-w-[1400px] px-4 py-16 text-center text-foreground/70">Loading admin...</div>;
+  }
+
+  if (!configured) {
+    return (
+      <div className="mx-auto max-w-[1400px] px-4 py-16">
+        <Card className="mx-auto max-w-2xl rounded-lg border bg-white shadow-sm">
+          <CardHeader>
+            <CardTitle>Admin Not Configured</CardTitle>
+          </CardHeader>
+          <CardContent className="text-sm text-foreground/70">
+            Set <code>ADMIN_USERNAME</code> and <code>ADMIN_PASSWORD</code> in your server environment, then reload.
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  if (!authenticated) {
+    return (
+      <div className="mx-auto max-w-[1400px] px-4 py-16">
+        <Card className="mx-auto max-w-md rounded-lg border bg-white shadow-sm">
+          <CardHeader>
+            <CardTitle>Admin Login</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <form noValidate className="space-y-4" onSubmit={handleLogin}>
+              <div className="space-y-2">
+                <Label htmlFor="admin-username">Username</Label>
+                <Input id="admin-username" value={username} onChange={(e) => setUsername(e.target.value)} />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="admin-password">Password</Label>
+                <Input id="admin-password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+              </div>
+              <Button type="submit" className="w-full" disabled={loading}>
+                {loading ? "Signing in..." : "Sign In"}
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  return (
+    <div className="bg-slate-50 min-h-screen">
+      <div className="mx-auto max-w-[1700px] px-4 py-8 md:px-6 md:py-10 space-y-5">
+      <div className="flex flex-col gap-3 border-b pb-4 md:flex-row md:items-center md:justify-between">
+        <h1 className="text-3xl font-bold tracking-tight">Form Submissions Admin</h1>
+        <div className="flex gap-2">
+          <Button variant="outline" onClick={loadSubmissions} disabled={loading}>
+            {loading ? "Refreshing..." : "Refresh"}
+          </Button>
+          <Button variant="destructive" onClick={handleLogout} disabled={loading}>
+            Logout
+          </Button>
+        </div>
+      </div>
+
+      <Card className="rounded-lg border bg-white shadow-sm">
+        <CardHeader>
+          <CardTitle>
+            Total Submissions: {filteredSubmissions.length}
+            {selectedForm !== "all" ? ` (Filtered from ${submissions.length})` : ""}
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="text-sm text-foreground/80">
+          {stats.length === 0 ? (
+            "No submissions yet."
+          ) : (
+            <div className="flex flex-wrap gap-2">
+              {stats.map(([formType, count]) => (
+                <span key={formType} className="rounded-md border bg-slate-50 px-2.5 py-1 text-xs md:text-sm">
+                  {formType}: {count}
+                </span>
+              ))}
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
+      <Card className="rounded-lg border bg-white shadow-sm">
+        <CardHeader>
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <CardTitle>Recent Leads</CardTitle>
+            <div className="w-full md:w-[320px]">
+              <Label htmlFor="admin-form-filter" className="mb-2 block">
+                Filter by form
+              </Label>
+              <select
+                id="admin-form-filter"
+                value={selectedForm}
+                onChange={(e) => setSelectedForm(e.target.value)}
+                className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+              >
+                <option value="all">All Forms</option>
+                {formOptions.map((formType) => (
+                  <option key={formType} value={formType}>
+                    {formType}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <div className="overflow-auto rounded-md border">
+            <table className="w-full min-w-[980px] text-sm">
+              <thead className="bg-slate-100">
+                <tr className="border-b">
+                  <th className="text-left py-3 px-3 font-semibold">Time</th>
+                  <th className="text-left py-3 px-3 font-semibold">Form</th>
+                  <th className="text-left py-3 px-3 font-semibold">Name</th>
+                  <th className="text-left py-3 px-3 font-semibold">Email</th>
+                  <th className="text-left py-3 px-3 font-semibold">Page</th>
+                  <th className="text-left py-3 px-3 font-semibold">Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredSubmissions.map((item, index) => (
+                  <tr key={`${item.timestamp}-${item.email}-${index}`} className="border-b align-top odd:bg-white even:bg-slate-50/50">
+                    <td className="whitespace-nowrap py-3 px-3">{formatDate(item.timestamp)}</td>
+                    <td className="py-3 px-3">{item.formType || "-"}</td>
+                    <td className="py-3 px-3">{item.name || "-"}</td>
+                    <td className="py-3 px-3">{item.email || "-"}</td>
+                    <td className="py-3 px-3">{item.page || "-"}</td>
+                    <td className="py-3 px-3">
+                      <div className="max-h-44 overflow-auto rounded border bg-white p-2 text-xs text-foreground/80">
+                        {Object.entries(item.data || {}).length === 0 ? (
+                          "-"
+                        ) : (
+                          <div className="space-y-1.5">
+                            {Object.entries(item.data || {}).map(([key, value]) => (
+                              <div key={key} className="grid grid-cols-[120px_1fr] gap-2">
+                                <span className="font-medium text-foreground/70">{formatDetailLabel(key)}</span>
+                                <span className="break-words">{formatDetailValue(value)}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+                {filteredSubmissions.length === 0 && (
+                  <tr>
+                    <td className="py-6 px-3 text-foreground/60" colSpan={6}>
+                      No submissions for selected form.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+    </div>
+  );
+}

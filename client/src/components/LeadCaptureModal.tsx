@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { useLocation } from 'wouter';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Lock, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { sendEmail } from '@/lib/email';
+import { toast } from 'sonner';
 
 interface LeadCaptureModalProps {
   open: boolean;
@@ -18,7 +19,6 @@ interface LeadCaptureModalProps {
 }
 
 const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ open, onOpenChange, onSuccess, data }) => {
-  const [, setLocation] = useLocation();
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [company, setCompany] = useState('');
@@ -40,24 +40,24 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ open, onOpenChange,
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    // In a real app, you would send this data to your backend/CRM
-    console.log('Lead Captured:', { 
-      email, 
-      name, 
-      company, 
-      ...data,
-      ab_variant: variant, // Track which variant converted
-      ab_variant_name: variant === 'A' ? 'Authority Focus' : 'Benefit Focus'
-    });
-    
-    setLoading(false);
-    onSuccess();
-    onOpenChange(false);
-    setLocation("/thank-you");
+
+    try {
+      await sendEmail('ROI Lead Capture', {
+        email,
+        name,
+        company,
+        ...data,
+        abVariant: variant,
+        abVariantName: variant === 'A' ? 'Authority Focus' : 'Benefit Focus'
+      });
+
+      setLoading(false);
+      onSuccess();
+      onOpenChange(false);
+    } catch (error) {
+      setLoading(false);
+      toast.error(error instanceof Error ? error.message : "Failed to submit form. Please try again.");
+    }
   };
 
   // Variant Content Definitions
@@ -99,7 +99,7 @@ const LeadCaptureModal: React.FC<LeadCaptureModalProps> = ({ open, onOpenChange,
           </DialogDescription>
         </DialogHeader>
         
-        <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+        <form noValidate onSubmit={handleSubmit} className="space-y-4 mt-4">
           <div className="space-y-2">
             <Label htmlFor="name">Full Name</Label>
             <Input 

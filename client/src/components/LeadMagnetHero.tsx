@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { CheckCircle2, ArrowRight, Download, Lock } from "lucide-react";
 import { toast } from "sonner";
+import { sendEmail } from "@/lib/email";
 
 export default function LeadMagnetHero() {
-  const [, setLocation] = useLocation();
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [honeypot, setHoneypot] = useState(""); // Spam protection
@@ -27,13 +26,15 @@ export default function LeadMagnetHero() {
 
     setIsSubmitting(true);
     
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      await sendEmail("Get Your Free Playbook", { email });
       setIsSubmitting(false);
       toast.success("Success! Your Playbook is on its way to your inbox.");
       setEmail("");
-      setLocation("/thank-you");
-    }, 1500);
+    } catch (error) {
+      setIsSubmitting(false);
+      toast.error(error instanceof Error ? error.message : "Failed to submit form. Please try again.");
+    }
   };
 
   return (
@@ -86,7 +87,7 @@ export default function LeadMagnetHero() {
                 <Download className="h-5 w-5 text-accent" />
                 Get Your Free Playbook
               </h2>
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form noValidate onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <Input 
                     type="email" 

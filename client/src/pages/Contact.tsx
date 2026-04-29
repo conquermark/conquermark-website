@@ -1,4 +1,4 @@
-import { useLocation } from "wouter";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -6,14 +6,68 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { toast } from "sonner";
+import { sendEmail } from "@/lib/email";
 
 export default function Contact() {
-  const [, setLocation] = useLocation();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    toast.success("Thanks for reaching out! We'll get back to you within 24 hours.");
-    setLocation("/thank-you");
+    if (isSubmitting) return;
+
+    const form = e.currentTarget;
+    const value = (id: string) => (form.querySelector(`#${id}`) as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement | null)?.value || "";
+    const firstName = value("firstName").trim();
+    const lastName = value("lastName").trim();
+    const email = value("email").trim();
+    const projectType = value("projectType").trim();
+    const message = value("message").trim();
+
+    if (!firstName) {
+      toast.error("Please enter first name.");
+      return;
+    }
+    if (!lastName) {
+      toast.error("Please enter last name.");
+      return;
+    }
+    if (!email) {
+      toast.error("Please enter email.");
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+    if (!projectType) {
+      toast.error("Please select project type.");
+      return;
+    }
+    if (!message) {
+      toast.error("Please tell us about your project.");
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+      await sendEmail("Contact Form", {
+        firstName,
+        lastName,
+        name: `${firstName} ${lastName}`.trim(),
+        email,
+        company: value("company"),
+        projectType,
+        budget: value("budget"),
+        message,
+        submitButton: "Send Message",
+      });
+      toast.success("Thanks for reaching out! We'll get back to you within 24 hours.");
+      form.reset();
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Failed to submit form. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -40,7 +94,7 @@ export default function Contact() {
             <Card>
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold mb-6">Send us a message</h2>
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form noValidate onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="firstName">First Name *</Label>
@@ -106,8 +160,13 @@ export default function Contact() {
                     />
                   </div>
 
-                  <Button type="submit" size="lg" className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
-                    Send Message
+                  <Button
+                    type="submit"
+                    size="lg"
+                    disabled={isSubmitting}
+                    className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"
+                  >
+                    {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
               </CardContent>

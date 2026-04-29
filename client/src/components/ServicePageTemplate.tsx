@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import ContactModal from "./ContactModal";
 import { toast } from "sonner";
+import { sendEmail } from "@/lib/email";
 
 interface ServicePageProps {
   // Hero Section
@@ -99,11 +100,16 @@ export default function ServicePageTemplate({
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [email, setEmail] = useState("");
 
-  const handleProposalSubmit = (e: React.FormEvent) => {
+  const handleProposalSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (email) {
-      toast.success("Thanks! We'll send your custom proposal within 24 hours.");
-      setEmail("");
+      try {
+        await sendEmail(`${serviceName} Proposal Request`, { email, service: serviceName });
+        toast.success("Thanks! We'll send your custom proposal within 24 hours.");
+        setEmail("");
+      } catch (error) {
+        toast.error(error instanceof Error ? error.message : "Failed to submit form. Please try again.");
+      }
     }
   };
 
@@ -150,7 +156,7 @@ export default function ServicePageTemplate({
               </p>
 
               {/* Lead Capture Form */}
-              <form onSubmit={handleProposalSubmit} className="flex flex-col sm:flex-row gap-4 mb-8">
+              <form noValidate onSubmit={handleProposalSubmit} className="flex flex-col sm:flex-row gap-4 mb-8">
                 <Input
                   type="email"
                   placeholder="Enter your email"

@@ -1,7 +1,7 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+import { Route, Switch, useLocation } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 
@@ -108,16 +108,25 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import ThankYou from "./pages/ThankYou";
 import CookiePolicy from "./pages/CookiePolicy";
+import Admin from "./pages/Admin";
 
 function Router() {
+  const [location] = useLocation();
+  const isAdminRoute = location.startsWith("/admin");
+
   return (
     <div className="flex flex-col min-h-screen">
-      <ScrollToTop />
-      <BackToTop />
-      <CookieConsent />
-      <Header />
-      <main className="flex-1 pt-16 md:pt-20">
+      {!isAdminRoute && (
+        <>
+          <ScrollToTop />
+          <BackToTop />
+          <CookieConsent />
+          <Header />
+        </>
+      )}
+      <main className={`flex-1 ${isAdminRoute ? "" : "pt-16 md:pt-20"}`}>
         <Switch>
+          <Route path="/admin" component={Admin} />
           <Route path={"/"} component={Home} />
           <Route path="/services" component={Services} />
           <Route path="/services/mobile-app" component={MobileApp} />
@@ -210,7 +219,7 @@ function Router() {
           <Route component={NotFound} />
         </Switch>
       </main>
-      <Footer />
+      {!isAdminRoute && <Footer />}
     </div>
   );
 }

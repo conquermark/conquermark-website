@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "wouter";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { X, FileText, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
+import { sendEmail } from "@/lib/email";
 
 interface AuditReportPopupProps {
   serviceType: "seo" | "ppc" | "socialAds" | "content" | "ai" | "local" | "advertising";
@@ -101,7 +101,6 @@ const serviceConfig = {
 };
 
 export default function AuditReportPopup({ serviceType, serviceName, auditValue }: AuditReportPopupProps) {
-  const [, setLocation] = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [hasShown, setHasShown] = useState(false);
   const [formData, setFormData] = useState({
@@ -156,12 +155,15 @@ export default function AuditReportPopup({ serviceType, serviceName, auditValue 
     };
   }, [hasShown, serviceType]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success(`Perfect! We'll send your ${serviceName} audit report within 24 hours.`);
-    setIsOpen(false);
-    console.log(`${serviceName} Audit Request:`, formData);
-    setLocation("/thank-you");
+    try {
+      await sendEmail(`${serviceName} Audit Request`, { ...formData, serviceType });
+      toast.success(`Perfect! We'll send your ${serviceName} audit report within 24 hours.`);
+      setIsOpen(false);
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Failed to submit form. Please try again.");
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -217,7 +219,7 @@ export default function AuditReportPopup({ serviceType, serviceName, auditValue 
             </ul>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-3.5">
+          <form noValidate onSubmit={handleSubmit} className="space-y-3.5">
             <div>
               <Label htmlFor="name" className="text-sm">Your Name *</Label>
               <Input
