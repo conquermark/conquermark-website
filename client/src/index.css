@@ -184,3 +184,8 @@
     }
   }
 }
+
+/* Hide reCAPTCHA v3 floating badge — attribution shown in footer per Google's terms */
+.grecaptcha-badge {
+  visibility: hidden;
+}

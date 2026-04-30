@@ -275,13 +275,34 @@ export default function Footer() {
 
       {/* Bottom Bar - Full Width */}
       <div className="border-t border-white/10 bg-black/20 w-full">
-        <div className="w-full px-6 md:px-12 lg:px-16 py-6 max-w-[1920px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-gray-500">
+        <div className="w-full px-6 md:px-12 lg:px-16 py-6 max-w-[1920px] mx-auto grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] items-center gap-3 text-xs text-gray-500">
+          <p className="text-center md:text-left">
             © {new Date().getFullYear()} Conquermark. All rights reserved.
           </p>
-          <div className="flex gap-6 text-xs text-gray-500">
-            <span>Built with ❤️ for the future of work.</span>
-          </div>
+          <p className="text-center">
+            This site is protected by reCAPTCHA and the Google{" "}
+            <a
+              href="https://policies.google.com/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-gray-300 transition-colors"
+            >
+              Privacy Policy
+            </a>{" "}
+            and{" "}
+            <a
+              href="https://policies.google.com/terms"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-gray-300 transition-colors"
+            >
+              Terms of Service
+            </a>{" "}
+            apply.
+          </p>
+          <p className="text-center md:text-right">
+            Built with ❤️ for the future of work.
+          </p>
         </div>
       </div>
     </footer>
