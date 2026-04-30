@@ -12,8 +12,6 @@ export type FormSubmissionPayload = {
   page?: string;
 };
 
-const OWNER_EMAIL = process.env.OWNER_EMAIL || "hello@conquermark.com";
-const FROM_EMAIL = process.env.FROM_EMAIL || "noreply@conquermark.com";
 const SUBMISSIONS_DIR = path.resolve(process.cwd(), "form-submissions");
 const SUBMISSIONS_CSV = path.join(SUBMISSIONS_DIR, "submissions.csv");
 const DUPLICATE_WINDOW_MS = 5 * 60 * 1000;
@@ -73,9 +71,11 @@ async function verifyRecaptcha(token?: string) {
 }
 
 function createTransporter() {
+  const port = Number(process.env.MAILTRAP_PORT || 587);
   return nodemailer.createTransport({
     host: process.env.MAILTRAP_HOST,
-    port: Number(process.env.MAILTRAP_PORT || 587),
+    port,
+    secure: port === 465,
     auth: {
       user: process.env.MAILTRAP_USER,
       pass: process.env.MAILTRAP_PASS,
@@ -96,8 +96,8 @@ async function sendOwnerEmail(formType: string, data: SubmissionData, page?: str
     .join("");
 
   await createTransporter().sendMail({
-    from: FROM_EMAIL,
-    to: OWNER_EMAIL,
+    from: process.env.FROM_EMAIL || "hello@conquermark.com",
+    to: process.env.OWNER_EMAIL || "hello@conquermark.com",
     replyTo: pickFirst(data, ["email", "workEmail", "businessEmail"]) || undefined,
     subject: `New ${formType} - Conquermark`,
     html: `

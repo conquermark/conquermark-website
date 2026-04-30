@@ -2,6 +2,7 @@ import { FormEvent, useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
@@ -42,6 +43,68 @@ function formatDetailValue(value: unknown) {
   return String(value);
 }
 
+const EXPORT_COLUMNS: Array<{ header: string; keys: string[]; source?: "top" | "data" }> = [
+  { header: "Date", keys: ["timestamp"], source: "top" },
+  { header: "Form", keys: ["formType"], source: "top" },
+  { header: "Name", keys: ["name", "fullName", "firstName", "contactName"] },
+  { header: "Email", keys: ["email", "workEmail", "businessEmail"] },
+  { header: "Phone", keys: ["phone", "phoneNumber", "mobile", "contactNumber"] },
+  { header: "Company", keys: ["company", "companyName", "organization", "businessName"] },
+  { header: "Service", keys: ["service", "serviceType", "interestedIn"] },
+  { header: "Budget", keys: ["budget", "budgetRange"] },
+  { header: "Timeline", keys: ["timeline", "timeframe"] },
+  { header: "Message", keys: ["message", "notes", "comments", "details"] },
+  { header: "Page", keys: ["page"], source: "top" },
+];
+
+function pickFromData(data: Record<string, unknown>, keys: string[]) {
+  for (const key of keys) {
+    const value = data[key];
+    if (value !== undefined && value !== null && String(value).trim() !== "") {
+      if (typeof value === "boolean") return value ? "Yes" : "No";
+      return String(value);
+    }
+  }
+  return "";
+}
+
+function csvEscape(value: string) {
+  const needsQuote = /[",\n\r]/.test(value);
+  const escaped = value.replace(/"/g, '""');
+  return needsQuote ? `"${escaped}"` : escaped;
+}
+
+function buildCsv(rows: AdminSubmission[]) {
+  const header = EXPORT_COLUMNS.map((c) => c.header).join(",");
+  const body = rows
+    .map((row) =>
+      EXPORT_COLUMNS.map((col) => {
+        let value = "";
+        if (col.source === "top") {
+          if (col.keys[0] === "timestamp") value = formatDate(row.timestamp);
+          else value = String((row as unknown as Record<string, unknown>)[col.keys[0]] || "");
+        } else {
+          value = pickFromData(row.data || {}, col.keys);
+        }
+        return csvEscape(value);
+      }).join(","),
+    )
+    .join("\n");
+  return `${header}\n${body}`;
+}
+
+function downloadCsv(filename: string, csv: string) {
+  const blob = new Blob([`﻿${csv}`], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+
 export default function Admin() {
   const [authChecked, setAuthChecked] = useState(false);
   const [configured, setConfigured] = useState(true);
@@ -51,6 +114,7 @@ export default function Admin() {
   const [selectedForm, setSelectedForm] = useState("all");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [detailsItem, setDetailsItem] = useState<AdminSubmission | null>(null);
 
   useEffect(() => {
     document.title = "Conquermark Admin";
@@ -217,10 +281,36 @@ export default function Admin() {
       <div className="flex flex-col gap-3 border-b pb-4 md:flex-row md:items-center md:justify-between">
         <h1 className="text-3xl font-bold tracking-tight">Form Submissions Admin</h1>
         <div className="flex gap-2">
-          <Button variant="outline" onClick={loadSubmissions} disabled={loading}>
+          <Button
+            onClick={() => {
+              if (filteredSubmissions.length === 0) {
+                toast.error("No submissions to export.");
+                return;
+              }
+              const today = new Date().toISOString().slice(0, 10);
+              const scope = selectedForm === "all" ? "all" : selectedForm.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+              downloadCsv(`conquermark-leads-${scope}-${today}.csv`, buildCsv(filteredSubmissions));
+              toast.success(`Exported ${filteredSubmissions.length} leads.`);
+            }}
+            disabled={loading || filteredSubmissions.length === 0}
+            className="bg-green-600 text-white hover:bg-green-600 hover:text-white"
+          >
+            Export CSV
+          </Button>
+          <Button
+            variant="outline"
+            onClick={loadSubmissions}
+            disabled={loading}
+            className="hover:bg-transparent hover:text-current"
+          >
             {loading ? "Refreshing..." : "Refresh"}
           </Button>
-          <Button variant="destructive" onClick={handleLogout} disabled={loading}>
+          <Button
+            variant="destructive"
+            onClick={handleLogout}
+            disabled={loading}
+            className="hover:bg-destructive hover:text-white"
+          >
             Logout
           </Button>
         </div>
@@ -274,14 +364,13 @@ export default function Admin() {
         </CardHeader>
         <CardContent>
           <div className="overflow-auto rounded-md border">
-            <table className="w-full min-w-[980px] text-sm">
+            <table className="w-full min-w-[760px] text-sm">
               <thead className="bg-slate-100">
                 <tr className="border-b">
                   <th className="text-left py-3 px-3 font-semibold">Time</th>
                   <th className="text-left py-3 px-3 font-semibold">Form</th>
                   <th className="text-left py-3 px-3 font-semibold">Name</th>
                   <th className="text-left py-3 px-3 font-semibold">Email</th>
-                  <th className="text-left py-3 px-3 font-semibold">Page</th>
                   <th className="text-left py-3 px-3 font-semibold">Details</th>
                 </tr>
               </thead>
@@ -292,28 +381,23 @@ export default function Admin() {
                     <td className="py-3 px-3">{item.formType || "-"}</td>
                     <td className="py-3 px-3">{item.name || "-"}</td>
                     <td className="py-3 px-3">{item.email || "-"}</td>
-                    <td className="py-3 px-3">{item.page || "-"}</td>
                     <td className="py-3 px-3">
-                      <div className="max-h-44 overflow-auto rounded border bg-white p-2 text-xs text-foreground/80">
-                        {Object.entries(item.data || {}).length === 0 ? (
-                          "-"
-                        ) : (
-                          <div className="space-y-1.5">
-                            {Object.entries(item.data || {}).map(([key, value]) => (
-                              <div key={key} className="grid grid-cols-[120px_1fr] gap-2">
-                                <span className="font-medium text-foreground/70">{formatDetailLabel(key)}</span>
-                                <span className="break-words">{formatDetailValue(value)}</span>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setDetailsItem(item)}
+                        disabled={Object.entries(item.data || {}).length === 0}
+                        className="hover:bg-transparent hover:text-current"
+                      >
+                        View Details
+                      </Button>
                     </td>
                   </tr>
                 ))}
                 {filteredSubmissions.length === 0 && (
                   <tr>
-                    <td className="py-6 px-3 text-foreground/60" colSpan={6}>
+                    <td className="py-6 px-3 text-foreground/60" colSpan={5}>
                       No submissions for selected form.
                     </td>
                   </tr>
@@ -323,6 +407,47 @@ export default function Admin() {
           </div>
         </CardContent>
       </Card>
+
+      <Dialog open={detailsItem !== null} onOpenChange={(open) => !open && setDetailsItem(null)}>
+        <DialogContent className="max-w-2xl [&>button]:focus:ring-0 [&>button]:focus:ring-offset-0 [&>button]:focus-visible:outline-none [&>button]:focus-visible:ring-0">
+
+          <DialogHeader>
+            <DialogTitle>
+              {detailsItem?.formType || "Submission"} Details
+            </DialogTitle>
+          </DialogHeader>
+          {detailsItem && (
+            <div className="space-y-3 text-sm">
+              <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-foreground/60">
+                <span><span className="font-medium text-foreground/70">Time:</span> {formatDate(detailsItem.timestamp)}</span>
+                {detailsItem.page && <span><span className="font-medium text-foreground/70">Page:</span> {detailsItem.page}</span>}
+              </div>
+              <div className="max-h-[60vh] overflow-auto rounded border bg-white">
+                {Object.entries(detailsItem.data || {}).length === 0 ? (
+                  <p className="p-3 text-foreground/60">No additional details.</p>
+                ) : (
+                  <table className="w-full text-sm">
+                    <thead className="bg-slate-100">
+                      <tr className="border-b">
+                        <th className="text-left py-2 px-3 font-semibold w-[180px]">Field</th>
+                        <th className="text-left py-2 px-3 font-semibold">Value</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {Object.entries(detailsItem.data || {}).map(([key, value]) => (
+                        <tr key={key} className="border-b last:border-b-0 odd:bg-white even:bg-slate-50/50">
+                          <td className="py-2 px-3 font-medium text-foreground/70 align-top">{formatDetailLabel(key)}</td>
+                          <td className="py-2 px-3 break-words align-top">{formatDetailValue(value)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                )}
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
     </div>
   );
