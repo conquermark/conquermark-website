@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 type AdminSubmission = {
+  id: string;
   timestamp: string;
   formType: string;
   page: string;
@@ -115,6 +116,8 @@ export default function Admin() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [detailsItem, setDetailsItem] = useState<AdminSubmission | null>(null);
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+  const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
     document.title = "Conquermark Admin";
@@ -146,6 +149,7 @@ export default function Admin() {
         throw new Error(payload.message || "Failed to load submissions");
       }
       setSubmissions(Array.isArray(payload.submissions) ? payload.submissions : []);
+      setSelectedIds(new Set());
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Failed to load submissions");
     } finally {
@@ -186,6 +190,71 @@ export default function Admin() {
     if (selectedForm === "all") return submissions;
     return submissions.filter((item) => item.formType === selectedForm);
   }, [submissions, selectedForm]);
+
+  const deleteSubmissions = async (ids: string[]) => {
+    if (ids.length === 0) return;
+
+    const message =
+      ids.length === 1
+        ? "Delete this submission? This cannot be undone."
+        : `Delete ${ids.length} submissions? This cannot be undone.`;
+    if (!window.confirm(message)) return;
+
+    setDeleting(true);
+    try {
+      const response = await fetch("/api/admin/submissions/delete", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ids }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload.success) {
+        throw new Error(payload.message || "Failed to delete submissions");
+      }
+
+      const idSet = new Set(ids);
+      setSubmissions((prev) => prev.filter((item) => !idSet.has(item.id)));
+      setSelectedIds((prev) => {
+        const next = new Set(prev);
+        for (const id of ids) next.delete(id);
+        return next;
+      });
+      toast.success(`Deleted ${payload.deleted ?? ids.length} submission${(payload.deleted ?? ids.length) === 1 ? "" : "s"}.`);
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Failed to delete submissions");
+    } finally {
+      setDeleting(false);
+    }
+  };
+
+  const toggleRowSelected = (id: string) => {
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
+  const allFilteredSelected =
+    filteredSubmissions.length > 0 && filteredSubmissions.every((item) => selectedIds.has(item.id));
+
+  const toggleSelectAllFiltered = () => {
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      if (allFilteredSelected) {
+        for (const item of filteredSubmissions) next.delete(item.id);
+      } else {
+        for (const item of filteredSubmissions) next.add(item.id);
+      }
+      return next;
+    });
+  };
+
+  const selectedCount = useMemo(
+    () => filteredSubmissions.filter((item) => selectedIds.has(item.id)).length,
+    [filteredSubmissions, selectedIds],
+  );
 
   const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -298,6 +367,18 @@ export default function Admin() {
             Export CSV
           </Button>
           <Button
+            variant="destructive"
+            onClick={() =>
+              deleteSubmissions(
+                filteredSubmissions.filter((item) => selectedIds.has(item.id)).map((item) => item.id),
+              )
+            }
+            disabled={loading || deleting || selectedCount === 0}
+            className="hover:bg-destructive hover:text-white"
+          >
+            {deleting ? "Deleting..." : `Delete Selected${selectedCount > 0 ? ` (${selectedCount})` : ""}`}
+          </Button>
+          <Button
             variant="outline"
             onClick={loadSubmissions}
             disabled={loading}
@@ -367,16 +448,36 @@ export default function Admin() {
             <table className="w-full min-w-[760px] text-sm">
               <thead className="bg-slate-100">
                 <tr className="border-b">
+                  <th className="py-3 px-3 w-[40px] text-left">
+                    <input
+                      type="checkbox"
+                      aria-label="Select all"
+                      checked={allFilteredSelected}
+                      onChange={toggleSelectAllFiltered}
+                      disabled={filteredSubmissions.length === 0}
+                      className="h-4 w-4 cursor-pointer"
+                    />
+                  </th>
                   <th className="text-left py-3 px-3 font-semibold">Time</th>
                   <th className="text-left py-3 px-3 font-semibold">Form</th>
                   <th className="text-left py-3 px-3 font-semibold">Name</th>
                   <th className="text-left py-3 px-3 font-semibold">Email</th>
                   <th className="text-left py-3 px-3 font-semibold">Details</th>
+                  <th className="text-left py-3 px-3 font-semibold">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredSubmissions.map((item, index) => (
-                  <tr key={`${item.timestamp}-${item.email}-${index}`} className="border-b align-top odd:bg-white even:bg-slate-50/50">
+                  <tr key={`${item.id}-${index}`} className="border-b align-top odd:bg-white even:bg-slate-50/50">
+                    <td className="py-3 px-3 align-middle">
+                      <input
+                        type="checkbox"
+                        aria-label="Select submission"
+                        checked={selectedIds.has(item.id)}
+                        onChange={() => toggleRowSelected(item.id)}
+                        className="h-4 w-4 cursor-pointer"
+                      />
+                    </td>
                     <td className="whitespace-nowrap py-3 px-3">{formatDate(item.timestamp)}</td>
                     <td className="py-3 px-3">{item.formType || "-"}</td>
                     <td className="py-3 px-3">{item.name || "-"}</td>
@@ -393,11 +494,23 @@ export default function Admin() {
                         View Details
                       </Button>
                     </td>
+                    <td className="py-3 px-3">
+                      <Button
+                        type="button"
+                        variant="destructive"
+                        size="sm"
+                        onClick={() => deleteSubmissions([item.id])}
+                        disabled={deleting}
+                        className="hover:bg-destructive hover:text-white"
+                      >
+                        Delete
+                      </Button>
+                    </td>
                   </tr>
                 ))}
                 {filteredSubmissions.length === 0 && (
                   <tr>
-                    <td className="py-6 px-3 text-foreground/60" colSpan={5}>
+                    <td className="py-6 px-3 text-foreground/60" colSpan={7}>
                       No submissions for selected form.
                     </td>
                   </tr>

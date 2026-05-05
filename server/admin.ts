@@ -13,6 +13,12 @@ type StoredSubmission = {
   data: RawSubmissionData;
 };
 
+type StoredSubmissionWithId = StoredSubmission & { id: string };
+
+function lineId(line: string) {
+  return crypto.createHash("sha1").update(line).digest("hex").slice(0, 16);
+}
+
 const SUBMISSIONS_DIR = path.resolve(process.cwd(), "form-submissions");
 const SUBMISSIONS_NDJSON = path.join(SUBMISSIONS_DIR, "submissions.ndjson");
 const ADMIN_COOKIE_NAME = "cm_admin_session";
@@ -103,21 +109,47 @@ export function adminLogout(cookieHeader: string | undefined) {
 }
 
 export function getAdminSubmissions(limit = 500) {
-  if (!fs.existsSync(SUBMISSIONS_NDJSON)) return [] as StoredSubmission[];
+  if (!fs.existsSync(SUBMISSIONS_NDJSON)) return [] as StoredSubmissionWithId[];
 
   const lines = fs.readFileSync(SUBMISSIONS_NDJSON, "utf-8").split("\n").filter(Boolean);
-  const parsed: StoredSubmission[] = [];
+  const parsed: StoredSubmissionWithId[] = [];
 
   for (const line of lines) {
     try {
       const row = JSON.parse(line) as StoredSubmission;
-      parsed.push(row);
+      parsed.push({ ...row, id: lineId(line) });
     } catch {
       // Ignore malformed lines
     }
   }
 
   return parsed.reverse().slice(0, limit);
+}
+
+export function deleteAdminSubmissions(ids: string[]) {
+  if (!fs.existsSync(SUBMISSIONS_NDJSON)) return 0;
+  if (!Array.isArray(ids) || ids.length === 0) return 0;
+
+  const idSet = new Set(ids);
+  const lines = fs.readFileSync(SUBMISSIONS_NDJSON, "utf-8").split("\n").filter(Boolean);
+  const kept: string[] = [];
+  let deleted = 0;
+
+  for (const line of lines) {
+    if (idSet.has(lineId(line))) {
+      deleted++;
+    } else {
+      kept.push(line);
+    }
+  }
+
+  if (deleted === 0) return 0;
+
+  const output = kept.length > 0 ? `${kept.join("\n")}\n` : "";
+  const tmpPath = `${SUBMISSIONS_NDJSON}.tmp`;
+  fs.writeFileSync(tmpPath, output, "utf-8");
+  fs.renameSync(tmpPath, SUBMISSIONS_NDJSON);
+  return deleted;
 }
 
 function firstNonEmpty(data: RawSubmissionData, keys: string[]) {

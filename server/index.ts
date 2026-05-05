@@ -9,6 +9,7 @@ import {
   adminLogin,
   adminLogout,
   clearAdminCookie,
+  deleteAdminSubmissions,
   getAdminSubmissions,
   isAdminAuthenticated,
 } from "./admin";
@@ -75,6 +76,24 @@ async function startServer() {
       success: true,
       submissions: getAdminSubmissions(limit),
     });
+  });
+
+  app.post("/api/admin/submissions/delete", (req, res) => {
+    if (!isAdminAuthenticated(req.headers.cookie)) {
+      return res.status(401).json({ success: false, message: "Unauthorized" });
+    }
+
+    const rawIds = Array.isArray(req.body?.ids) ? req.body.ids : [];
+    const ids = rawIds
+      .map((value: unknown) => (typeof value === "string" ? value.trim() : ""))
+      .filter((value: string) => value.length > 0);
+
+    if (ids.length === 0) {
+      return res.status(400).json({ success: false, message: "No submission ids provided." });
+    }
+
+    const deleted = deleteAdminSubmissions(ids);
+    return res.json({ success: true, deleted });
   });
 
   app.get("/api/health", (_req, res) => {
