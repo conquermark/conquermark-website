@@ -109,9 +109,7 @@ export default function Footer() {
           <div className="space-y-6">
             <Link href="/">
               <div className="flex items-center gap-2 cursor-pointer">
-                <div className="h-8 w-8 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-xl">C</span>
-                </div>
+                <img src="/favicon.svg" alt="Conquermark" className="h-8 w-8" />
                 <span className="text-2xl font-bold tracking-tight text-white">Conquermark</span>
               </div>
             </Link>
