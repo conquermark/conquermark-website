@@ -1,4 +1,5 @@
 import express from "express";
+import fs from "fs";
 import { createServer } from "http";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -14,6 +15,7 @@ import {
   isAdminAuthenticated,
 } from "./admin";
 import { handleFormSubmission } from "./formSubmissions";
+import { isValidAppRoute } from "../shared/routes";
 
 dotenv.config();
 
@@ -106,17 +108,50 @@ async function startServer() {
       ? path.resolve(__dirname, "public")
       : path.resolve(__dirname, "..", "dist", "public");
 
-  app.use(express.static(staticPath));
+  // Serve real asset files (js/css/images/pdf/etc.).
+  // - index:false    -> don't auto-serve index.html for directory requests
+  // - redirect:false -> don't 301 /path -> /path/ (prerendered route dirs would
+  //                     otherwise trigger trailing-slash redirects)
+  // HTML/route serving is handled explicitly below.
+  app.use(express.static(staticPath, { index: false, redirect: false }));
 
-  // Serve /admin with explicit noindex header (SEO-safe)
+  // Permanent redirects for removed pages (real 301s instead of client-side
+  // redirects, so link equity transfers and crawlers follow cleanly).
+  const permanentRedirects: Record<string, string> = {
+    "/pricing": "/contact",
+    "/blog": "/case-studies",
+    "/resources": "/contact",
+  };
+  app.get(Object.keys(permanentRedirects), (req, res) => {
+    res.redirect(301, permanentRedirects[req.path]);
+  });
+
+  // Serve /admin with explicit noindex header (SEO-safe). Not prerendered.
   app.get("/admin*", (_req, res) => {
     res.setHeader("X-Robots-Tag", "noindex, nofollow, noarchive, nosnippet");
     res.sendFile(path.join(staticPath, "index.html"));
   });
 
-  // Handle client-side routing - serve index.html for all routes
-  app.get("*", (_req, res) => {
-    res.sendFile(path.join(staticPath, "index.html"));
+  const shellPath = path.join(staticPath, "index.html");
+
+  // Route handling:
+  // - Unknown URL  -> HTTP 404 (avoids "soft 404s" that waste crawl budget)
+  // - Known route  -> serve the prerendered, content-rich HTML if it exists
+  //                   (built by scripts/prerender.ts), otherwise the SPA shell.
+  // Either way the SPA hydrates client-side; the prerendered HTML just gives
+  // crawlers real content + meta tags in the initial response.
+  const notFoundPath = path.join(staticPath, "404", "index.html");
+  app.get("*", (req, res) => {
+    if (!isValidAppRoute(req.path)) {
+      // Serve the prerendered NotFound page (real content) with a 404 status.
+      return res.status(404).sendFile(fs.existsSync(notFoundPath) ? notFoundPath : shellPath);
+    }
+    const prerendered =
+      req.path === "/" ? shellPath : path.join(staticPath, req.path, "index.html");
+    if (fs.existsSync(prerendered)) {
+      return res.status(200).sendFile(prerendered);
+    }
+    return res.status(200).sendFile(shellPath);
   });
 
   const port = process.env.PORT || 3000;

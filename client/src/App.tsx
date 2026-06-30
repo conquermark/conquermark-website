@@ -173,6 +173,7 @@ function Router() {
           <Route path="/ai-audit" component={AIAuditLanding} />
           <Route path="/content-audit" component={ContentAuditLanding} />
           <Route path="/advertising-audit" component={AdvertisingAuditLanding} />
+          <Route path="/automation-audit" component={AutomationAuditLanding} />
           <Route path="/about" component={About} />
           <Route path="/about/who-we-are" component={WhoWeAre} />
           <Route path="/about/our-approach" component={OurApproach} />
@@ -209,6 +210,27 @@ function Router() {
           {/* Final fallback route */}
 
           {/* Automation Services Routes */}
+          <Route path="/automation-services" component={AutomationServices} />
+          <Route path="/automation/marketing" component={AutomationMarketing} />
+          <Route path="/automation/sales" component={AutomationSales} />
+          <Route path="/automation/support" component={AutomationSupport} />
+          <Route path="/automation/internal-workflows" component={AutomationInternalWorkflows} />
+          <Route path="/automation/reporting" component={AutomationReporting} />
+          <Route path="/automation/n8n" component={AutomationN8n} />
+          <Route path="/automation/zapier" component={AutomationZapier} />
+          <Route path="/automation/make" component={AutomationMake} />
+          <Route path="/automation/pabbly" component={AutomationPabbly} />
+          <Route path="/automation/custom-api" component={AutomationCustomApi} />
+          <Route path="/automation/ecommerce" component={AutomationEcommerce} />
+          <Route path="/automation/saas" component={AutomationSaas} />
+          <Route path="/automation/healthcare" component={AutomationHealthcare} />
+          <Route path="/automation/education" component={AutomationEducation} />
+          <Route path="/automation/finance" component={AutomationFinance} />
+          <Route path="/automation/lead-capture" component={AutomationLeadCapture} />
+          <Route path="/automation/chatbot-whatsapp" component={AutomationChatbotWhatsapp} />
+          <Route path="/automation/form-to-crm" component={AutomationFormToCrm} />
+          <Route path="/automation/order-sync" component={AutomationOrderSync} />
+          <Route path="/automation/notifications" component={AutomationNotifications} />
           
 
 

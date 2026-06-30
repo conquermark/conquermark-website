@@ -11,7 +11,7 @@ export const digitalMarketingServices: DigitalMarketingService[] = [
   // SEO Services
   {
     name: "SEO Services Overview",
-    href: "/digital-marketing/seo",
+    href: "/digital-marketing/seo/overview",
     description: "Comprehensive SEO strategies to dominate search results and increase organic traffic",
     category: "SEO"
   },
@@ -49,7 +49,7 @@ export const digitalMarketingServices: DigitalMarketingService[] = [
   // AI Services
   {
     name: "AI Services Overview",
-    href: "/digital-marketing/ai",
+    href: "/digital-marketing/ai/overview",
     description: "Leverage AI technology to transform your digital marketing strategy",
     category: "AI"
   },
@@ -79,7 +79,7 @@ export const digitalMarketingServices: DigitalMarketingService[] = [
   },
   {
     name: "GPT Integration",
-    href: "/digital-marketing/ai/integration",
+    href: "/digital-marketing/ai/gpt-integration",
     description: "Integrate GPT and AI models into your marketing workflows and systems",
     category: "AI"
   },
@@ -93,7 +93,7 @@ export const digitalMarketingServices: DigitalMarketingService[] = [
   // Content Marketing
   {
     name: "Content Services Overview",
-    href: "/digital-marketing/content",
+    href: "/digital-marketing/content/overview",
     description: "Strategic content creation and distribution to engage your audience",
     category: "Content"
   },
@@ -123,7 +123,7 @@ export const digitalMarketingServices: DigitalMarketingService[] = [
   },
   {
     name: "CTV/OTT Advertising",
-    href: "/digital-marketing/content/ctv",
+    href: "/digital-marketing/content/ctv-ott",
     description: "Reach audiences through connected TV and over-the-top streaming platforms",
     category: "Content"
   },
@@ -131,7 +131,7 @@ export const digitalMarketingServices: DigitalMarketingService[] = [
   // Digital Advertising
   {
     name: "Advertising Overview",
-    href: "/digital-marketing/advertising",
+    href: "/digital-marketing/advertising/overview",
     description: "Comprehensive digital advertising solutions across all major platforms",
     category: "Advertising"
   },

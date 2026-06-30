@@ -79,7 +79,7 @@ export default function Header() {
     { name: "AI Consulting", href: "/digital-marketing/ai/consulting", category: "AI Services" },
     { name: "ChatGPT Optimization", href: "/digital-marketing/ai/chatgpt", category: "AI Services" },
     { name: "AI Agent Development", href: "/digital-marketing/ai/agent-development", category: "AI Services" },
-    { name: "GPT Integration", href: "/digital-marketing/ai/integration", category: "AI Services" },
+    { name: "GPT Integration", href: "/digital-marketing/ai/gpt-integration", category: "AI Services" },
     { name: "Enterprise GEO", href: "/digital-marketing/ai/enterprise-geo", category: "AI Services" },
     
     // Content Marketing (Column 3)
@@ -88,7 +88,7 @@ export default function Header() {
     { name: "Copywriting Services", href: "/digital-marketing/content/copywriting", category: "Content Marketing" },
     { name: "Infographics", href: "/digital-marketing/content/infographics", category: "Content Marketing" },
     { name: "Social Media Management", href: "/digital-marketing/content/social-management", category: "Content Marketing" },
-    { name: "CTV/OTT Advertising", href: "/digital-marketing/content/ctv", category: "Content Marketing" },
+    { name: "CTV/OTT Advertising", href: "/digital-marketing/content/ctv-ott", category: "Content Marketing" },
     
     // Digital Advertising (Column 4)
     { name: "Advertising Overview", href: "/digital-marketing/advertising/overview", category: "Digital Advertising" },

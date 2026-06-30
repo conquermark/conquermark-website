@@ -16,6 +16,7 @@ import {
   isAdminAuthenticated,
 } from "./server/admin";
 import { handleFormSubmission } from "./server/formSubmissions";
+import { isValidAppRoute } from "./shared/routes";
 
 dotenv.config();
 
@@ -260,7 +261,51 @@ function vitePluginFormSubmissions(): Plugin {
   };
 }
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginFormSubmissions(), vitePluginManusDebugCollector()];
+/**
+ * Dev-server parity for production "real 404s".
+ * Vite's SPA fallback serves index.html with HTTP 200 for every navigation,
+ * which produces "soft 404s". This middleware returns a proper 404 status for
+ * navigation requests whose path isn't a real route, while still rendering the
+ * SPA (so the NotFound page is shown). Valid routes pass through untouched.
+ */
+function vitePluginSpa404(): Plugin {
+  const RESERVED_PREFIXES = ["/@", "/src", "/node_modules", "/__manus__", "/api", "/.vite"];
+  return {
+    name: "conquermark-spa-404",
+    configureServer(server: ViteDevServer) {
+      server.middlewares.use(async (req, res, next) => {
+        if (req.method !== "GET" && req.method !== "HEAD") return next();
+
+        const accept = req.headers.accept || "";
+        if (!accept.includes("text/html")) return next();
+
+        const url = req.url || "/";
+        const pathname = url.split("?")[0].split("#")[0];
+
+        // Skip Vite internals and asset-like requests (anything with a file extension).
+        if (RESERVED_PREFIXES.some((p) => pathname.startsWith(p))) return next();
+        const lastSegment = pathname.split("/").pop() || "";
+        if (lastSegment.includes(".")) return next();
+
+        if (isValidAppRoute(pathname)) return next();
+
+        // Unknown route: render the SPA shell but with a 404 status.
+        try {
+          const indexPath = path.resolve(import.meta.dirname, "client", "index.html");
+          const raw = fs.readFileSync(indexPath, "utf-8");
+          const html = await server.transformIndexHtml(url, raw, pathname);
+          res.statusCode = 404;
+          res.setHeader("Content-Type", "text/html");
+          res.end(html);
+        } catch {
+          next();
+        }
+      });
+    },
+  };
+}
+
+const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginFormSubmissions(), vitePluginSpa404(), vitePluginManusDebugCollector()];
 
 export default defineConfig({
   plugins,
