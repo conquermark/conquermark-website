@@ -8,8 +8,6 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { useState, useEffect, lazy, Suspense } from "react";
-import SEO from "@/components/SEO";
-import { getSEOData } from "@/config/seoData";
 import LeadMagnetHero from "@/components/LeadMagnetHero";
 import ContactModal from "@/components/ContactModal";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -23,8 +21,6 @@ const BenefitsSection = lazy(() => import("@/components/BenefitsSection"));
 const PriorityAccessForm = lazy(() => import("@/components/PriorityAccessForm"));
 
 export default function Home() {
-  const seoData = getSEOData('/');
-
   const [email, setEmail] = useState("");
   const [videoLightboxOpen, setVideoLightboxOpen] = useState(false);
   const [currentVideo, setCurrentVideo] = useState("");
@@ -72,13 +68,6 @@ export default function Home() {
 
   return (
     <>
-      <SEO 
-        title={seoData.title}
-        description={seoData.description}
-        keywords={seoData.keywords}
-        canonical="https://conquermark.com/"
-        schema={seoData.schema}
-      />
       <div className="min-h-screen">
         <Breadcrumbs />
         {/* 1. NEW LEAD MAGNET HERO SECTION */}

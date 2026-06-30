@@ -208,7 +208,7 @@ export default function ContentOverview() {
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Digital Marketing", href: "/digital-marketing" },
-        { label: "Content Marketing", href: "/digital-marketing/content" }
+        { label: "Content Marketing", href: "/digital-marketing/content/overview" }
       ]}
     />
   );

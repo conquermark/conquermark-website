@@ -220,7 +220,7 @@ export default function AIServicesOverview() {
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Digital Marketing", href: "/digital-marketing" },
-        { label: "AI Services", href: "/digital-marketing/ai" }
+        { label: "AI Services", href: "/digital-marketing/ai/overview" }
       ]}
     />
   );

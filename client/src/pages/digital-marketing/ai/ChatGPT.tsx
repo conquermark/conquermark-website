@@ -224,7 +224,7 @@ export default function ChatGPT() {
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Digital Marketing", href: "/digital-marketing" },
-        { label: "AI Services", href: "/digital-marketing/ai" },
+        { label: "AI Services", href: "/digital-marketing/ai/overview" },
         { label: "ChatGPT Optimization", href: "#" },
       ]}
       category="AI Services"

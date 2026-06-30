@@ -225,7 +225,7 @@ export default function Integration() {
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Digital Marketing", href: "/digital-marketing" },
-        { label: "AI Services", href: "/digital-marketing/ai" },
+        { label: "AI Services", href: "/digital-marketing/ai/overview" },
         { label: "AI & GPT Integration", href: "#" },
       ]}
       category="AI Services"

@@ -224,7 +224,7 @@ export default function BrandAudit() {
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Digital Marketing", href: "/digital-marketing" },
-        { label: "SEO & Search Visibility", href: "/digital-marketing/seo" },
+        { label: "SEO & Search Visibility", href: "/digital-marketing/seo/overview" },
         { label: "Brand Visibility Audit", href: "#" },
       ]}
       category="SEO & Search Visibility"

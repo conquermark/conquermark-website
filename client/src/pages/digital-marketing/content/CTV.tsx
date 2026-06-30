@@ -224,7 +224,7 @@ export default function CTV() {
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Digital Marketing", href: "/digital-marketing" },
-        { label: "Content Marketing", href: "/digital-marketing/content" },
+        { label: "Content Marketing", href: "/digital-marketing/content/overview" },
         { label: "Connected TV & OTT Advertising", href: "#" },
       ]}
       category="Content Marketing"

@@ -224,7 +224,7 @@ export default function SocialMediaAds() {
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Digital Marketing", href: "/digital-marketing" },
-        { label: "Digital Advertising", href: "/digital-marketing/advertising" },
+        { label: "Digital Advertising", href: "/digital-marketing/advertising/overview" },
         { label: "Social Media Advertising", href: "#" },
       ]}
       category="Digital Advertising"

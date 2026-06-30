@@ -5,6 +5,8 @@ import { Route, Switch, useLocation } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 
+import SEO from "./components/SEO";
+import { getSEOData } from "./config/seoData";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
@@ -114,8 +116,19 @@ function Router() {
   const [location] = useLocation();
   const isAdminRoute = location.startsWith("/admin");
 
+  const seo = getSEOData(location);
+
   return (
     <div className="flex flex-col min-h-screen">
+      {!isAdminRoute && (
+        <SEO
+          title={seo.title}
+          description={seo.description}
+          keywords={seo.keywords}
+          schema={seo.schema}
+          canonical={`https://conquermark.com${location === "/" ? "/" : location}`}
+        />
+      )}
       {!isAdminRoute && (
         <>
           <ScrollToTop />

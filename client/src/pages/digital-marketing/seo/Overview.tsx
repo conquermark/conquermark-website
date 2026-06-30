@@ -228,7 +228,7 @@ export default function Overview() {
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Digital Marketing", href: "/digital-marketing" },
-        { label: "SEO & Search Visibility", href: "/digital-marketing/seo" },
+        { label: "SEO & Search Visibility", href: "/digital-marketing/seo/overview" },
         { label: "SEO & Search Visibility", href: "#" },
       ]}
       category="SEO & Search Visibility"

@@ -208,7 +208,7 @@ export default function SEOServicesOverview() {
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Digital Marketing", href: "/digital-marketing" },
-        { label: "SEO Services", href: "/digital-marketing/seo" }
+        { label: "SEO Services", href: "/digital-marketing/seo/overview" }
       ]}
     />
   );

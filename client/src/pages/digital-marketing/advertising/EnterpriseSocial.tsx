@@ -224,7 +224,7 @@ export default function EnterpriseSocial() {
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Digital Marketing", href: "/digital-marketing" },
-        { label: "Digital Advertising", href: "/digital-marketing/advertising" },
+        { label: "Digital Advertising", href: "/digital-marketing/advertising/overview" },
         { label: "Enterprise Social Media Ads", href: "#" },
       ]}
       category="Digital Advertising"

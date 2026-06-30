@@ -224,7 +224,7 @@ export default function PPC() {
       breadcrumbs={[
         { label: "Home", href: "/" },
         { label: "Digital Marketing", href: "/digital-marketing" },
-        { label: "Digital Advertising", href: "/digital-marketing/advertising" },
+        { label: "Digital Advertising", href: "/digital-marketing/advertising/overview" },
         { label: "PPC Management", href: "#" },
       ]}
       category="Digital Advertising"
