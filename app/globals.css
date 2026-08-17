@@ -33,3 +33,24 @@
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 @media(max-width:960px){.privacy-grid{grid-template-columns:repeat(2,1fr)}.privacy-footer{align-items:flex-start;flex-direction:column}.privacy-links{align-items:flex-start;text-align:left}}
 @media(max-width:600px){.comparison-section,.privacy-section{padding:76px 0}.privacy-grid{grid-template-columns:1fr}.privacy-card{min-height:0}.privacy-status{margin-top:20px}.comparison-table th,.comparison-table td{padding:16px}.comparison-footer{padding:20px}}
+
+/* Reference-inspired comparison matrix */
+.comparison-card{position:relative;border-radius:24px;box-shadow:0 24px 60px rgba(13,48,78,.08)}
+.comparison-matrix{min-width:980px;font-size:13px}
+.comparison-matrix thead th{height:112px;padding-top:20px;padding-bottom:18px;vertical-align:middle;background:#f4f8f9;text-transform:none;letter-spacing:0;font-size:16px}
+.comparison-matrix thead th:first-child{font-size:17px}
+.comparison-matrix thead th a{display:flex;align-items:center;gap:9px;color:var(--ink)}
+.comparison-matrix thead th small{display:block;margin-top:8px;color:#7d8c93;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.comparison-matrix tbody th{font-size:14px;background:#fff}
+.comparison-matrix tbody td{font-size:13px;min-width:205px}
+.comparison-matrix .comparison-highlight{background:#eef9f8}
+.competitor-mark{display:inline-grid;place-items:center;width:27px;height:27px;border-radius:8px;font-size:13px;font-weight:900}
+.clickcease-mark{background:#fff0dc;color:#e67b20;border:1px solid #f0c58d}
+.clickguard-mark{background:#e9e9ff;color:#4542bd;border:1px solid #c9c7ff}
+.clickmoat-mark{background:#dff4f1;color:#138c85;border:1px solid #a6e0da}
+.matrix-status{display:inline-flex;align-items:center;gap:6px;font-weight:800;margin-right:3px}
+.matrix-status.yes{color:#28aa84}.matrix-status.live-status{color:#108a83}.matrix-muted{color:#7a8a91;font-size:12px}
+.comparison-bottom{display:flex;justify-content:space-between;gap:28px;align-items:center;padding:20px 24px;border-top:1px solid var(--line);background:#fbfdfd}
+.comparison-bottom p{max-width:720px;margin:0;color:#71818a;font-size:12px;line-height:1.6}
+.comparison-links{display:flex;gap:16px;white-space:nowrap}.comparison-links a{color:#138c85;font-size:12px;font-weight:800;text-decoration:none}.comparison-links a:hover{text-decoration:underline}
+@media(max-width:760px){.comparison-bottom{align-items:flex-start;flex-direction:column}.comparison-links{flex-wrap:wrap;white-space:normal}.comparison-matrix thead th{height:96px}}
